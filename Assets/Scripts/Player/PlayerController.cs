@@ -24,24 +24,27 @@ public class PlayerController : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
     void Update() {
-        MovePlayer();
-        RotatePlayer();
-        UnityEngine.Cursor.visible = false;
-        UnityEngine.Cursor.lockState = UnityEngine.CursorLockMode.Locked;
+        movePlayer();
+        rotatePlayer();
+        setCursor();
+        debug();
     }
 
-    void MovePlayer() {
+    private void movePlayer() {
         Vector2 direction = _input.Player.Move.ReadValue<Vector2>();
         float actionSpeed = _input.Player.Sprint.IsPressed() ? RunningSpeed : WalkSpeed;
 
-        if(direction != Vector2.zero) _currentAcceleration += Time.deltaTime / AccelerationTime;
+        if (direction != Vector2.zero) _currentAcceleration += Time.deltaTime / AccelerationTime;
         else _currentAcceleration = 0;
 
         float currentSpeed = Mathf.Lerp(actionSpeed / 2.0f, actionSpeed, _currentAcceleration);
-        
-        if(direction != Vector2.zero) {
+
+        if (direction != Vector2.zero)
+        {
             _animator.SetFloat("Speed", currentSpeed);
-        } else {
+        }
+        else
+        {
             _animator.SetFloat("Speed", 0);
         }
 
@@ -51,11 +54,16 @@ public class PlayerController : MonoBehaviour
         _body.SimpleMove(currentRotation * moveBy);
     }
 
-    void RotatePlayer() {
+    private void rotatePlayer() {
         Vector2 value = _input.Player.Look.ReadValue<Vector2>();
 
         float x = value.x * Time.deltaTime * RotationSpeed;
 
         transform.Rotate(Vector3.up * x);
+    }
+
+    private void setCursor() {
+        UnityEngine.Cursor.visible = false;
+        UnityEngine.Cursor.lockState = UnityEngine.CursorLockMode.Locked;
     }
 }
