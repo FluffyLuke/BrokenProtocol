@@ -103,6 +103,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "HideHeldItem",
+                    "type": "Button",
+                    "id": "690e9e1a-c8e1-4276-86c5-4136d4c7484b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -521,6 +530,17 @@
                     "processors": "Scale(factor=5)",
                     "groups": "",
                     "action": "QuickItemAccess",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "efc3fd56-0330-41c5-a2ab-d269b36bc55f",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HideHeldItem",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

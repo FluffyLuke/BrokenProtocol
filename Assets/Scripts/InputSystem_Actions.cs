@@ -189,6 +189,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""HideHeldItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""690e9e1a-c8e1-4276-86c5-4136d4c7484b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -607,6 +616,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": ""Scale(factor=5)"",
                     ""groups"": """",
                     ""action"": ""QuickItemAccess"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""efc3fd56-0330-41c5-a2ab-d269b36bc55f"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HideHeldItem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1253,6 +1273,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_NextWeapon = m_Player.FindAction("NextWeapon", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_QuickItemAccess = m_Player.FindAction("QuickItemAccess", throwIfNotFound: true);
+        m_Player_HideHeldItem = m_Player.FindAction("HideHeldItem", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1362,6 +1383,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_NextWeapon;
     private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_QuickItemAccess;
+    private readonly InputAction m_Player_HideHeldItem;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1417,6 +1439,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/QuickItemAccess".
         /// </summary>
         public InputAction @QuickItemAccess => m_Wrapper.m_Player_QuickItemAccess;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/HideHeldItem".
+        /// </summary>
+        public InputAction @HideHeldItem => m_Wrapper.m_Player_HideHeldItem;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1476,6 +1502,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @QuickItemAccess.started += instance.OnQuickItemAccess;
             @QuickItemAccess.performed += instance.OnQuickItemAccess;
             @QuickItemAccess.canceled += instance.OnQuickItemAccess;
+            @HideHeldItem.started += instance.OnHideHeldItem;
+            @HideHeldItem.performed += instance.OnHideHeldItem;
+            @HideHeldItem.canceled += instance.OnHideHeldItem;
         }
 
         /// <summary>
@@ -1520,6 +1549,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @QuickItemAccess.started -= instance.OnQuickItemAccess;
             @QuickItemAccess.performed -= instance.OnQuickItemAccess;
             @QuickItemAccess.canceled -= instance.OnQuickItemAccess;
+            @HideHeldItem.started -= instance.OnHideHeldItem;
+            @HideHeldItem.performed -= instance.OnHideHeldItem;
+            @HideHeldItem.canceled -= instance.OnHideHeldItem;
         }
 
         /// <summary>
@@ -2004,6 +2036,13 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnQuickItemAccess(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "HideHeldItem" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnHideHeldItem(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

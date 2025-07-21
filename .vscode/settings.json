@@ -66,5 +66,12 @@
     "explorer.fileNesting.patterns": {
         "*.sln": "*.csproj",
     },
-    "dotnet.defaultSolution": "BrokenProtocol.sln"
+    "dotnet.defaultSolution": "BrokenProtocol.sln",
+    "[csharp]": {
+        "editor.formatOnType": false,
+        "editor.formatOnSave": false,
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4,
+        "csharp.format.braces.openingBrace": "sameLine"
+    }
 }

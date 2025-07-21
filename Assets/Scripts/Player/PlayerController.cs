@@ -27,7 +27,6 @@ public class PlayerController : MonoBehaviour
         movePlayer();
         rotatePlayer();
         setCursor();
-        debug();
     }
 
     private void movePlayer() {
