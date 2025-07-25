@@ -7,6 +7,7 @@ public class Hands : MonoBehaviour
     [SerializeField] private GameObject _hands;
     [SerializeField] private Inventory[] _quickAccessInventories;
     private InputSystem_Actions _input;
+    private IItem _currentItem;
     void Awake() {
         _input = new InputSystem_Actions();
         _input.Player.QuickItemAccess.performed += getItem;
@@ -35,14 +36,14 @@ public class Hands : MonoBehaviour
             return;
         };
 
-        Item item = currentInventory.items[0];
-        Debug.Log($"Got item: {item}");
-        Instantiate(item.definition.prefab, _hands.transform);
+        ItemData itemData = currentInventory.items[0];
+        Debug.Log($"Equiped item: {itemData}");
+        _currentItem = Instantiate(itemData.definition.prefab, _hands.transform).GetComponent<IItem>();
+        _currentItem.Grab(itemData);
     }
     private void hideHeldItem(InputAction.CallbackContext ctx) {
-        foreach(Transform c in _hands.transform) {
-            Destroy(c.gameObject);
-        }
+        _currentItem.Hide();
+        _currentItem = null;
     }
     private void getInventories() {
         Inventory[] allInventories = GetComponentsInChildren<Inventory>();

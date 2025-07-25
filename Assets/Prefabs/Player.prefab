@@ -73,7 +73,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1420815412498142880}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.022841046, y: -0, z: -0, w: 0.9997391}
+  m_LocalRotation: {x: -0.025216827, y: -0, z: -0, w: 0.999682}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -148,7 +148,7 @@ MonoBehaviour:
       Time: 2
     Restrictions: 0
   TiltAxis:
-    Value: -2.6176188
+    Value: -2.889942
     Center: 0
     Range: {x: -70, y: 70}
     Wrap: 0
@@ -324,6 +324,7 @@ GameObject:
   - component: {fileID: 6762912820203956944}
   - component: {fileID: 5429790306925440130}
   - component: {fileID: 9096908618414477458}
+  - component: {fileID: 6516880491693015481}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -387,8 +388,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RotationSpeed: 10
-  RunningSpeed: 500
-  WalkSpeed: 150
+  RunningSpeed: 1500
+  WalkSpeed: 500
   AccelerationTime: 0.5
 --- !u!95 &5429790306925440130
 Animator:
@@ -426,6 +427,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hands: {fileID: 3383276764656401897}
   _quickAccessInventories: []
+--- !u!114 &6516880491693015481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4701769500907289076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a15462a76e8900aecb83597830ba7a78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _holster: {fileID: 9019839202534200898}
 --- !u!1 &7053770072160150264
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,8 +488,7 @@ MonoBehaviour:
   maxItems: 1
   allowedTypes: 
   unallowed: 
-  items:
-  - definition: {fileID: 11400000, guid: b785acfc37b050636a0636c9a8d0230d, type: 2}
+  items: []
 --- !u!1 &7516790036234531715
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,8 +537,7 @@ MonoBehaviour:
   maxItems: 1
   allowedTypes: 
   unallowed: 
-  items:
-  - definition: {fileID: 11400000, guid: b785acfc37b050636a0636c9a8d0230d, type: 2}
+  items: []
 --- !u!1 &8176037271369514467
 GameObject:
   m_ObjectHideFlags: 0

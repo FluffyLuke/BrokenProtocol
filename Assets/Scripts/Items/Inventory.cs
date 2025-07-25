@@ -7,5 +7,5 @@ public class Inventory : MonoBehaviour
     public int maxItems;
     public List<ItemDefinition.ItemType> allowedTypes; // If non selected, all of them are allowed
     public List<ItemDefinition.ItemType> unallowed;
-    public List<Item> items;
+    public List<ItemData> items;
 }
