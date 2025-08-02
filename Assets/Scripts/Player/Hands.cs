@@ -10,36 +10,21 @@ public class Hands : MonoBehaviour
     private IItem _currentItem;
     void Awake() {
         _input = new InputSystem_Actions();
-        _input.Player.QuickItemAccess.performed += getItem;
         _input.Player.HideHeldItem.performed += hideHeldItem;
         _input.Player.Enable();
+
+        PlayerEventBus
+            .holdItem
+            .AddListener(holdItem);
     }
 
     void Start() {
         getInventories();
     }
-
-    // Update is called once per frame
-    private void getItem(InputAction.CallbackContext ctx) {
-        int slot = (int)ctx.ReadValue<float>();
-        slot -= 1;
-        if (slot >= _quickAccessInventories.Length || slot < 0) return;
-        if(_quickAccessInventories.Length == 0) {
-            Debug.Log("Cannot get any quickslot inventory");
-            return;
-        }
-
-        Inventory currentInventory = _quickAccessInventories[slot];
-
-        if(currentInventory.items.Count <= 0) {
-            Debug.Log("No items in quickslot inventory");
-            return;
-        };
-
-        ItemData itemData = currentInventory.items[0];
-        Debug.Log($"Equiped item: {itemData}");
-        _currentItem = Instantiate(itemData.definition.prefab, _hands.transform).GetComponent<IItem>();
-        _currentItem.Grab(itemData);
+    private void holdItem(ItemData item) {
+        Debug.Log($"Equiped item: {item}");
+        _currentItem = Instantiate(item.definition.prefab, _hands.transform).GetComponent<IItem>();
+        _currentItem.Grab(item);
     }
     private void hideHeldItem(InputAction.CallbackContext ctx) {
         _currentItem.Hide();

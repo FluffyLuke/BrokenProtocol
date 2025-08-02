@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7346514798568974786}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.6027, y: 0, z: -2.38803}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -47,3 +47,5 @@ MonoBehaviour:
   _startingItems:
   - key: ServicePistol
     definition: {fileID: 11400000, guid: b785acfc37b050636a0636c9a8d0230d, type: 2}
+  - key: ServiceRifle
+    definition: {fileID: 11400000, guid: f5a40aac5d204df28ace1b6d396d0737, type: 2}

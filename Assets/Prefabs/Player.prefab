@@ -310,7 +310,13 @@ MonoBehaviour:
   maxItems: 10
   allowedTypes: 
   unallowed: 
-  items: []
+  itemAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  itemRemoved:
+    m_PersistentCalls:
+      m_Calls: []
+  _items: []
 --- !u!1 &4701769500907289076
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,7 +333,7 @@ GameObject:
   - component: {fileID: 6516880491693015481}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -485,10 +491,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quickAccess: 1
-  maxItems: 1
+  maxItems: 2
   allowedTypes: 
   unallowed: 
-  items: []
+  itemAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  itemRemoved:
+    m_PersistentCalls:
+      m_Calls: []
+  _items: []
 --- !u!1 &7516790036234531715
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,7 +549,13 @@ MonoBehaviour:
   maxItems: 1
   allowedTypes: 
   unallowed: 
-  items: []
+  itemAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  itemRemoved:
+    m_PersistentCalls:
+      m_Calls: []
+  _items: []
 --- !u!1 &8176037271369514467
 GameObject:
   m_ObjectHideFlags: 0

@@ -105,6 +105,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "QuickItemAccessApprove",
+                    "type": "Button",
+                    "id": "1fecc8fb-fc57-4925-a6c7-bfadcca608b7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "HideHeldItem",
                     "type": "Button",
                     "id": "690e9e1a-c8e1-4276-86c5-4136d4c7484b",
@@ -541,6 +550,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "HideHeldItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3b6a79a9-3b47-4276-ab01-99d66fcc6116",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QuickItemAccessApprove",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

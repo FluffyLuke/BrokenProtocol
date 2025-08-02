@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 41cd8de91ff201824975e6db59e05b90, type: 3}
-  m_Name: ServicePistol
+  m_Name: ServiceRifle
   m_EditorClassIdentifier: 
   type: 1
-  displayName: Service Pistol
-  prefab: {fileID: 2589862898478383057, guid: b45ddebac3f192dc8913d79e51e65950, type: 3}
-  itemIcon: {fileID: 21300000, guid: be09ae8b9585e505793ae26579d9c9fa, type: 3}
+  displayName: Service Rifle
+  prefab: {fileID: 5740654479368403015, guid: b3ad348235d32d015960c7bfa7e73ce8, type: 3}
+  itemIcon: {fileID: 21300000, guid: 28026d32459024bdf84e0c99d18b78a4, type: 3}

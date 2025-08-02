@@ -10,4 +10,5 @@ public class ItemDefinition : ScriptableObject
     public ItemType type;
     public string displayName;
     public GameObject prefab;
+    public Sprite itemIcon;
 }

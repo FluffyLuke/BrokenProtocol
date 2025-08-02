@@ -191,6 +191,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""QuickItemAccessApprove"",
+                    ""type"": ""Button"",
+                    ""id"": ""1fecc8fb-fc57-4925-a6c7-bfadcca608b7"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""HideHeldItem"",
                     ""type"": ""Button"",
                     ""id"": ""690e9e1a-c8e1-4276-86c5-4136d4c7484b"",
@@ -627,6 +636,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""HideHeldItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3b6a79a9-3b47-4276-ab01-99d66fcc6116"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""QuickItemAccessApprove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1273,6 +1293,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_NextWeapon = m_Player.FindAction("NextWeapon", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_QuickItemAccess = m_Player.FindAction("QuickItemAccess", throwIfNotFound: true);
+        m_Player_QuickItemAccessApprove = m_Player.FindAction("QuickItemAccessApprove", throwIfNotFound: true);
         m_Player_HideHeldItem = m_Player.FindAction("HideHeldItem", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
@@ -1383,6 +1404,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_NextWeapon;
     private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_QuickItemAccess;
+    private readonly InputAction m_Player_QuickItemAccessApprove;
     private readonly InputAction m_Player_HideHeldItem;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
@@ -1439,6 +1461,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/QuickItemAccess".
         /// </summary>
         public InputAction @QuickItemAccess => m_Wrapper.m_Player_QuickItemAccess;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/QuickItemAccessApprove".
+        /// </summary>
+        public InputAction @QuickItemAccessApprove => m_Wrapper.m_Player_QuickItemAccessApprove;
         /// <summary>
         /// Provides access to the underlying input action "Player/HideHeldItem".
         /// </summary>
@@ -1502,6 +1528,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @QuickItemAccess.started += instance.OnQuickItemAccess;
             @QuickItemAccess.performed += instance.OnQuickItemAccess;
             @QuickItemAccess.canceled += instance.OnQuickItemAccess;
+            @QuickItemAccessApprove.started += instance.OnQuickItemAccessApprove;
+            @QuickItemAccessApprove.performed += instance.OnQuickItemAccessApprove;
+            @QuickItemAccessApprove.canceled += instance.OnQuickItemAccessApprove;
             @HideHeldItem.started += instance.OnHideHeldItem;
             @HideHeldItem.performed += instance.OnHideHeldItem;
             @HideHeldItem.canceled += instance.OnHideHeldItem;
@@ -1549,6 +1578,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @QuickItemAccess.started -= instance.OnQuickItemAccess;
             @QuickItemAccess.performed -= instance.OnQuickItemAccess;
             @QuickItemAccess.canceled -= instance.OnQuickItemAccess;
+            @QuickItemAccessApprove.started -= instance.OnQuickItemAccessApprove;
+            @QuickItemAccessApprove.performed -= instance.OnQuickItemAccessApprove;
+            @QuickItemAccessApprove.canceled -= instance.OnQuickItemAccessApprove;
             @HideHeldItem.started -= instance.OnHideHeldItem;
             @HideHeldItem.performed -= instance.OnHideHeldItem;
             @HideHeldItem.canceled -= instance.OnHideHeldItem;
@@ -2036,6 +2068,13 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnQuickItemAccess(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "QuickItemAccessApprove" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnQuickItemAccessApprove(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "HideHeldItem" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

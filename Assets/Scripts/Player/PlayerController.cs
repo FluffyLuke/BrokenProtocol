@@ -39,10 +39,8 @@ public class PlayerController : MonoBehaviour
         float currentSpeed = Mathf.Lerp(actionSpeed / 2.0f, actionSpeed, _currentAcceleration);
 
         if (direction != Vector2.zero) {
-            Debug.Log(direction);
             _animator.SetFloat("Speed", currentSpeed);
-        }
-        else {
+        } else {
             _animator.SetFloat("Speed", 0);
         }
 

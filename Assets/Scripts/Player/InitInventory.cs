@@ -13,7 +13,15 @@ public class InitInventory : MonoBehaviour
             count = 5,
             maxAmmo = 5,
         });
+        _holster.AddItem(pistol);
 
-        _holster.items.Add(pistol);
+        ItemData rifle = new ItemData {
+            definition = ItemDefinitionDatabase.Get("ServiceRifle")
+        };
+        rifle.AddProperty(new Ammo {
+            count = 30,
+            maxAmmo = 30,
+        });
+        _holster.AddItem(rifle);
     }
 }
