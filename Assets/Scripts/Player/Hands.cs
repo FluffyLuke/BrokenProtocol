@@ -22,6 +22,11 @@ public class Hands : MonoBehaviour
         getInventories();
     }
     private void holdItem(ItemData item) {
+        if(_currentItem != null) {
+            _currentItem.Hide();
+            _currentItem = null;
+        }
+
         Debug.Log($"Equiped item: {item}");
         _currentItem = Instantiate(item.definition.prefab, _hands.transform).GetComponent<IItem>();
         _currentItem.Grab(item);

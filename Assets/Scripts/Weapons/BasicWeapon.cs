@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,16 +6,21 @@ using UnityEngine.InputSystem;
 public class Weapon : IItem
 {
     private InputSystem_Actions _input;
+    private bool fireButtonHeld = false;
     private WeaponEventBus _events;
     private ItemData _data;
     [Header("Animation")]
     [SerializeField] private Animator _animator;
     [SerializeField] private string fireAnimation = "Fire";
     [SerializeField] private string reloadAnimation = "Reload";
+    [Header("WeaponOption")]
+    public float repeatFireSecs = 0;
+    private Coroutine repeatFireCoroutine;
     void Awake() {
         _events = GetComponent<WeaponEventBus>();
         _input = new InputSystem_Actions();
-        _input.Player.Fire.performed += Fire;
+        _input.Player.Fire.performed += fireWeaponCallback;
+        _input.Player.Fire.canceled += fireWeaponCancelCallback;
         _input.Player.Reload.performed += Reload;
     }
     void OnEnable() {
@@ -29,17 +35,32 @@ public class Weapon : IItem
     void Update() {
         Debug.DrawLine(currentRay.origin, currentHit.point);
     }
-    public void Fire(InputAction.CallbackContext ctx) {
+    private void fireWeaponCallback(InputAction.CallbackContext ctx) {
+        fireButtonHeld = true;
+        FireWeapon();
+    }
+    private void fireWeaponCancelCallback(InputAction.CallbackContext ctx) {
+        fireButtonHeld = false;
+    }
+    public void FireWeapon() {
+        if(repeatFireCoroutine != null) {
+            StopCoroutine(repeatFireCoroutine);
+        }
+
         Ammo ammo = _data.GetProperty<Ammo>();
         if(ammo.count <= 0) return;
 
-        _animator.Play(fireAnimation);
+        _animator.Play(fireAnimation, -1, 0.0f);
         Debug.Log($"{ammo.count}");
         ammo.count -= 1;
 
-        //FIX get those values from render texture
-        int x = 240;
-        int y = 135;
+        // FIX get those values from render texture
+        // int x = 240;
+        // int y = 135;
+
+        int x = 1920;
+        int y = 1080;
+
 
         Vector3 renderTextureCenter = new Vector3(x / 2f, y / 2f, 0);
         Ray ray = Camera.main.ScreenPointToRay(renderTextureCenter);
@@ -52,6 +73,17 @@ public class Weapon : IItem
         currentHit = hit;
         currentRay = ray;
         _events.weaponFire.Invoke(ray, hit, false);
+
+        if(repeatFireSecs != 0) {
+            StartCoroutine(fireAgain());
+        }
+    }
+
+    private IEnumerator fireAgain() {
+        yield return new WaitForSeconds(repeatFireSecs);
+        if(fireButtonHeld) {
+            FireWeapon();
+        }
     }
     public void Reload(InputAction.CallbackContext ctx) {
         Ammo ammo = _data.GetProperty<Ammo>();
