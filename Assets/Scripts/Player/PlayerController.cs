@@ -1,4 +1,5 @@
 using System;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -11,10 +12,11 @@ public class PlayerController : MonoBehaviour
     public float RunningSpeed = 500;
     public float WalkSpeed = 200;
     public float AccelerationTime = 0.5f; // How much it will take to reach full speed
-    private float _currentAcceleration;
     private InputSystem_Actions _input;
     private CharacterController _body;
     private Animator _animator;
+    // Saved move values
+    private float _currentAcceleration; // From 0 to 1
     void Awake() {
         _input = new InputSystem_Actions();
         _input.Player.Enable();
@@ -33,16 +35,19 @@ public class PlayerController : MonoBehaviour
         Vector2 direction = _input.Player.Move.ReadValue<Vector2>();
         float actionSpeed = _input.Player.Sprint.IsPressed() ? RunningSpeed : WalkSpeed;
 
+        // Get current acceleration
         if (direction != Vector2.zero) _currentAcceleration += Time.deltaTime / AccelerationTime;
-        else _currentAcceleration = 0;
+        else _currentAcceleration -= Time.deltaTime * 2;
+        _currentAcceleration = Math.Min(_currentAcceleration, 1);
+        _currentAcceleration = Math.Max(_currentAcceleration, 0);
 
-        float currentSpeed = Mathf.Lerp(actionSpeed / 2.0f, actionSpeed, _currentAcceleration);
-
-        if (direction != Vector2.zero) {
-            _animator.SetFloat("Speed", currentSpeed);
-        } else {
+        if(_currentAcceleration == 0) {
             _animator.SetFloat("Speed", 0);
+            return;
         }
+
+        float currentSpeed = (float)((1 /(-_currentAcceleration - 1)) + 1.5) * actionSpeed;
+        _animator.SetFloat("Speed", currentSpeed);
 
         Vector3 moveBy = new Vector3(direction.x, 0, direction.y) * Time.deltaTime * currentSpeed;
 
