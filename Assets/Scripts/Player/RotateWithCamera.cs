@@ -1,8 +1,10 @@
 using Unity.Cinemachine;
 using UnityEngine;
 
-public class HandsRotator : MonoBehaviour
+public class RotateWithCamera : MonoBehaviour
 {
+    // [Range(0.5f, 1.5f)]
+    // public float RotateRatio;
     [SerializeField] private CinemachineCamera _camera;
 
     private void OnEnable() {
