@@ -74,7 +74,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1420815412498142880}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.16979174, y: -0, z: -0, w: 0.98548}
+  m_LocalRotation: {x: -0.13645962, y: -0, z: -0, w: 0.99064565}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -149,7 +149,7 @@ MonoBehaviour:
       Time: 2
     Restrictions: 0
   TiltAxis:
-    Value: -19.55142
+    Value: -15.686062
     Center: 0
     Range: {x: -70, y: 70}
     Wrap: 0
@@ -430,9 +430,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RotationSpeed: 10
-  RunningSpeed: 1500
-  WalkSpeed: 500
-  AccelerationTime: 0.5
+  WalkingAcceleration: 5
+  MaxWalkingSpeed: 500
+  RunningAcceleration: 10
+  MaxRunningSpeed: 1000
 --- !u!95 &5429790306925440130
 Animator:
   serializedVersion: 7
