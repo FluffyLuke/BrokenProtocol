@@ -43,7 +43,6 @@ public class SimpleMovement : MonoBehaviour
 
         Vector3 direction = new Vector3(inputDirection.x, 0, inputDirection.y);
         Vector3 move = transform.rotation * direction * targetSpeed;
-        move *= 10;
 
         _animator.SetFloat("Speed", move.magnitude);
         Debug.Log($"Speed {move.magnitude}");
