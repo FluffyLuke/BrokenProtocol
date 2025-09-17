@@ -16,8 +16,8 @@ RenderSettings:
   serializedVersion: 10
   m_Fog: 1
   m_FogColor: {r: 0, g: 0, b: 0, a: 1}
-  m_FogMode: 2
-  m_FogDensity: 0.071
+  m_FogMode: 3
+  m_FogDensity: 0.03
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0, g: 0, b: 0, a: 1}
@@ -17917,8 +17917,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 219648087782112061, guid: 2c71613d04055c44b9bae18d21fa1124, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 219648087782112061, guid: 2c71613d04055c44b9bae18d21fa1124, type: 3}
+      propertyPath: m_Color.g
+      value: 0.74509805
+      objectReference: {fileID: 0}
+    - target: {fileID: 219648087782112061, guid: 2c71613d04055c44b9bae18d21fa1124, type: 3}
       propertyPath: m_Intensity
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2842723348184945408, guid: 2c71613d04055c44b9bae18d21fa1124, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17933,8 +17941,20 @@ PrefabInstance:
       value: 7.02
       objectReference: {fileID: 0}
     - target: {fileID: 2988944508722862770, guid: 2c71613d04055c44b9bae18d21fa1124, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2988944508722862770, guid: 2c71613d04055c44b9bae18d21fa1124, type: 3}
+      propertyPath: m_Color.g
+      value: 0.74664915
+      objectReference: {fileID: 0}
+    - target: {fileID: 2988944508722862770, guid: 2c71613d04055c44b9bae18d21fa1124, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2988944508722862770, guid: 2c71613d04055c44b9bae18d21fa1124, type: 3}
       propertyPath: m_Intensity
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3140883494147574293, guid: 2c71613d04055c44b9bae18d21fa1124, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17990,11 +18010,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4715736716324526537, guid: 2c71613d04055c44b9bae18d21fa1124, type: 3}
       propertyPath: m_Range
-      value: 100
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4715736716324526537, guid: 2c71613d04055c44b9bae18d21fa1124, type: 3}
+      propertyPath: m_Color.a
+      value: 0.6313726
+      objectReference: {fileID: 0}
+    - target: {fileID: 4715736716324526537, guid: 2c71613d04055c44b9bae18d21fa1124, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4715736716324526537, guid: 2c71613d04055c44b9bae18d21fa1124, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4715736716324526537, guid: 2c71613d04055c44b9bae18d21fa1124, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4715736716324526537, guid: 2c71613d04055c44b9bae18d21fa1124, type: 3}
       propertyPath: m_Intensity
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6762912820203956944, guid: 2c71613d04055c44b9bae18d21fa1124, type: 3}
       propertyPath: WalkingAcceleration
