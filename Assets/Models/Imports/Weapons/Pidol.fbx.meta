@@ -3,7 +3,32 @@ guid: e4844f348b808a93da75c4a4bca8f7a3
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Black plastic (old plastic)
+    second: {fileID: 2100000, guid: 69440c37fc2d7020d88828489138b70b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal
+    second: {fileID: 2100000, guid: 55d89e700daf4410ea2d669eac3f1f1b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plastic Black
+    second: {fileID: 2100000, guid: 3fa11aa02d926b34387abd7ffff00760, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plastic Grey 21
+    second: {fileID: 2100000, guid: 1167b43caa2dc11769aec62261add0eb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Procedural pearl black painted plastic
+    second: {fileID: 2100000, guid: e24c097ba006b34358dec1f3fd980c50, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
