@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7692483714691320174}
   - component: {fileID: 7601414068703537087}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Flash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 5390956055701004656}
   - component: {fileID: -6947556212647489719}
   - component: {fileID: 7892532191505952884}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ServiceRifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,6 +139,9 @@ MonoBehaviour:
   fireAnimation: Fire
   reloadAnimation: Reload
   repeatFireSecs: 0.1
+  LayersToIgnore:
+    serializedVersion: 2
+    m_Bits: 4
 --- !u!114 &-6947556212647489719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,6 +179,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2007611901544140294}
     m_Modifications:
+    - target: {fileID: 992621791272694123, guid: 03b611700e4b2c8e68b6056886fc08ab, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1705077128426407356, guid: 03b611700e4b2c8e68b6056886fc08ab, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -219,6 +226,42 @@ PrefabInstance:
     - target: {fileID: 2081355934127333126, guid: 03b611700e4b2c8e68b6056886fc08ab, type: 3}
       propertyPath: m_Name
       value: Rifle
+      objectReference: {fileID: 0}
+    - target: {fileID: 2081355934127333126, guid: 03b611700e4b2c8e68b6056886fc08ab, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681460126140092310, guid: 03b611700e4b2c8e68b6056886fc08ab, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3700823690094860515, guid: 03b611700e4b2c8e68b6056886fc08ab, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3736737433626056478, guid: 03b611700e4b2c8e68b6056886fc08ab, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4593311515958373540, guid: 03b611700e4b2c8e68b6056886fc08ab, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7127638184740487693, guid: 03b611700e4b2c8e68b6056886fc08ab, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7160988013200824710, guid: 03b611700e4b2c8e68b6056886fc08ab, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8704148013185566561, guid: 03b611700e4b2c8e68b6056886fc08ab, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8875822723961335027, guid: 03b611700e4b2c8e68b6056886fc08ab, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

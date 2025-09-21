@@ -45,8 +45,7 @@ public class SimpleMovement : MonoBehaviour
         Vector3 move = transform.rotation * direction * targetSpeed;
 
         _animator.SetFloat("Speed", move.magnitude);
-        Debug.Log($"Speed {move.magnitude}");
-
+        // Debug.Log($"Speed {move.magnitude}");
 
         _body.SimpleMove(move * Time.deltaTime);
     }

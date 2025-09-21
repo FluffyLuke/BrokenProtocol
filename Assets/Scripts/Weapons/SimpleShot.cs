@@ -13,14 +13,14 @@ public class SimpleShot : MonoBehaviour
         _events.weaponFire.AddListener(onFire);
     }
 
-    void onFire(Ray ray, RaycastHit hit, bool ifHit) {
+    void onFire(RaycastHit hit, bool ifHit) {
         if(_flash != null) {
             StopCoroutine(_flash);
         }
 
         _flash = StartCoroutine(flash());
 
-        spawnBulletHole(ray, hit, ifHit);
+        spawnBulletHole(hit, ifHit);
     }
 
     private IEnumerator flash() {
@@ -29,7 +29,7 @@ public class SimpleShot : MonoBehaviour
         _muzzleFlash.SetActive(false);
     }
 
-    private void spawnBulletHole(Ray ray, RaycastHit hit, bool ifHit) {
+    private void spawnBulletHole(RaycastHit hit, bool ifHit) {
         if(ifHit) {
             Vector3 offsetPosition = hit.point + hit.normal * 0.01f;
             Quaternion rotation = Quaternion.LookRotation(hit.normal);

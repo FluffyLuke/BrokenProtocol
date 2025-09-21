@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1949518569051430974}
   - component: {fileID: 4788700465432017961}
   - component: {fileID: 3725492952678794790}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,6 +51,10 @@ MonoBehaviour:
   _animator: {fileID: 8888487198308375363}
   fireAnimation: Fire
   reloadAnimation: Reload
+  repeatFireSecs: 0
+  LayersToIgnore:
+    serializedVersion: 2
+    m_Bits: 4
 --- !u!114 &4788700465432017961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3809378995964851303}
   - component: {fileID: 940818049258724261}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Flash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,6 +179,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4310522698527658238}
     m_Modifications:
+    - target: {fileID: 290861498148043632, guid: 4e1c2220efd04b245ba31795a59f7e18, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 317137157152032672, guid: 4e1c2220efd04b245ba31795a59f7e18, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2199982356464716259, guid: 4e1c2220efd04b245ba31795a59f7e18, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3210983731168791264, guid: 4e1c2220efd04b245ba31795a59f7e18, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4334109531233937265, guid: 4e1c2220efd04b245ba31795a59f7e18, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6332836075029716434, guid: 4e1c2220efd04b245ba31795a59f7e18, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7327064757714576873, guid: 4e1c2220efd04b245ba31795a59f7e18, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.095
@@ -218,6 +246,10 @@ PrefabInstance:
     - target: {fileID: 7990835166860558163, guid: 4e1c2220efd04b245ba31795a59f7e18, type: 3}
       propertyPath: m_Name
       value: Pidol
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990835166860558163, guid: 4e1c2220efd04b245ba31795a59f7e18, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

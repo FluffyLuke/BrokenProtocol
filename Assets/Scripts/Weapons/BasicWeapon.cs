@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -16,6 +17,8 @@ public class Weapon : IItem
     [Header("WeaponOption")]
     public float repeatFireSecs = 0;
     private Coroutine repeatFireCoroutine;
+    [Header("Decals")]
+    public LayerMask LayersToIgnore;
     void Awake() {
         _events = GetComponent<WeaponEventBus>();
         _input = new InputSystem_Actions();
@@ -28,12 +31,6 @@ public class Weapon : IItem
     }
     void OnDisable() {
         _input.Disable();
-    }
-
-    Ray currentRay;
-    RaycastHit currentHit;
-    void Update() {
-        Debug.DrawLine(currentRay.origin, currentHit.point);
     }
     private void fireWeaponCallback(InputAction.CallbackContext ctx) {
         fireButtonHeld = true;
@@ -54,25 +51,14 @@ public class Weapon : IItem
         Debug.Log($"{ammo.count}");
         ammo.count -= 1;
 
-        // FIX get those values from render texture
-        // int x = 240;
-        // int y = 135;
-
-        int x = 1920;
-        int y = 1080;
-
-
-        Vector3 renderTextureCenter = new Vector3(x / 2f, y / 2f, 0);
-        Ray ray = Camera.main.ScreenPointToRay(renderTextureCenter);
+        float maxDistance = 1000f;
 
         RaycastHit hit;
-        if(Physics.Raycast(ray, out hit)) {
-            _events.weaponFire.Invoke(ray, hit, true);
+        if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, maxDistance, ~LayersToIgnore)) {
+            _events.weaponFire.Invoke(hit, true);
         }
 
-        currentHit = hit;
-        currentRay = ray;
-        _events.weaponFire.Invoke(ray, hit, false);
+        _events.weaponFire.Invoke(hit, false);
 
         if(repeatFireSecs != 0) {
             StartCoroutine(fireAgain());
