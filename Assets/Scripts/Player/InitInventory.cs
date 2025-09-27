@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InitInventory : MonoBehaviour
 {
-    [SerializeField] private Inventory _holster;
+    [SerializeField] private Inventory holster;
     private void Start() {
         ItemData pistol = new ItemData {
             definition = ItemDefinitionDatabase.Get("ServicePistol")
@@ -13,7 +13,7 @@ public class InitInventory : MonoBehaviour
             count = 5,
             maxAmmo = 5,
         });
-        _holster.AddItem(pistol);
+        holster.AddItem(pistol);
 
         ItemData rifle = new ItemData {
             definition = ItemDefinitionDatabase.Get("ServiceRifle")
@@ -22,6 +22,6 @@ public class InitInventory : MonoBehaviour
             count = 30,
             maxAmmo = 30,
         });
-        _holster.AddItem(rifle);
+        holster.AddItem(rifle);
     }
 }

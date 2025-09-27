@@ -5,7 +5,7 @@ public class RotateWithCamera : MonoBehaviour
 {
     // [Range(0.5f, 1.5f)]
     // public float RotateRatio;
-    [SerializeField] private CinemachineCamera _camera;
+    [SerializeField] private CinemachineCamera camera;
 
     private void OnEnable() {
         CinemachineCore.CameraUpdatedEvent.AddListener(onCameraUpdated);
@@ -16,6 +16,6 @@ public class RotateWithCamera : MonoBehaviour
     }
 
     private void onCameraUpdated(CinemachineBrain brain) {
-        transform.rotation = _camera.transform.rotation;
+        transform.rotation = camera.transform.rotation;
     }
 }

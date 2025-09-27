@@ -5,24 +5,24 @@ using UnityEngine;
 public class CameraLook : MonoBehaviour
 {
     public float Sensivity;
-    private InputSystem_Actions _input;
-    private CinemachinePanTilt[] _cameras;
+    private InputSystem_Actions input;
+    private CinemachinePanTilt[] cameras;
     void Awake() {
-        _input = new InputSystem_Actions();
-        _input.Player.Enable();
+        input = new InputSystem_Actions();
+        input.Player.Enable();
     }
     void Start() {
-        _cameras = GetComponentsInChildren<CinemachinePanTilt>();
+        cameras = GetComponentsInChildren<CinemachinePanTilt>();
     }
     void Update() {
         RotateCamera();
     }
     void RotateCamera() {
-        Vector2 direction = _input.Player.Look.ReadValue<Vector2>() * Sensivity;
+        Vector2 direction = input.Player.Look.ReadValue<Vector2>() * Sensivity;
 
         Debug.Log(direction);
 
-        foreach(var c in _cameras) {
+        foreach(var c in cameras) {
             c.PanAxis.Value += direction.x * Time.deltaTime;
             c.TiltAxis.Value += direction.x * Time.deltaTime;
         }

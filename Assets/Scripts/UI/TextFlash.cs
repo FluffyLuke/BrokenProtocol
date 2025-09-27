@@ -6,25 +6,25 @@ public class TextFlash : MonoBehaviour
 {
     public string[] Frames;
     public float TimeBetweenFrames = 1;
-    private TextMeshProUGUI _text;
-    private float _lastTime;
-    private int _currentFrame = 0;
+    private TextMeshProUGUI text;
+    private float lastTime;
+    private int currentFrame = 0;
     void Start() {
-        _text = GetComponent<TextMeshProUGUI>();
-        _text.text = Frames[0];
+        text = GetComponent<TextMeshProUGUI>();
+        text.text = Frames[0];
 
-        _lastTime = Time.time;
+        lastTime = Time.time;
     }
     void Update() {
-        if(_lastTime + TimeBetweenFrames <= Time.time) {
-            _lastTime = Time.time;
+        if(lastTime + TimeBetweenFrames <= Time.time) {
+            lastTime = Time.time;
 
-            _currentFrame++;
-            if(_currentFrame >= Frames.Length) {
-                _currentFrame = 0;
+            currentFrame++;
+            if(currentFrame >= Frames.Length) {
+                currentFrame = 0;
             }
 
-            _text.text = Frames[_currentFrame];
+            text.text = Frames[currentFrame];
         }
     }
 }

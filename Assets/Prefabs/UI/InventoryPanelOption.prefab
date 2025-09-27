@@ -241,10 +241,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d9222e4244d8c921bb1cfe6d820fe1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _slotNumber: {fileID: 642186794332042198}
-  _display: {fileID: 8962730865645529807}
-  _itemDisplayPrefab: {fileID: 8930203061650766922, guid: abe0d8182318610d48214e42fe56025e, type: 3}
-  _itemList: {fileID: 8962730865645529807}
+  slotNumber: {fileID: 642186794332042198}
+  itemDisplayPrefab: {fileID: 8930203061650766922, guid: abe0d8182318610d48214e42fe56025e, type: 3}
+  itemList: {fileID: 8962730865645529807}
   inventory: {fileID: 0}
 --- !u!114 &2877174520857865399
 MonoBehaviour:

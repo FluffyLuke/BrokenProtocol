@@ -12,9 +12,9 @@ public class TextColorChanger : MonoBehaviour, IPointerEnterHandler, ISelectHand
 
     private bool isHighlighted = false;
     private bool isSelected = false;
-    private Button _button;
+    private Button button;
     void Start() {
-        _button = GetComponent<Button>();
+        button = GetComponent<Button>();
     }
 
     private void updateColor() {
@@ -26,7 +26,7 @@ public class TextColorChanger : MonoBehaviour, IPointerEnterHandler, ISelectHand
 
     public void OnPointerEnter(PointerEventData eventData) {
         if (!isSelected && EventSystem.current.currentSelectedGameObject != gameObject) {
-            _button.Select();
+            button.Select();
         }
     }
 

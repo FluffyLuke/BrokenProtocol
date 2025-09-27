@@ -11,14 +11,14 @@ public class BodyShake : MonoBehaviour
     [Header("Values")]
     public float Frequency = 10.0f;
     public float Amount = 0.015f;
-    private Animator _playerAnimator;
-    private Vector3 _startingPos;
+    private Animator playerAnimator;
+    private Vector3 startingPos;
     void Start() {
-        _startingPos = transform.localPosition;
-        _playerAnimator = GameObject.FindGameObjectWithTag(Tags.PlayerTag).GetComponent<Animator>();
+        startingPos = transform.localPosition;
+        playerAnimator = GameObject.FindGameObjectWithTag(Tags.PlayerTag).GetComponent<Animator>();
     }
     void Update() {
-        AnimatorStateInfo info = _playerAnimator.GetCurrentAnimatorStateInfo(0);
+        AnimatorStateInfo info = playerAnimator.GetCurrentAnimatorStateInfo(0);
         if(info.IsName("Standing")) {
             stopShake();
         } else if(info.IsName("Walking")) {
@@ -29,7 +29,7 @@ public class BodyShake : MonoBehaviour
     }
 
     private void shake(float multiplier) {
-        float speedMultiplier = (_playerAnimator.GetFloat("Speed") / 2000f) + 1;
+        float speedMultiplier = (playerAnimator.GetFloat("Speed") / 2000f) + 1;
 
 
         Vector3 pos = Vector3.zero;
@@ -44,7 +44,7 @@ public class BodyShake : MonoBehaviour
     }
 
     private void stopShake() {
-        if(transform.localPosition == _startingPos) return;
-        transform.localPosition = Vector3.Lerp(transform.localPosition, _startingPos, Time.deltaTime * Frequency);
+        if(transform.localPosition == startingPos) return;
+        transform.localPosition = Vector3.Lerp(transform.localPosition, startingPos, Time.deltaTime * Frequency);
     }
 }

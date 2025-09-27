@@ -14,13 +14,13 @@ public class ItemData
         return definition.displayName;
     }
 
-    private List<ItemProperty> _properties = new();
+    private List<ItemProperty> properties = new();
     public ItemData AddProperty(ItemProperty property) {
-        _properties.Add(property);
+        properties.Add(property);
         return this;
     }
     public T GetProperty<T>() where T: class, ItemProperty {
-        T p = _properties.OfType<T>().FirstOrDefault();
+        T p = properties.OfType<T>().FirstOrDefault();
         if(p == null) {
             Debug.LogWarning($"Cannot get property of type \"{typeof(T)}\"");
         }
@@ -28,7 +28,7 @@ public class ItemData
     }
 
     // public bool DeleteProperty<T>() where T: class, ItemProperty {
-    //     return _properties.OfType<T>().
+    //     return properties.OfType<T>().
     // }
 }
 

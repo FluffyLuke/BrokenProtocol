@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14fc0b45e63ddbe968d165a189e23911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 4368331077331289053}
+  camera: {fileID: 0}
 --- !u!1 &1420815412498142880
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,11 +364,13 @@ GameObject:
   m_Component:
   - component: {fileID: 3140883494147574293}
   - component: {fileID: 3982663136893086250}
-  - component: {fileID: 6762912820203956944}
   - component: {fileID: 5429790306925440130}
   - component: {fileID: 9096908618414477458}
   - component: {fileID: 6516880491693015481}
-  m_Layer: 0
+  - component: {fileID: 3915127409200214527}
+  - component: {fileID: 6762912820203956944}
+  - component: {fileID: 2658897301287875749}
+  m_Layer: 2
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -418,21 +420,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1.3, z: 0}
---- !u!114 &6762912820203956944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4701769500907289076}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 738d6a4704ffc7537a2e11b3681b3ed6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RotationSpeed: 10
-  MaxWalkingSpeed: 500
-  MaxRunningSpeed: 1250
 --- !u!95 &5429790306925440130
 Animator:
   serializedVersion: 7
@@ -467,8 +454,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ae58ea546033f59abf47b314b5ce73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hands: {fileID: 6356454582674483493}
-  _quickAccessInventories: []
+  hands: {fileID: 0}
+  quickAccessInventories: []
 --- !u!114 &6516880491693015481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -481,7 +468,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a15462a76e8900aecb83597830ba7a78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _holster: {fileID: 9019839202534200898}
+  holster: {fileID: 0}
+--- !u!114 &3915127409200214527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4701769500907289076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2532ef63361ff129b9ce105d4dc4d9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StateOptions:
+  - StateEnum: 0
+    State: {fileID: 6762912820203956944}
+  - StateEnum: 1
+    State: {fileID: 2658897301287875749}
+--- !u!114 &6762912820203956944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4701769500907289076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 738d6a4704ffc7537a2e11b3681b3ed6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RotationSpeed: 10
+  MaxWalkingSpeed: 500
+  MaxRunningSpeed: 1250
+  MaxSnappingDistance: 0
+--- !u!114 &2658897301287875749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4701769500907289076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5f53f83c875617b18a6d1ca4e43ea67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4947127376290829210
 GameObject:
   m_ObjectHideFlags: 0
@@ -493,7 +525,7 @@ GameObject:
   - component: {fileID: 4714927903178195732}
   - component: {fileID: 219648087782112061}
   - component: {fileID: 1175113417933155667}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: LightRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -614,7 +646,7 @@ GameObject:
   - component: {fileID: 5406605313019128736}
   - component: {fileID: 4715736716324526537}
   - component: {fileID: 9024860662969100633}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: HelmLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -790,7 +822,7 @@ GameObject:
   - component: {fileID: 3913092688178734882}
   - component: {fileID: 2988944508722862770}
   - component: {fileID: 3683001261891997981}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: LightLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -972,7 +1004,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4363844838132349068
 Transform:
   m_ObjectHideFlags: 0
@@ -1240,10 +1272,5 @@ PrefabInstance:
 --- !u!4 &1008734326121088829 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7334719692815773086, guid: 17401591b76b30f748ee2326803c5deb, type: 3}
-  m_PrefabInstance: {fileID: 7509073110040603299}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6356454582674483493 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3459679267286090630, guid: 17401591b76b30f748ee2326803c5deb, type: 3}
   m_PrefabInstance: {fileID: 7509073110040603299}
   m_PrefabAsset: {fileID: 0}

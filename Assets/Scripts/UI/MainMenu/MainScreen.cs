@@ -3,22 +3,22 @@ using UnityEngine.UI;
 
 public class MainScreen : MonoBehaviour
 {
-    private InputSystem_Actions _input;
+    private InputSystem_Actions input;
     void Awake()
     {
-        _input = new InputSystem_Actions();
-        _input.UI.Cancel.performed += ctx => {
+        input = new InputSystem_Actions();
+        input.UI.Cancel.performed += ctx => {
             CanvasManager.Instance.ChangeCurrentCanvas("WelcomeScreen");
         };
-        _input.UI.Enable();
+        input.UI.Enable();
     }
 
     private void OnEnable() {
-        _input.UI.Enable();
+        input.UI.Enable();
     }
 
     private void OnDisable() {
-        _input.UI.Disable();
+        input.UI.Disable();
     }
 
 }

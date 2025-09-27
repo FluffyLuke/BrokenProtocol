@@ -4,12 +4,12 @@ using UnityEngine.InputSystem;
 public class WelcomeScreen : MonoBehaviour
 {
     public string NextScreen = "MainScreen";
-    private InputSystem_Actions _input;
+    private InputSystem_Actions input;
     void Awake()
     {
-        _input = new InputSystem_Actions();
-        _input.UI.StartGame.performed += OnGameStart;
-        _input.UI.Enable();
+        input = new InputSystem_Actions();
+        input.UI.StartGame.performed += OnGameStart;
+        input.UI.Enable();
     }
 
     void OnGameStart(InputAction.CallbackContext context) {
@@ -17,10 +17,10 @@ public class WelcomeScreen : MonoBehaviour
     }
 
     private void OnEnable() {
-        _input.UI.Enable();
+        input.UI.Enable();
     }
 
     private void OnDisable() {
-        _input.UI.Disable();
+        input.UI.Disable();
     }
 }
