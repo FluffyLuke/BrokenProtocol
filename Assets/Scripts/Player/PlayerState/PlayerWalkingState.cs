@@ -4,25 +4,22 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 [RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(ColliderWraper))]
 [RequireComponent(typeof(Animator))]
 public class PlayerWalkingState : PlayerState
 {
     [Header("Moving")]
     public float RotationSpeed;
-    // public float WalkingAcceleration;
     public float MaxWalkingSpeed;
-    // public float RunningAcceleration;
     public float MaxRunningSpeed;
-    // private Vector3 _velocity = Vector3.zero;
-    [Range(0, 1f)]
-    public float MaxSnappingDistance;
+    [Header("Feet")]
+    public ColliderWraper GroundedCollider;
+    public ColliderWraper FallingCollider;
 
     // Other components
     private InputSystem_Actions input;
     private CharacterController body;
     private Animator animator;
-    // Saved move values
-    private float currentAcceleration; // From 0 to 1
     void Awake() {
         input = new InputSystem_Actions();
         input.Player.Enable();
@@ -35,7 +32,6 @@ public class PlayerWalkingState : PlayerState
         movePlayer();
         rotatePlayer();
         setCursor();
-        groundPlayer();
     }
 
     // TODO: Rework movement for acceleration and deacceleration
@@ -45,28 +41,25 @@ public class PlayerWalkingState : PlayerState
         float targetSpeed = sprinting ? MaxRunningSpeed : MaxWalkingSpeed;
 
         Vector3 direction = new Vector3(inputDirection.x, 0, inputDirection.y);
-        Vector3 move = transform.rotation * direction * targetSpeed;
+        Vector3 move = transform.rotation * direction;
+        move.Normalize();
+        move *= targetSpeed;
 
+        move = adjustDirectionToSlope(move);
+
+        Debug.Log($"Magnitude: {move.magnitude}");
         animator.SetFloat("Speed", move.magnitude);
-
-        body.SimpleMove(move * Time.deltaTime);
+        
+        body.Move(move * Time.deltaTime + Vector3.down * 2f * Time.deltaTime);
     }
 
-    private void groundPlayer() {
-        if(body.isGrounded) {
-            Debug.Log("TOUCHING");
-        } else {
-            Debug.Log("NOT TOUCHING");
+    // Fuck the slopes
+    private Vector3 adjustDirectionToSlope(Vector3 move) {
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, body.height / 2f + 0.5f)) {
+            // Project onto plane defined by slope
+            move = Vector3.ProjectOnPlane(move, hit.normal);
         }
-
-
-        // RaycastHit hit;
-        // float colliderHeight = body.height / 2;
-        // float checkDistance = colliderHeight + 0.05f + MaxSnappingDistance;
-        // if(Physics.Raycast(body.transform.position, Vector3.down, out hit, checkDistance)) {
-        //     transform.position = hit.point;
-        //     transform.position = new Vector3(transform.position.x, transform.position.y + colliderHeight + 0.01f, transform.position.z);
-        // }
+        return move;
     }
 
     private void rotatePlayer() {
