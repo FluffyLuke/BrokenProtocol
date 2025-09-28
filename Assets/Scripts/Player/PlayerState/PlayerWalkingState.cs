@@ -56,7 +56,6 @@ public class PlayerWalkingState : PlayerState
     // Fuck the slopes
     private Vector3 adjustDirectionToSlope(Vector3 move) {
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, body.height / 2f + 0.5f)) {
-            // Project onto plane defined by slope
             move = Vector3.ProjectOnPlane(move, hit.normal);
         }
         return move;
