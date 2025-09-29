@@ -18014,6 +18014,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1635444917}
     - target: {fileID: 6762912820203956944, guid: 2c71613d04055c44b9bae18d21fa1124, type: 3}
+      propertyPath: MaxRunningSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6762912820203956944, guid: 2c71613d04055c44b9bae18d21fa1124, type: 3}
+      propertyPath: MaxWalkingSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6762912820203956944, guid: 2c71613d04055c44b9bae18d21fa1124, type: 3}
       propertyPath: GroundedCollider
       value: 
       objectReference: {fileID: 320040151}
