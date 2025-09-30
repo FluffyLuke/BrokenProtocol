@@ -1,0 +1,25 @@
+{
+    "file_id": "POC",
+    "file_lang": "en",
+    "dialogues": [
+        {
+            "id": "test_text",
+            "speaker_name": "Test",
+            "text": "This is a <color=red>test</color> dialogue text...",
+            "speed": 10
+        },
+        {
+            "id": "monologue_sign",
+            "speaker_name": "You",
+            "text": "Wolfbrum ->\n<- Mine\n<color=red>\"They have come\"</color> does not fill me with confidence...",
+            "speed": 30
+        }
+    ],
+    "ui": [
+        {
+            "id": "test_text",
+            "text": "This is a <color=red>test</color> ui text...",
+            "speed": 10
+        }
+    ]
+}

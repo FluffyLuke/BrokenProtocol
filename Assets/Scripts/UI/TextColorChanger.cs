@@ -10,7 +10,7 @@ public class TextColorChanger : MonoBehaviour, IPointerEnterHandler, ISelectHand
     public Color normalColor = Color.white;
     public Color selectedColor = Color.green;
 
-    private bool isHighlighted = false;
+    // private bool isHighlighted = false;
     private bool isSelected = false;
     private Button button;
     void Start() {

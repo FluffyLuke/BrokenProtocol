@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 [RequireComponent(typeof(CharacterController))]
-[RequireComponent(typeof(ColliderWraper))]
 [RequireComponent(typeof(Animator))]
 public class PlayerWalkingState : PlayerState
 {
@@ -47,7 +46,6 @@ public class PlayerWalkingState : PlayerState
 
         move = adjustDirectionToSlope(move);
 
-        Debug.Log($"Magnitude: {move.magnitude}");
         animator.SetFloat("Speed", move.magnitude);
         
         body.Move(move * Time.deltaTime + Vector3.down * 2f * Time.deltaTime);
