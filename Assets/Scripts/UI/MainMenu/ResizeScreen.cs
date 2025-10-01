@@ -14,7 +14,6 @@ public class ResizeScreen : MonoBehaviour
         DOTween.To(() => fromY, y => fromY = y, previousSize.y, 0.2f).SetDelay(0.5f)
             .OnUpdate(() =>
             {
-                Debug.Log("DUPA");
                 Screen.sizeDelta = new(previousSize.x, fromY);
             });
     }

@@ -22,12 +22,11 @@ public class PlayerInteract : MonoBehaviour {
         Debug.Log("Player is trying to interact...");
 
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, range)) {
-            if (!hit.transform.CompareTag(Tags.InteractableTag)) return;
+            Debug.Log($"Ray hit: {hit.transform.gameObject.name}");
 
             IInteractable interactable = hit.transform.GetComponent<IInteractable>();
-            if (interactable == null) {
-                Debug.LogWarning("Interactable object has no component for interaction");
-            }
+            if (interactable == null || !interactable.enabled) return;
+
             interactable.Interact();
         }
     }
