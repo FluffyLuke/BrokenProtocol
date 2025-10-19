@@ -8,10 +8,62 @@
             "text": "This is a <color=red>test</color> dialogue text...",
             "speed": 10
         },
+
         {
             "id": "monologue_sign",
             "speaker_name": "You",
-            "text": "Wolfbrum ->\n<- Mine\n<color=red>\"They have come\"</color> does not fill me with confidence...",
+            "text": "Wolfbrum ->\n<- Mine\n<color=yellow>Wolfbrum</color> is the last know location of the Currier, although <<color=red>\"They have come\"</color> does not fill me with confidence...",
+            "speed": 30
+        },
+
+        {
+            "id": "intro_hq_d1",
+            "speaker_name": "HQ",
+            "text": "Ground reacon unit - report status.",
+            "speed": 30
+        },
+        {
+            "id": "intro_you_d2",
+            "speaker_name": "You",
+            "text": "This is Alfa-3. Continuing alone. Alfa-1 fell and injured his leg during a landslide. Alfa-2 stayed to tend to his wounds. Continuing alone. Over.",
+            "speed": 30
+        },
+        {
+            "id": "intro_hq_d3",
+            "speaker_name": "HQ",
+            "text": "Be careful, Alfa-3. You are approaching \"Lost Package\". Once retrieved, signal the extraction. Rest of the squad will be collected afterward. HQ out.",
+            "speed": 30
+        },
+
+        {
+            "id": "dialogue_wall1_d1",
+            "speaker_name": "You",
+            "text": "This is Alfa-3. The passage to Wolfbrum is barricaded, I cannot proceed. Is there any other way? Over.",
+            "speed": 30
+        },
+        {
+            "id": "dialogue_wall_d2",
+            "speaker_name": "HQ",
+            "text": "There is none, Alfa-3. Map says there is a local mine in your area. Search for any tools that might help you.",
+            "speed": 30
+        },
+        {
+            "id": "dialogue_wall_d3",
+            "speaker_name": "HQ",
+            "text": "Copy that.",
+            "speed": 30
+        },
+
+        {
+            "id": "dialogue_wall_boom_d1",
+            "speaker_name": "You",
+            "text": "Alfa-3 requesting clearance for use of explosives.",
+            "speed": 30
+        },
+        {
+            "id": "dialogue_wall_boom_d2",
+            "speaker_name": "HQ",
+            "text": "Clearance granted.",
             "speed": 30
         }
     ],

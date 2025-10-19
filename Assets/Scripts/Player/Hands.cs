@@ -13,9 +13,8 @@ public class Hands : MonoBehaviour
         input.Player.HideHeldItem.performed += hideHeldItem;
         input.Player.Enable();
 
-        PlayerEventBus
-            .HoldItem
-            .AddListener(holdItem);
+        PlayerEventBus.HoldItem.AddListener(holdItem);
+        PlayerEventBus.HideItem.AddListener(() => holdItem(null));
     }
 
     void Start() {
@@ -25,6 +24,10 @@ public class Hands : MonoBehaviour
         if(currentItem != null) {
             currentItem.Hide();
             currentItem = null;
+        }
+
+        if(item == null) {
+            return;
         }
 
         Debug.Log($"Equiped item: {item}");

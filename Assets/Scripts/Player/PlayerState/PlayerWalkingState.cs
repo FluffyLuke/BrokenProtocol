@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(Animator))]
-public class PlayerWalkingState : PlayerState
+public class PlayerWalkingState : IPlayerState
 {
     [Header("Moving")]
     public float RotationSpeed;
@@ -16,12 +16,17 @@ public class PlayerWalkingState : PlayerState
     public ColliderWraper FallingCollider;
 
     // Other components
-    private InputSystem_Actions input;
     private CharacterController body;
     private Animator animator;
-    void Awake() {
-        input = new InputSystem_Actions();
+    public override void EnterState() {
+        base.EnterState();
         input.Player.Enable();
+        GetComponent<PlayerInteract>().enabled = true;
+    }
+    public override void ExitState() {
+        base.ExitState();
+        input.Player.Disable();
+        GetComponent<PlayerInteract>().enabled = false;
     }
     void Start() {
         body = GetComponent<CharacterController>();

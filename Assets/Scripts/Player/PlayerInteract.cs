@@ -1,3 +1,5 @@
+using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -25,9 +27,23 @@ public class PlayerInteract : MonoBehaviour {
             Debug.Log($"Ray hit: {hit.transform.gameObject.name}");
 
             IInteractable interactable = hit.transform.GetComponent<IInteractable>();
-            if (interactable == null || !interactable.enabled) return;
+            if (interactable == null || !interactable.canInteract) return;
+
+            foreach(var r in interactable.requirements) {
+                switch(r) {
+                    case InteractionRequirement.HolsterWeapon:
+                        Debug.Log("Interaction requirement: Holster weapon");
+                        requirementHolsterWeapon();
+                        break;
+                }
+            }
+
+            Debug.Log($"Object hit is an interactable. Interacting...");
 
             interactable.Interact();
         }
+    }
+    private void requirementHolsterWeapon() {
+        PlayerEventBus.HideItem.Invoke();
     }
 }

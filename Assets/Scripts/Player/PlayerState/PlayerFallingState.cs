@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(Animator))]
-public class PlayerFallingState : PlayerState {
+public class PlayerFallingState : IPlayerState
+{
 
 }

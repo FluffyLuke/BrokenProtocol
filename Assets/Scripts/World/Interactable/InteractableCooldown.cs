@@ -18,8 +18,8 @@ public class InteractableCooldown : MonoBehaviour
     }
 
     private IEnumerator setCooldown() {
-        interactable.enabled = false;
+        interactable.canInteract = false;
         yield return new WaitForSeconds(cooldown);
-        interactable.enabled = true;
+        interactable.canInteract = true;
     }
 }

@@ -1,30 +1,34 @@
 using System;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerWalkingState))]
+[RequireComponent(typeof(PlayerPushingState))]
 public class PlayerStateManager : MonoBehaviour {
-    [Serializable]
-    public struct StateOption {
-        public PlayerState.PossibleStates StateEnum;
-        public PlayerState State;
-    } 
-    public StateOption[] StateOptions;
-    private PlayerState currentState;
-
+    private PlayerWalkingState walkingState;
+    private PlayerPushingState useState;
+    private IPlayerState currentState;
     void Awake() {
-        PlayerEventBus.ChangeState.AddListener(changeState);
+        PlayerEventBus.PushMinecart.AddListener(switchToPushingState);
+        PlayerEventBus.SwitchToWalkState.AddListener(switchToWalkState);
+
+        walkingState = GetComponent<PlayerWalkingState>();
+        useState = GetComponent<PlayerPushingState>();
     }
     void Start() {
-        currentState = StateOptions[0].State;
+        currentState = walkingState;
+        currentState.EnterState();
     }
-
-    private void changeState(PlayerState.PossibleStates state) {
-        foreach(StateOption s in StateOptions) {
-            if (s.StateEnum != state) continue;
-
-            currentState.enabled = false;
-            currentState = s.State;
-            currentState.enabled = true;
-            break;
-        }
+    private void switchToPushingState(Transform target) {
+        Debug.Log("Player is switching to \"Cart pushing\" state");
+        currentState.ExitState();
+        currentState = useState;
+        useState.SetData(target);
+        currentState.EnterState();
+    }
+    private void switchToWalkState() {
+        Debug.Log("Player is switching to \"Walk\" state");
+        currentState.ExitState();
+        currentState = walkingState;
+        currentState.EnterState();
     }
 }
