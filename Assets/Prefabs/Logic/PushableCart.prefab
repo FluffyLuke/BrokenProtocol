@@ -84,6 +84,7 @@ MonoBehaviour:
       m_Calls: []
   requirements: 00000000
   playerPushingPosition: {fileID: 978735977051625089}
+  isThisABackSide: 0
 --- !u!65 &8302012939290190011
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -116,7 +117,6 @@ GameObject:
   - component: {fileID: 5284754930173747906}
   - component: {fileID: 2668408987151632491}
   - component: {fileID: 2223388187302300443}
-  - component: {fileID: 2624165882636977985}
   m_Layer: 0
   m_Name: PushableCart
   m_TagString: Untagged
@@ -161,6 +161,7 @@ MonoBehaviour:
       m_Calls: []
   requirements: 00000000
   playerPushingPosition: {fileID: 0}
+  isThisABackSide: 0
 --- !u!114 &2223388187302300443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,23 +175,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 200
---- !u!114 &2624165882636977985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1762319257146318280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64173541d71e28f0da1fc00702c4fe12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  container:
-    anchors: []
-    currentAnchorIndex: 0
+  reverseSpeed: 2
+  posData:
     t: 0
-  t: 0
+    currentAnchorIndex: 0
+  rail: {fileID: 0}
+  playerFromTheBack: 0
 --- !u!1 &7058450212864188820
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,8 +253,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8530377834671390954}
-  - component: {fileID: 5886251180429751187}
   - component: {fileID: 9182560379753010782}
+  - component: {fileID: 5886251180429751187}
   m_Layer: 0
   m_Name: Back
   m_TagString: Untagged
@@ -288,6 +278,26 @@ Transform:
   - {fileID: 3875209618610122734}
   m_Father: {fileID: 5284754930173747906}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9182560379753010782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8633830412895992487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46a888d1985e89212b96387e26c227d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canInteract: 1
+  fireInteractDelay: 0
+  interactedWith:
+    m_PersistentCalls:
+      m_Calls: []
+  requirements: 00000000
+  playerPushingPosition: {fileID: 3875209618610122734}
+  isThisABackSide: 1
 --- !u!65 &5886251180429751187
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -309,25 +319,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.7, y: 2, z: 0.3}
   m_Center: {x: 0, y: 1, z: -1}
---- !u!114 &9182560379753010782
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8633830412895992487}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46a888d1985e89212b96387e26c227d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canInteract: 1
-  fireInteractDelay: 0
-  interactedWith:
-    m_PersistentCalls:
-      m_Calls: []
-  requirements: 00000000
-  playerPushingPosition: {fileID: 3875209618610122734}
 --- !u!1001 &9023845558443171875
 PrefabInstance:
   m_ObjectHideFlags: 0
