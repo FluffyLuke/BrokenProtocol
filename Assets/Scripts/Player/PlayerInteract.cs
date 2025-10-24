@@ -23,7 +23,9 @@ public class PlayerInteract : MonoBehaviour {
     private void interact(InputAction.CallbackContext context) {
         Debug.Log("Player is trying to interact...");
 
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, range)) {
+        int layerMask = 1 << 6;
+
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, range, layerMask)) {
             Debug.Log($"Ray hit: {hit.transform.gameObject.name}");
 
             IInteractable interactable = hit.transform.GetComponent<IInteractable>();

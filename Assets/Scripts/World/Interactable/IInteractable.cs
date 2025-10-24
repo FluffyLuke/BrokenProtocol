@@ -3,7 +3,12 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public abstract class IInteractable : MonoBehaviour {
-    public bool canInteract = true;
+	void Awake() {
+        if (gameObject.layer != 6) {
+            Debug.LogError($"Interactable \"{gameObject.name}\" does is not on interactable layer. Is this on purpose?");
+        }
+	}
+	public bool canInteract = true;
     public float fireInteractDelay = 0.0f;
     public abstract void Interact();
     public UnityEvent interactedWith;

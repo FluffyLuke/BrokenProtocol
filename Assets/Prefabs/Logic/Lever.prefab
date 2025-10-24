@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1659127345161782065}
+  - component: {fileID: 9148012304831559727}
   m_Layer: 0
   m_Name: RodBase
   m_TagString: Untagged
@@ -32,6 +33,22 @@ Transform:
   - {fileID: 1454523694854924401}
   m_Father: {fileID: 3506705130675866413}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9148012304831559727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3445928549478874382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a1c252aaf98b4a2ca30093080a6ee4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startState: 0
+  rotationOff: {x: -45, y: 0, z: 0}
+  rotationOn: {x: 45, y: 0, z: 0}
+  changeStateSpeed: 1.5
 --- !u!1 &7659365338455564101
 GameObject:
   m_ObjectHideFlags: 0
@@ -41,9 +58,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3506705130675866413}
-  m_Layer: 0
+  - component: {fileID: 4995665468143035835}
+  - component: {fileID: 8344537029821443268}
+  - component: {fileID: 4716303634506574978}
+  m_Layer: 6
   m_Name: Lever
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58,13 +78,116 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 1.7647058, y: 1.7647058, z: 1.7647058}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 406084895366711182}
   - {fileID: 1659127345161782065}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4995665468143035835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7659365338455564101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32e2f41f1fc6416008d24f6dea92f166, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canInteract: 1
+  fireInteractDelay: 0
+  interactedWith:
+    m_PersistentCalls:
+      m_Calls: []
+  requirements: 
+  state: 0
+  earlyStateChange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9148012304831559727}
+        m_TargetAssemblyTypeName: ChangeRotation, Assembly-CSharp
+        m_MethodName: Rotate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  statechangeCooldown: 2
+  stateChange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: ChangeRotation, Assembly-CSharp
+        m_MethodName: Rotate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Turnout, Assembly-CSharp
+        m_MethodName: ConnectSplines
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  turnedOn:
+    m_PersistentCalls:
+      m_Calls: []
+  turnedOff:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &8344537029821443268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7659365338455564101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 593e820dbe2d149b5ade4ec702b40340, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactable: {fileID: 4995665468143035835}
+  cooldown: 6
+--- !u!65 &4716303634506574978
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7659365338455564101}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 59
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.23217759, y: 0.5735234, z: 0.5}
+  m_Center: {x: 0, y: 0.37383088, z: 0}
 --- !u!1001 &1413705728092661021
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -181,15 +304,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7844356414455584585, guid: 7f2ba3b9b9244ae179bf11171560fd04, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7844356414455584585, guid: 7f2ba3b9b9244ae179bf11171560fd04, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7844356414455584585, guid: 7f2ba3b9b9244ae179bf11171560fd04, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7844356414455584585, guid: 7f2ba3b9b9244ae179bf11171560fd04, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

@@ -1,23 +1,32 @@
-using System.Data.SqlTypes;
-using DG.Tweening;
-using Unity.VisualScripting;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Splines;
 
+[RequireComponent(typeof(SimpleSpline))]
 public class Minecart : MonoBehaviour {
     public float speed = 3f;
     public float reverseSpeed = 2f;
-    [SerializeField] private SplinePositionData posData;
-    public SimpleSpline rail;
+    public SplinePositionData posData;
+    [SerializeField] private SimpleSpline startingRail;
+    [HideInInspector] public SimpleSpline rail;
     public bool playerFromTheBack;
     void Start() {
-		(Vector3 position, Quaternion rotation) = rail.GetNextPosition(ref posData, 0);
+        rail = GetComponent<SimpleSpline>();
+
+        rail.anchors = new List<SplineAnchor>(startingRail.anchors);
+
+		(Vector3 position, Quaternion rotation) = rail.GetCurrentPosition(ref posData);
 		transform.position = position;
 		transform.rotation = rotation;	
 	}
 
-    // This code is a mess, but a working mess (I hope)
-    public void PushForward() {
+	void LateUpdate() {
+		(Vector3 position, Quaternion rotation) = rail.GetCurrentPosition(ref posData);
+		transform.position = position;
+		transform.rotation = rotation;
+	}
+
+	// This code is a mess, but a working mess (I hope)
+	public void PushForward() {
         if (playerFromTheBack) {
             PushCart(speed, true);
         } else {
@@ -34,6 +43,11 @@ public class Minecart : MonoBehaviour {
     }
 	public void PushCart(float speed, bool direction) {
         (Vector3 position, Quaternion rotation) = rail.GetNextPosition(ref posData, speed, direction);
+		transform.position = position;
+		transform.rotation = rotation;
+    }
+    public void ResetPosition() {
+        (Vector3 position, Quaternion rotation) = rail.GetNextPosition(ref posData, 0, true);
 		transform.position = position;
 		transform.rotation = rotation;
     }
