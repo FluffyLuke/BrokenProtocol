@@ -16038,6 +16038,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 937335858}
     m_Modifications:
+    - target: {fileID: 1000226160856826764, guid: 78564749fe1ec2c5882af4a562b33870, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1762319257146318280, guid: 78564749fe1ec2c5882af4a562b33870, type: 3}
       propertyPath: m_Name
       value: MovingMinecart
@@ -16045,7 +16049,7 @@ PrefabInstance:
     - target: {fileID: 2223388187302300443, guid: 78564749fe1ec2c5882af4a562b33870, type: 3}
       propertyPath: rail
       value: 
-      objectReference: {fileID: 587406099}
+      objectReference: {fileID: 0}
     - target: {fileID: 2223388187302300443, guid: 78564749fe1ec2c5882af4a562b33870, type: 3}
       propertyPath: speed
       value: 3
@@ -16108,6 +16112,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2624165882636977985, guid: 78564749fe1ec2c5882af4a562b33870, type: 3}
+    - {fileID: 2668408987151632491, guid: 78564749fe1ec2c5882af4a562b33870, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -22257,6 +22262,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4716303634506574978, guid: b9399e24d7fe7c8d2ba37d738fe21f54, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4995665468143035835, guid: b9399e24d7fe7c8d2ba37d738fe21f54, type: 3}
       propertyPath: stateChange.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -27625,11 +27634,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ebaaa9d9d84e22649bb58cdda757fdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  splineA1: {fileID: 990212691}
-  splineA2: {fileID: 359367101}
-  splineB1: {fileID: 587406099}
-  splineB2: {fileID: 1152405165}
   turnoutSpline: {fileID: 918219952}
+  pathA:
+    splineA: {fileID: 990212691}
+    splineB: {fileID: 359367101}
+  pathB:
+    splineA: {fileID: 587406099}
+    splineB: {fileID: 1152405165}
 --- !u!136 &6711044539541299538
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -27640,7 +27651,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -27650,7 +27661,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 3
-  m_Height: 5
+  m_Height: 7
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &7197742877218916798

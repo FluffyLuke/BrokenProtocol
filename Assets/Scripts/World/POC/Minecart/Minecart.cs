@@ -7,7 +7,7 @@ public class Minecart : MonoBehaviour {
     public float reverseSpeed = 2f;
     public SplinePositionData posData;
     [SerializeField] private SimpleSpline startingRail;
-    [HideInInspector] public SimpleSpline rail;
+    public SimpleSpline rail;
     public bool playerFromTheBack;
     void Start() {
         rail = GetComponent<SimpleSpline>();
@@ -50,5 +50,11 @@ public class Minecart : MonoBehaviour {
         (Vector3 position, Quaternion rotation) = rail.GetNextPosition(ref posData, 0, true);
 		transform.position = position;
 		transform.rotation = rotation;
+    }
+
+    public void RebuildRail(List<SplineAnchor> anchors, int newIndex) {
+        rail.anchors = anchors;
+        posData.currentAnchorIndex = newIndex;
+        ResetPosition();
     }
 }

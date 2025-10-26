@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Splines;
 
 [Serializable]
 public struct SplinePositionData {
@@ -65,49 +66,27 @@ public class SimpleSpline : MonoBehaviour {
         return GetNextPosition(ref data, 0);
     }
 
-	public void ConnectSpline(List<SplineAnchor> anchors, bool atTheEnd = true) {
-        if (anchors == null) {
-            Debug.LogWarning("Anchors passed were null");
-            return;
-        }
-
-        if (atTheEnd) {
-            foreach(var a in anchors) {
-                if (anchors.Contains(a)) return;
-                anchors.Append(a);
+    public static int GetAnchorIndex(List<SplineAnchor> otherAnchors, SplineAnchor targetAnchor) {
+        int index = 0;
+        foreach(var a in otherAnchors) {
+            if (a == targetAnchor) {
+                return index;
             }
-        } else {
-            for(int i = anchors.Count-1; i >= 0; i++) {
-                SplineAnchor anchor = anchors[i];
-                anchors.Prepend(anchor);
-            }
+            index++;
         }
+        return -1;
     }
 
-	public void DisconnectSpline(List<SplineAnchor> anchors) {
-        foreach(var a in anchors) {
-            if (anchors.Contains(a)) anchors.Remove(a);
-        }
+    public bool ContainsAnchor(SplineAnchor otherAnchor) {
+        return anchors.Contains(otherAnchor);
     }
 
-    public bool ContainsAnchor(SplineAnchor anchor) {
-        Debug.Log($"=== {anchor.positionA.position}, {anchor.positionB.position} ===");
-
-        foreach(var a in anchors)
-        {
-            Debug.Log($"{a.positionA.position}, {a.positionB.position}");
-            Debug.Log(anchors.Contains(anchor));
-        }
-
-        return anchors.Contains(anchor);
-    }
-
-    public SplineAnchor? GetCurrentAnchor(ref SplinePositionData data) {
+    public (bool, SplineAnchor) GetCurrentAnchor(ref SplinePositionData data) {
         if (data.currentAnchorIndex >= anchors.Count) {
-            return null;
+            return (false, default);
         }
 
-        return anchors[data.currentAnchorIndex];
+        return (true, anchors[data.currentAnchorIndex]);
     }
 }
 
@@ -117,5 +96,34 @@ public struct SplineAnchor {
 	public Transform positionB;
 	public float GetLength() {
         return Vector3.Distance(positionA.position, positionB.position);
+    }
+
+    public static bool operator ==(SplineAnchor a1, SplineAnchor a2) {
+        if (a1.positionA == a2.positionB && a1.positionB == a2.positionA) {
+            Debug.LogWarning("Anchor has the same points, but in reverse order. This should not have happened!");
+        }
+        if (a1.positionA == a2.positionA && a1.positionB == a2.positionB) {
+            return true;
+        }
+        return false;
+    }
+    public static bool operator !=(SplineAnchor a1, SplineAnchor a2) {
+        if (a1.positionA != a2.positionA || a1.positionB != a2.positionB) {
+            return true;
+        }
+        return false;
+    }
+
+    public override bool Equals(System.Object obj) {
+        if (obj == null || !(obj is SplineAnchor))
+            return false;
+        SplineAnchor other = (SplineAnchor) obj;
+        if (this.positionA == other.positionB && this.positionB == other.positionA) {
+            Debug.LogWarning("Anchor has the same points, but in reverse order. This should not have happened!");
+        }
+        if (this.positionA == other.positionA && this.positionB == other.positionB) {
+            return true;
+        }
+        return false;
     }
 }

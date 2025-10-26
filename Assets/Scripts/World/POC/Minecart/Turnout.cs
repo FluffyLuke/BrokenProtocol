@@ -1,16 +1,24 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
+public class RailPath {
+    public SimpleSpline splineA;
+	public SimpleSpline splineB;
+}
 public class Turnout : MonoBehaviour {
-    [SerializeField] private SimpleSpline splineA1;
-	[SerializeField] private SimpleSpline splineA2;
-	[SerializeField] private SimpleSpline splineB1;
-	[SerializeField] private SimpleSpline splineB2;
+    
 	[SerializeField] private SimpleSpline turnoutSpline;
+	[SerializeField] private RailPath pathA;
+	[SerializeField] private RailPath pathB;
 	private List<Minecart> carts = new();
 	private bool currentState = false;
 	public void SetState(bool state) {
 		currentState = state;
+		foreach(var m in carts) {
+            reconstructPath(m);
+        }
     }
 
 	public void OnTriggerEnter(Collider other) {
@@ -18,37 +26,14 @@ public class Turnout : MonoBehaviour {
 
 		if (minecart == null) {
             minecart = other.GetComponentInParent<Minecart>();
+			Debug.Log(other.gameObject.name);
 			if (minecart == null) return;
         }
 
 		if (!carts.Contains(minecart)) {
-			Debug.Log("Connecting minecart!");
-            carts.Add(minecart);
-			SplineAnchor anchor = (SplineAnchor)minecart.rail.GetCurrentAnchor(ref minecart.posData);
-			
-			if (splineA1.ContainsAnchor(anchor) && !currentState) {
-				Debug.Log($"Rail {splineA2.name} was connected");
-                minecart.rail.ConnectSpline(turnoutSpline.anchors, true);
-				minecart.rail.anchors.Add(turnoutSpline.anchors[0]);
-				minecart.rail.ConnectSpline(splineA2.anchors, true);
-            } else if (splineA2.ContainsAnchor(anchor) && !currentState) {
-				Debug.Log($"Rail {splineA1.name} was connected");
-                minecart.rail.ConnectSpline(turnoutSpline.anchors, false);
-				minecart.rail.ConnectSpline(splineA1.anchors, false);
-            } else if (splineB1.ContainsAnchor(anchor) && currentState) {
-				Debug.Log($"Rail {splineB2.name} was connected");
-                minecart.rail.ConnectSpline(turnoutSpline.anchors, true);
-				minecart.rail.ConnectSpline(splineB2.anchors, true);
-			} else if (splineB2.ContainsAnchor(anchor) && currentState) {
-				Debug.Log($"Rail {splineB1.name} was connected");
-                minecart.rail.ConnectSpline(turnoutSpline.anchors, false);
-				minecart.rail.ConnectSpline(splineB1.anchors, false);
-            } else {
-                Debug.LogError("Cannot connect minecart to any of the rails!");
-            }
-        } else {
-            Debug.LogWarning("Minecarts has entered the turnout twice?");
-        }
+			carts.Add(minecart);
+			reconstructPath(minecart);
+		}
 	}
 
 	public void OnTriggerExit(Collider other) {
@@ -60,28 +45,71 @@ public class Turnout : MonoBehaviour {
         }
 
 		if (carts.Contains(minecart)) {
-			Debug.Log("Disconnecting minecart!");
-            carts.Remove(minecart);
-
-			SplineAnchor anchor = (SplineAnchor)minecart.rail.GetCurrentAnchor(ref minecart.posData);
-			
-			if (!splineA1.ContainsAnchor(anchor)) {
-                minecart.rail.DisconnectSpline(splineA1.anchors);
-            }
-			if (!splineA2.ContainsAnchor(anchor)) {
-                minecart.rail.DisconnectSpline(splineA2.anchors);
-            }
-			if (!splineB1.ContainsAnchor(anchor)) {
-                minecart.rail.DisconnectSpline(splineB1.anchors);
-            }
-			if (!splineB2.ContainsAnchor(anchor)) {
-                minecart.rail.DisconnectSpline(splineB2.anchors);
-            }
-
-			minecart.rail.DisconnectSpline(turnoutSpline.anchors);
-
-        } else {
-            Debug.LogWarning("Minecarts has exited the turnout, yet never have entered it?");
-        }
+			carts.Remove(minecart);
+			reconstructPath(minecart);
+		}
 	}
+
+	private void reconstructPath(Minecart minecart) {
+		RailPath currentRail;
+		SimpleSpline currentSpline;
+
+		Debug.Log($"Reconstructing spline for {minecart.gameObject.name}");
+
+		(bool ifFound, SplineAnchor currentAnchor) = minecart.rail.GetCurrentAnchor(ref minecart.posData);
+
+		if (ifFound) {
+			if (pathA.splineA.ContainsAnchor(currentAnchor)) {
+				currentSpline = pathA.splineA;
+				currentRail = pathA;
+			} else if (pathA.splineB.ContainsAnchor(currentAnchor)) {
+				currentSpline = pathA.splineB;
+				currentRail = pathA;
+			} else if (pathB.splineA.ContainsAnchor(currentAnchor)) {
+				currentSpline = pathB.splineA;
+				currentRail = pathB;
+			} else if (pathB.splineB.ContainsAnchor(currentAnchor)) {
+				currentSpline = pathB.splineB;
+				currentRail = pathB;
+			} else {
+                Debug.LogError("Cart is not on any of the known rails!");
+				return;
+            }
+		} else {
+            Debug.LogError("Cannot get current anchor of minecart!");
+			return;
+        }
+
+		// We need to add rails (anchors) in ascending order
+		List<SplineAnchor> newRail = new();
+
+		// If Minecart is on the rail "behind" the turnout
+		if (currentSpline == pathA.splineA || currentSpline == pathB.splineA) {
+			// We can safely add the current rail, since it is the first one to go
+            newRail.AddRange(currentSpline.anchors);
+			// We need to check if passage is open. If so: add turnout anchors and the following rail
+			if ((currentRail == pathA && !currentState) || (currentRail == pathB && currentState)) {
+				newRail.AddRange(turnoutSpline.anchors);
+				newRail.AddRange(currentRail.splineB.anchors);
+			}
+		// If Minecart is on the rail "after" the turnout
+        } else {
+			// We must check, if passage is open. If so, add rails (anchors) before the current rail
+			if ((currentRail == pathA && !currentState) || (currentRail == pathB && currentState)) {
+				newRail.AddRange(currentRail.splineA.anchors);
+				newRail.AddRange(turnoutSpline.anchors);
+			}
+			// Add current rail after adding (if neccessary) previous rails
+			newRail.AddRange(currentSpline.anchors);
+        }
+
+		int index = SimpleSpline.GetAnchorIndex(newRail, currentAnchor);
+		
+		if (index < 0) {
+            Debug.LogError("Cannot get index for new rail?");
+			return;
+        }
+
+		minecart.RebuildRail(newRail, index);
+    }
 }
