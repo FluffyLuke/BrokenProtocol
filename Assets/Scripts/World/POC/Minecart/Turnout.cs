@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,13 +13,37 @@ public class Turnout : MonoBehaviour {
 	[SerializeField] private SimpleSpline turnoutSpline;
 	[SerializeField] private RailPath pathA;
 	[SerializeField] private RailPath pathB;
+	[SerializeField] private float cartPathRebuildCooldown = 5;
+	Coroutine rebuildCartsCoroutine = null;
 	private List<Minecart> carts = new();
 	private bool currentState = false;
 	public void SetState(bool state) {
 		currentState = state;
 		foreach(var m in carts) {
-            reconstructPath(m);
+			(bool _, SplineAnchor currentAnchor) = m.rail.GetCurrentAnchor(ref m.posData);
+			if(turnoutSpline.ContainsAnchor(currentAnchor)) {
+                m.RebuildRail(turnoutSpline.anchors, 0);
+
+				if (rebuildCartsCoroutine != null) {
+                    StopCoroutine(rebuildCartsCoroutine);
+                }
+
+				rebuildCartsCoroutine = StartCoroutine(TurnEnd());
+            } else {
+                reconstructPath(m);
+            }
         }
+    }
+
+	public IEnumerator TurnEnd() {
+		yield return new WaitForSeconds(cartPathRebuildCooldown);
+        foreach(var m in carts) {
+			(bool _, SplineAnchor currentAnchor) = m.rail.GetCurrentAnchor(ref m.posData);
+			if(turnoutSpline.ContainsAnchor(currentAnchor)) {
+                reconstructPathOnTurnout(m);
+            }
+        }
+		rebuildCartsCoroutine = null;
     }
 
 	public void OnTriggerEnter(Collider other) {
@@ -110,6 +135,20 @@ public class Turnout : MonoBehaviour {
 			return;
         }
 
+		minecart.RebuildRail(newRail, index);
+    }
+
+	public void reconstructPathOnTurnout(Minecart minecart) {
+        RailPath path = currentState ? pathB : pathA;
+		SplineAnchor currentAnchor = turnoutSpline.anchors[0];
+
+		List<SplineAnchor> newRail = new();
+
+		newRail.AddRange(path.splineA.anchors);
+		newRail.AddRange(turnoutSpline.anchors);
+		newRail.AddRange(path.splineB.anchors);
+
+		int index = SimpleSpline.GetAnchorIndex(newRail, currentAnchor);
 		minecart.RebuildRail(newRail, index);
     }
 }

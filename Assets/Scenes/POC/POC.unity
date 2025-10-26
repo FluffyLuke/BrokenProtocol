@@ -27641,6 +27641,7 @@ MonoBehaviour:
   pathB:
     splineA: {fileID: 587406099}
     splineB: {fileID: 1152405165}
+  cartPathRebuildCooldown: 3
 --- !u!136 &6711044539541299538
 CapsuleCollider:
   m_ObjectHideFlags: 0
