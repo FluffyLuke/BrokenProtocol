@@ -11,6 +11,6 @@ public class MinecartPush : IInteractable
     }
     public override void Interact() {
         minecart.playerFromTheBack = isThisABackSide;
-        PlayerEventBus.PushMinecart.Invoke(playerPushingPosition);
+        PlayerEventBus.PushMinecart.Invoke(playerPushingPosition, minecart);
     }
 }

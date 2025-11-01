@@ -4,16 +4,18 @@ using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 public class PlayerPushingState : IPlayerState {
-	public Minecart minecart;
+	private Minecart minecart;
     private Transform follow;
 	public float moveToPositionTime = 1f;
 	void Start() {
         input.Player.Interact.performed += interact;
     }
-	public void SetData(Transform target) {
+	public void SetData(Transform target, Minecart targetMinecart) {
         follow = target;
+		minecart = targetMinecart;
     }
 	public override void EnterState() {
+		input.Player.Disable();
         base.EnterState();
 		transform.DOMove(follow.position, moveToPositionTime);
 		transform
@@ -31,16 +33,18 @@ public class PlayerPushingState : IPlayerState {
 	void Update() {
 		Vector2 direction = input.Player.Move.ReadValue<Vector2>();
 
-		if (direction.y == 0) return;
-
 		if (direction.y > 0) {
             minecart.PushForward();
-        } else {
+			transform.position = follow.position;
+			transform.rotation = follow.rotation;
+        } else if (direction.y < 0) {
             minecart.PushBackward();
+			transform.position = follow.position;
+			transform.rotation = follow.rotation;
+        } else if (input.Player.enabled) {
+            transform.position = follow.position;
+			transform.rotation = follow.rotation;
         }
-
-		transform.position = follow.position;
-		transform.rotation = follow.rotation;
     }
 
 	private void interact(InputAction.CallbackContext context) {

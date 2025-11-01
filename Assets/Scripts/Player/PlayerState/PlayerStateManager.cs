@@ -13,16 +13,18 @@ public class PlayerStateManager : MonoBehaviour {
 
         walkingState = GetComponent<PlayerWalkingState>();
         useState = GetComponent<PlayerPushingState>();
+
+        useState.enabled = false;
     }
     void Start() {
         currentState = walkingState;
         currentState.EnterState();
     }
-    private void switchToPushingState(Transform target) {
+    private void switchToPushingState(Transform target, Minecart targetMinecart) {
         Debug.Log("Player is switching to \"Cart pushing\" state");
         currentState.ExitState();
         currentState = useState;
-        useState.SetData(target);
+        useState.SetData(target, targetMinecart);
         currentState.EnterState();
     }
     private void switchToWalkState() {

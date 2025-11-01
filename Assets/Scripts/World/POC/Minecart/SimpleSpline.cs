@@ -94,7 +94,14 @@ public class SimpleSpline : MonoBehaviour {
 public struct SplineAnchor {
     public Transform positionA;
 	public Transform positionB;
-	public float GetLength() {
+
+    public SplineAnchor(Transform positionA, Transform positionB)
+    {
+        this.positionA = positionA;
+        this.positionB = positionB;
+    }
+
+    public float GetLength() {
         return Vector3.Distance(positionA.position, positionB.position);
     }
 
