@@ -31,7 +31,7 @@ public class PlayerInteract : MonoBehaviour {
             IInteractable interactable = hit.transform.GetComponent<IInteractable>();
             if (interactable == null || !interactable.canInteract) return;
 
-            foreach(var r in interactable.requirements) {
+            foreach(var r in interactable.playerRequirements) {
                 switch(r) {
                     case InteractionRequirement.HolsterWeapon:
                         Debug.Log("Interaction requirement: Holster weapon");

@@ -12,7 +12,14 @@
         {
             "id": "monologue_sign",
             "speaker_name": "You",
-            "text": "Wolfbrum ->\n<- Mine\n<color=yellow>Wolfbrum</color> is the last know location of the Currier, although <<color=red>\"They have come\"</color> does not fill me with confidence...",
+            "text": "Wolfbrum ->\n<- Mine\n<color=yellow>Wolfbrum</color> is the last know location of the Currier, although <color=red>\"They have come\"</color> does not fill me with confidence...",
+            "speed": 30
+        },
+
+        {
+            "id": "monologue_blocked_turnout",
+            "speaker_name": "You",
+            "text": "Turnout is blocked. I must move the minecart in order to rotate it.",
             "speed": 30
         },
 

@@ -7,12 +7,23 @@ public class InteractButton : IInteractable
     [SerializeField] private bool state = false;
     public UnityEvent<bool> earlyStateChange = new();
     public float statechangeCooldown = 0f; 
-    public UnityEvent<bool> stateChange=  new();
+    public UnityEvent<bool> stateChange = new();
+    public UnityEvent failedToInteract = new();
     public UnityEvent turnedOn = new();
     public UnityEvent turnedOff = new();
     private Coroutine stateCooldownCoroutine = null;
     public override void Interact() {
+        foreach (var r in requirements) {
+            Debug.LogWarning("nigger");
+            if (r.CheckRequirement() == false) {
+                Debug.Log($"Requirement \"{r.GetRequirementName()}\" was not satisfied, not interacting...");
+                failedToInteract.Invoke();
+                return;
+            }
+        }
+
         interactedWith.Invoke();
+
         ChangeState();
     }
     public bool IsTurnedOn() {

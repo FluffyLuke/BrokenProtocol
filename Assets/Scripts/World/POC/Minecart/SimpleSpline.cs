@@ -10,6 +10,12 @@ public struct SplinePositionData {
     public int currentAnchorIndex;
 }
 
+[Serializable]
+public class RailPath {
+    public SimpleSpline splineA;
+	public SimpleSpline splineB;
+}
+
 public class SimpleSpline : MonoBehaviour {
 	public List<SplineAnchor> anchors;
 	public (Vector3, Quaternion) GetNextPosition(ref SplinePositionData data, float speed, bool direction = true) {

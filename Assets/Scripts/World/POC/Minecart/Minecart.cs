@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(SimpleSpline))]
 public class Minecart : MonoBehaviour {
@@ -42,6 +43,8 @@ public class Minecart : MonoBehaviour {
         }
     }
 	public void PushCart(float speed, bool direction) {
+        int previousIndex = posData.currentAnchorIndex;
+
         (Vector3 position, Quaternion rotation) = rail.GetNextPosition(ref posData, speed, direction);
 		transform.position = position;
 		transform.rotation = rotation;

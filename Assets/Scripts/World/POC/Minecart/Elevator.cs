@@ -4,20 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Splines;
-[RequireComponent(typeof(RailConnection))]
-public class Turnout : MonoBehaviour {
+public class Elevator : MonoBehaviour {
+    
 	[SerializeField] private SimpleSpline turnoutSpline;
 	[SerializeField] private RailPath pathA;
 	[SerializeField] private RailPath pathB;
 	[SerializeField] private float cartPathRebuildCooldown = 5;
 	Coroutine rebuildCartsCoroutine = null;
-	public List<Minecart> carts = new();
-	public RailConnection railConnection;
+	private List<Minecart> carts = new();
+	private (bool, SplineAnchor)[] connectionAnchors = new (bool, SplineAnchor)[2];
 	private bool currentState = false;
-	void Start() {
-		railConnection = GetComponent<RailConnection>();
-		railConnection.connectionAnchors = new RailConnectionField[2];
-	}
 	public void SetState(bool state) {
 		currentState = state;
 		resetConnectionAnchors(state ? pathB : pathA);
@@ -54,6 +50,7 @@ public class Turnout : MonoBehaviour {
 
 		if (minecart == null) {
             minecart = other.GetComponentInParent<Minecart>();
+			Debug.Log(other.gameObject.name);
 			if (minecart == null) return;
         }
 
@@ -120,26 +117,26 @@ public class Turnout : MonoBehaviour {
 			if ((currentRail == pathA && !currentState) || (currentRail == pathB && currentState)) {
 				
 
-				newRail.Add(railConnection.connectionAnchors[0].anchor);
+				newRail.Add(connectionAnchors[0].Item2);
 				newRail.AddRange(turnoutSpline.anchors);
 				newRail.AddRange(currentRail.splineB.anchors);
 
-				if (railConnection.connectionAnchors[1].isSet) {
-					newRail.Add(railConnection.connectionAnchors[1].anchor);
+				if (connectionAnchors[1].Item1) {
+					newRail.Add(connectionAnchors[1].Item2);
                 }
 			}
 		// If Minecart is on the rail "after" the turnout
         } else {
 			// We must check, if passage is open. If so, add rails (anchors) before the current rail
 			if ((currentRail == pathA && !currentState) || (currentRail == pathB && currentState)) {
-				if (railConnection.connectionAnchors[0].isSet) {
-					newRail.Add(railConnection.connectionAnchors[0].anchor);
+				if (connectionAnchors[0].Item1) {
+					newRail.Add(connectionAnchors[0].Item2);
                 }
 				
 				newRail.AddRange(currentRail.splineA.anchors);
 				newRail.AddRange(turnoutSpline.anchors);
 
-				newRail.Add(railConnection.connectionAnchors[1].anchor);
+				newRail.Add(connectionAnchors[1].Item2);
 			}
 			// Add current rail after adding (if neccessary) previous rails
 			newRail.AddRange(currentSpline.anchors);
@@ -189,15 +186,15 @@ public class Turnout : MonoBehaviour {
     }
 
 	private void resetConnectionAnchors(RailPath rail) {
-		railConnection.connectionAnchors[0] = RailConnectionField.Empty();
-		railConnection.connectionAnchors[1] = RailConnectionField.Empty();
+		connectionAnchors[0] = (false, default);
+		connectionAnchors[1] = (false, default);
 
         if (rail.splineA.anchors.Count > 0) {
 			SplineAnchor connectionAnchor = new SplineAnchor (
 				rail.splineA.anchors.Last().positionB,
 				turnoutSpline.anchors[0].positionA
 			);
-			railConnection.connectionAnchors[0].Set(connectionAnchor);
+			connectionAnchors[0] = (true, connectionAnchor);
 		}
 
 		if (rail.splineB.anchors.Count > 0) {
@@ -206,7 +203,7 @@ public class Turnout : MonoBehaviour {
 				turnoutSpline.anchors[0].positionB,
 				rail.splineB.anchors[0].positionA
 			);
-			railConnection.connectionAnchors[1].Set(connectionAnchor);
+			connectionAnchors[1] = (true, connectionAnchor);
 		}
     }
 }
