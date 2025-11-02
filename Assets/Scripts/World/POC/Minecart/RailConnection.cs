@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 
+[Serializable]
 public struct RailConnectionField {
     public bool isSet;
     public SplineAnchor anchor;
@@ -17,6 +19,5 @@ public struct RailConnectionField {
     }
 }
 public class RailConnection : MonoBehaviour {
-    [HideInInspector] 
     public RailConnectionField[] connectionAnchors = new RailConnectionField[0];
 }

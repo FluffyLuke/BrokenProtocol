@@ -14,7 +14,6 @@ public class InteractButton : IInteractable
     private Coroutine stateCooldownCoroutine = null;
     public override void Interact() {
         foreach (var r in requirements) {
-            Debug.LogWarning("nigger");
             if (r.CheckRequirement() == false) {
                 Debug.Log($"Requirement \"{r.GetRequirementName()}\" was not satisfied, not interacting...");
                 failedToInteract.Invoke();

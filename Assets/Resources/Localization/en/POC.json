@@ -24,6 +24,13 @@
         },
 
         {
+            "id": "monologue_blocked_elevator",
+            "speaker_name": "You",
+            "text": "Lever is stuck. I can't use it now.",
+            "speed": 30
+        },
+
+        {
             "id": "intro_hq_d1",
             "speaker_name": "HQ",
             "text": "Ground reacon unit - report status.",

@@ -1,10 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.Splines;
-public class RailBlocker : MonoBehaviour, InteractableRequirement {
+public class TurnoutRailBlocker : MonoBehaviour, InteractableRequirement {
     [SerializeField] private Turnout turnout;
     public bool CheckRequirement() {
         foreach (var c in turnout.carts) {
