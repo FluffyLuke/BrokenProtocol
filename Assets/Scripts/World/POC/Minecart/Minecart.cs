@@ -10,6 +10,10 @@ public class Minecart : MonoBehaviour {
     [SerializeField] private SimpleSpline startingRail;
     public SimpleSpline rail;
     public bool playerFromTheBack;
+
+    public bool pushingForwardBlocked = false;
+    public bool pushingBackwardsBlocked = false;
+
     void Start() {
         rail = GetComponent<SimpleSpline>();
 
@@ -43,7 +47,14 @@ public class Minecart : MonoBehaviour {
         }
     }
 	public void PushCart(float speed, bool direction) {
-        int previousIndex = posData.currentAnchorIndex;
+        Debug.Log(direction);
+        if (!direction && pushingForwardBlocked) {
+            return;
+        }
+
+        if (direction && pushingBackwardsBlocked) {
+            return;
+        }
 
         (Vector3 position, Quaternion rotation) = rail.GetNextPosition(ref posData, speed, direction);
 		transform.position = position;

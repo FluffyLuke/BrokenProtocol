@@ -123,8 +123,6 @@ public class Elevator : MonoBehaviour {
 				elevatorSpline.anchors[0].positionA
 			);
 			railConnection.connectionAnchors[0].Set(connectionAnchor);
-			Debug.Log("A");
-			Debug.Log(elevatorSpline.anchors[0].positionA.name);
 		}
 
 		// Elevator is at the peak
@@ -135,7 +133,6 @@ public class Elevator : MonoBehaviour {
 				pathUp.anchors[0].positionA
 			);
 			railConnection.connectionAnchors[0].Set(connectionAnchor);
-			Debug.Log("B");
 		}
     }
 }
