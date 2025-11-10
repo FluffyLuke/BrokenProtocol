@@ -11143,6 +11143,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2799527638542569264, guid: bd31df597c5bedcf99dd99fb0fb1c535, type: 3}
   m_PrefabInstance: {fileID: 772039789}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &772739023 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4915335107292673567, guid: 2c71613d04055c44b9bae18d21fa1124, type: 3}
+  m_PrefabInstance: {fileID: 1445097145}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &773583236
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19457,6 +19462,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1365766894}
     - target: {fileID: 6762912820203956944, guid: 2c71613d04055c44b9bae18d21fa1124, type: 3}
+      propertyPath: bobPivot
+      value: 
+      objectReference: {fileID: 772739023}
+    - target: {fileID: 6762912820203956944, guid: 2c71613d04055c44b9bae18d21fa1124, type: 3}
       propertyPath: FallingCollider
       value: 
       objectReference: {fileID: 1635444917}
@@ -19472,6 +19481,10 @@ PrefabInstance:
       propertyPath: GroundedCollider
       value: 
       objectReference: {fileID: 320040151}
+    - target: {fileID: 6762912820203956944, guid: 2c71613d04055c44b9bae18d21fa1124, type: 3}
+      propertyPath: headBobRotationForce
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 7941190269132411765, guid: 2c71613d04055c44b9bae18d21fa1124, type: 3}
       propertyPath: m_Enabled
       value: 1

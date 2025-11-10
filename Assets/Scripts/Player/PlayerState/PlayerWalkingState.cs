@@ -11,6 +11,17 @@ public class PlayerWalkingState : IPlayerState
     public float RotationSpeed;
     public float MaxWalkingSpeed;
     public float MaxRunningSpeed;
+    public bool isMovingNow;
+    [Header("Head bob")]
+    public Transform bobPivot;
+    [Range(0, 1)]
+    public float headBobRotationForce = 0.5f;
+    [Range(0, 1)]
+    public float headBobMaxX = 0.5f;
+    [Range(0, 1)]
+    public float headBobMaxY = 0.5f;
+    private float headBobT = 0;
+    private Vector3 originalBobPivotPosition;
     [Header("Feet")]
     public ColliderWraper GroundedCollider;
     public ColliderWraper FallingCollider;
@@ -31,11 +42,34 @@ public class PlayerWalkingState : IPlayerState
     void Start() {
         body = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+
+        originalBobPivotPosition = bobPivot.localPosition;
     }
     void Update() {
         movePlayer();
         rotatePlayer();
         setCursor();
+        headBob();
+    }
+
+    private void headBob() {
+        if (!isMovingNow) {
+            return;
+        }
+
+        headBobT += Time.deltaTime;
+        headBobT %= 2;
+
+        Vector3 newRotation = bobPivot.rotation.eulerAngles;
+        float rotation = Mathf.Sin(headBobT * Mathf.PI) * animator.GetFloat("Speed") * headBobRotationForce;
+
+        newRotation.z = rotation;
+        bobPivot.rotation = Quaternion.Euler(newRotation);
+
+        float x = Mathf.Sin(headBobT * Mathf.PI) * headBobMaxX;
+        float y = Mathf.Cos(headBobT * Mathf.PI * 2) * headBobMaxY;
+        Debug.Log($"{x}, {y}");
+        bobPivot.localPosition = new Vector3 (x, y, 0) + originalBobPivotPosition;
     }
 
     // TODO: Rework movement for acceleration and deacceleration
@@ -43,6 +77,8 @@ public class PlayerWalkingState : IPlayerState
         Vector2 inputDirection = input.Player.Move.ReadValue<Vector2>();
         bool sprinting = input.Player.Sprint.IsPressed();
         float targetSpeed = sprinting ? MaxRunningSpeed : MaxWalkingSpeed;
+
+        isMovingNow = inputDirection.magnitude > 0;
 
         Vector3 direction = new Vector3(inputDirection.x, 0, inputDirection.y);
         Vector3 move = transform.rotation * direction;
