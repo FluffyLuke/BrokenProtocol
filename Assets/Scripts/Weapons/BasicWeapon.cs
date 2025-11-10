@@ -75,6 +75,7 @@ public class Weapon : IItem
         Ammo ammo = _data.GetProperty<Ammo>();
         ammo.count = ammo.maxAmmo;
         _animator.Play(reloadAnimation);
+        _events.weaponReload.Invoke();
     }
     public override void Grab(ItemData itemData) {
         _data = itemData;

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1949518569051430974}
   - component: {fileID: 4788700465432017961}
   - component: {fileID: 3725492952678794790}
+  - component: {fileID: 4833525281844318279}
   m_Layer: 2
   m_Name: Pistol
   m_TagString: Untagged
@@ -70,6 +71,9 @@ MonoBehaviour:
   weaponFire:
     m_PersistentCalls:
       m_Calls: []
+  weaponReload:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3725492952678794790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,6 +88,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bulletHoleDecal: {fileID: 114898179317397759, guid: 6f923c9f7c597284081cb25cdf5b2cf4, type: 3}
   _muzzleFlash: {fileID: 7800228180027185619}
+--- !u!114 &4833525281844318279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2589862898478383057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e4a45143506028b79bc1c0641cb86cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireID: 3
+  reloadID: 4
 --- !u!1 &7800228180027185619
 GameObject:
   m_ObjectHideFlags: 0

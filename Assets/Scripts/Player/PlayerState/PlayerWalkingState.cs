@@ -72,20 +72,19 @@ public class PlayerWalkingState : IPlayerState
         }
         
         if (currentMovementState == MovementState.Running) {
-            if (SoundManager.instance.PlayAndLoop(SoundAssetID.PlayerRunSnow, transform.position, out SoundHandle handle)) {
+            if (SoundManager.instance.PlayAndLoop(SoundAssetID.PlayerRun_Snow, transform.position, out SoundHandle handle)) {
                 Debug.Log("Run");
                 currentWalkSound = handle;
             }
         }
 
         if (currentMovementState == MovementState.Walking) {
-            if (SoundManager.instance.PlayAndLoop(SoundAssetID.PlayerWalkSnow, transform.position, out SoundHandle handle)) {
+            if (SoundManager.instance.PlayAndLoop(SoundAssetID.PlayerWalk_Snow, transform.position, out SoundHandle handle)) {
                 Debug.Log("Walk");
                 currentWalkSound = handle;
             }
         }
     }
-
     private void headBob() {
         if (currentMovementState == MovementState.Standing) {
             return;

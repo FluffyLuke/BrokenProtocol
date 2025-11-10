@@ -16,6 +16,10 @@ public class SoundAsset : ScriptableObject
 public enum SoundAssetID {
     NotDefined,
     // Player
-    PlayerWalkSnow,
-    PlayerRunSnow,
+    PlayerWalk_Snow,
+    PlayerRun_Snow,
+
+    // Weapons
+    Pistol_Fire,
+    Pistol_Reload,
 }
