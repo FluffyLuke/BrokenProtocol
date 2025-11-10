@@ -72,9 +72,7 @@
         "editor.formatOnSave": false,
         "editor.insertSpaces": true,
         "editor.tabSize": 4,
-        "editor.autoIndent": "none",
-        "editor.formatOnEnter": false,
-        "csharp.format.enable": false,
+        "editor.autoIndent": "advanced",
         "csharp.format.braces.openingBrace": "sameLine"
     }
 }

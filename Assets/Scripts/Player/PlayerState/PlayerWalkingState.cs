@@ -11,7 +11,11 @@ public class PlayerWalkingState : IPlayerState
     public float RotationSpeed;
     public float MaxWalkingSpeed;
     public float MaxRunningSpeed;
-    public bool isMovingNow;
+    private enum MovementState {
+        Standing, Walking, Running
+    }
+    private MovementState currentMovementState;
+    private MovementState previousMovementState;
     [Header("Head bob")]
     public Transform bobPivot;
     [Range(0, 1)]
@@ -25,6 +29,8 @@ public class PlayerWalkingState : IPlayerState
     [Header("Feet")]
     public ColliderWraper GroundedCollider;
     public ColliderWraper FallingCollider;
+    [Header("Sounds")]
+    SoundHandle currentWalkSound = null;
 
     // Other components
     private CharacterController body;
@@ -50,10 +56,38 @@ public class PlayerWalkingState : IPlayerState
         rotatePlayer();
         setCursor();
         headBob();
+        handleSound();
+
+        previousMovementState = currentMovementState;
+    }
+    
+    private void handleSound() {
+        if (previousMovementState == currentMovementState) return;
+        Debug.Log($"Current movement state: {currentMovementState}");
+
+        if (currentWalkSound != null) {
+            Debug.Log("Reset");
+            currentWalkSound.StopAndDestroy();
+            currentWalkSound = null;
+        }
+        
+        if (currentMovementState == MovementState.Running) {
+            if (SoundManager.instance.PlayAndLoop(SoundAssetID.PlayerRunSnow, transform.position, out SoundHandle handle)) {
+                Debug.Log("Run");
+                currentWalkSound = handle;
+            }
+        }
+
+        if (currentMovementState == MovementState.Walking) {
+            if (SoundManager.instance.PlayAndLoop(SoundAssetID.PlayerWalkSnow, transform.position, out SoundHandle handle)) {
+                Debug.Log("Walk");
+                currentWalkSound = handle;
+            }
+        }
     }
 
     private void headBob() {
-        if (!isMovingNow) {
+        if (currentMovementState == MovementState.Standing) {
             return;
         }
 
@@ -68,7 +102,6 @@ public class PlayerWalkingState : IPlayerState
 
         float x = Mathf.Sin(headBobT * Mathf.PI) * headBobMaxX;
         float y = Mathf.Cos(headBobT * Mathf.PI * 2) * headBobMaxY;
-        Debug.Log($"{x}, {y}");
         bobPivot.localPosition = new Vector3 (x, y, 0) + originalBobPivotPosition;
     }
 
@@ -78,7 +111,13 @@ public class PlayerWalkingState : IPlayerState
         bool sprinting = input.Player.Sprint.IsPressed();
         float targetSpeed = sprinting ? MaxRunningSpeed : MaxWalkingSpeed;
 
-        isMovingNow = inputDirection.magnitude > 0;
+        if (sprinting && inputDirection.magnitude > 0) {
+            currentMovementState = MovementState.Running;
+        } else if (inputDirection.magnitude > 0) {
+            currentMovementState = MovementState.Walking;
+        } else {
+            currentMovementState = MovementState.Standing;
+        }
 
         Vector3 direction = new Vector3(inputDirection.x, 0, inputDirection.y);
         Vector3 move = transform.rotation * direction;
