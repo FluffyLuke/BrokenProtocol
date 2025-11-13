@@ -3815,6 +3815,9 @@ MonoBehaviour:
   sounds:
   - {fileID: 11400000, guid: b2b70112f6a5cd06d804048519bee4c5, type: 2}
   - {fileID: 11400000, guid: b478d8deab5c095ad94135150a31c709, type: 2}
+  masterAudioGroup: {fileID: 24300002, guid: e2ca3cb31f3a5b99383833aa5403b92d, type: 2}
+  sfxAudioGroup: {fileID: -4169741160281975777, guid: e2ca3cb31f3a5b99383833aa5403b92d, type: 2}
+  ambientAudioGroup: {fileID: -5058836371866856468, guid: e2ca3cb31f3a5b99383833aa5403b92d, type: 2}
 --- !u!1001 &203640929
 PrefabInstance:
   m_ObjectHideFlags: 0

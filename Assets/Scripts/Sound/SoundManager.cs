@@ -1,22 +1,33 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Events;
-
+using UnityEngine.Audio;
 public class SoundManager : MonoBehaviour {
     [SerializeField] private SoundAsset[] sounds;
     private Dictionary<SoundAssetID, SoundAsset> lookup;
+    [SerializeField] private AudioMixerGroup masterAudioGroup;
+    [SerializeField] private AudioMixerGroup sfxAudioGroup;
+    [SerializeField] private AudioMixerGroup ambientAudioGroup;
     public static SoundManager instance;
 
     void Awake() {
-        lookup = sounds.ToDictionary(s => s.id);
-
         if (instance != null) {
             Destroy(gameObject);
         }
-        
         instance = this;
+
+        lookup = sounds.ToDictionary(s => s.id);
+    }
+
+    void Start() {
+        if (masterAudioGroup == null)
+            Debug.LogError("Master audio group is not assigned!");
+
+        if (sfxAudioGroup == null)
+            Debug.LogError("SFX group is not assigned!");
+
+        if (ambientAudioGroup == null)
+            Debug.LogError("Ambient group is not assigned!");
     }
 
     public bool PlayAndLoop(SoundAssetID id, Vector3 position, out SoundHandle handle) {
@@ -37,6 +48,22 @@ public class SoundManager : MonoBehaviour {
         source.pitch = Random.Range(sound.pitchRange.x, sound.pitchRange.y);
         source.volume = sound.volume;
         source.loop = true;
+        
+        switch (sound.busID) {
+            case AudioBusID.NotDefined:
+                source.outputAudioMixerGroup = masterAudioGroup;
+                break;
+            case AudioBusID.Ambient:
+                source.outputAudioMixerGroup = ambientAudioGroup;
+                break;
+            case AudioBusID.SFX:
+                source.outputAudioMixerGroup = sfxAudioGroup;
+                break;
+            default:
+                Debug.LogError("wtf?");
+                break;
+        }
+
         source.Play();
 
         handle = new SoundHandle(source);
