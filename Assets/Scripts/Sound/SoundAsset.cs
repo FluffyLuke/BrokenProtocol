@@ -30,7 +30,7 @@ public enum SoundAssetID {
     Pistol_Fire,
     Pistol_Reload,
 
-    // Ambience
-    Ambience_Snowstorm,
-    Ambience_RavineSnowStorm
+    // Ambient
+    Ambient_Snowstorm,
+    Ambient_RavineSnowStorm
 }

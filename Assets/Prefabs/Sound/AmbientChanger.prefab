@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 2761917536962372420}
   - component: {fileID: 3676342483026295064}
   m_Layer: 0
-  m_Name: AmbienceChanger
+  m_Name: AmbientChanger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

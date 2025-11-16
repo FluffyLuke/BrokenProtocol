@@ -3,29 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class AmbienceManager : MonoBehaviour {
-    [SerializeField] private SoundAsset[] ambience;
+public class AmbientManager : MonoBehaviour {
+    [SerializeField] private SoundAsset[] Ambient;
     private Dictionary<SoundAssetID, SoundAsset> lookup;
     [SerializeField] private AudioSource source1, source2;
     private bool usedSource; // false = source1, true = source2
     private Coroutine fadeInCoroutine = null;
     private Coroutine fadeOutCoroutine = null;
-    [HideInInspector] public static AmbienceManager instance;
+    [HideInInspector] public static AmbientManager instance;
     void Awake() {
         if (instance != null) {
             Destroy(gameObject);
         }
         instance = this;
 
-        lookup = ambience.ToDictionary(s => s.id);
+        lookup = Ambient.ToDictionary(s => s.id);
     }
     void Start() {
         if (source1 == null || source2 == null) {
-            Debug.Log("Ambience manager has at least one not assigned audio source!");
+            Debug.Log("Ambient manager has at least one not assigned audio source!");
         }
     }
 
-    public bool PlayAmbience(SoundAssetID id, float fadeDuration) {
+    public bool PlayAmbient(SoundAssetID id, float fadeDuration) {
         if (!lookup.TryGetValue(id, out SoundAsset sound))
         {
             Debug.LogError($"Cannot found asset of id: \"{id}\"");
@@ -47,7 +47,7 @@ public class AmbienceManager : MonoBehaviour {
     }
 
     public IEnumerator fadeIn(SoundAsset sound, float fadeDuration, AudioSource source) {
-        // New ambience
+        // New Ambient
         AudioClip clip = sound.GetRandomClip();
         source.clip = clip;
         source.pitch = Random.Range(sound.pitchRange.x, sound.pitchRange.y);

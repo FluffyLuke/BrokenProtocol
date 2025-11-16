@@ -3,34 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class ChanceAmbience : MonoBehaviour {
+public class ChanceAmbient : MonoBehaviour {
     public Collider collider1, collider2;
-    public SoundAssetID Ambience1, Ambience2;
+    public SoundAssetID Ambient1, Ambient2;
     public float FadeDuration = 1f;
     void Start() {
         if (collider1.enabled == false && collider2.enabled == false) {
-            Debug.LogWarning("Both colliders are turned off on ambience changer.");
+            Debug.LogWarning("Both colliders are turned off on Ambient changer.");
         }
 
         if (collider1.enabled == true && collider2.enabled == true) {
             collider2.enabled = false;
-            Debug.LogWarning("Both colliders are turned on on ambience changer. Turning one off.");
+            Debug.LogWarning("Both colliders are turned on on Ambient changer. Turning one off.");
         }
     }
-    public void PlayAmbience1() {
+    public void PlayAmbient1() {
         Debug.Log("A");
         collider1.enabled = false;
         collider2.enabled = true;
-        playAmbience(Ambience1);
+        playAmbient(Ambient1);
     }
-    public void PlayAmbience2() {
+    public void PlayAmbient2() {
         Debug.Log("B");
         collider1.enabled = true;
         collider2.enabled = false;
-        playAmbience(Ambience2);
+        playAmbient(Ambient2);
     }
 
-    private void playAmbience(SoundAssetID id) {
-        AmbienceManager.instance.PlayAmbience(id, FadeDuration);
+    private void playAmbient(SoundAssetID id) {
+        AmbientManager.instance.PlayAmbient(id, FadeDuration);
     }
 }
