@@ -29,4 +29,8 @@ public enum SoundAssetID {
     // Weapons
     Pistol_Fire,
     Pistol_Reload,
+
+    // Ambience
+    Ambience_Snowstorm,
+    Ambience_RavineSnowStorm
 }

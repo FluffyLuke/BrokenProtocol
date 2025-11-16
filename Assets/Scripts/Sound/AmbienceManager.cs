@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class AmbienceManage : MonoBehaviour {
+public class AmbienceManager : MonoBehaviour {
     [SerializeField] private SoundAsset[] ambience;
     private Dictionary<SoundAssetID, SoundAsset> lookup;
-    [SerializeField] private AudioSource source;
-    private Coroutine fadeCoroutine = null;
-    public AmbienceManage instance;
+    [SerializeField] private AudioSource source1, source2;
+    private bool usedSource; // false = source1, true = source2
+    private Coroutine fadeInCoroutine = null;
+    private Coroutine fadeOutCoroutine = null;
+    [HideInInspector] public static AmbienceManager instance;
     void Awake() {
         if (instance != null) {
             Destroy(gameObject);
@@ -18,12 +20,8 @@ public class AmbienceManage : MonoBehaviour {
         lookup = ambience.ToDictionary(s => s.id);
     }
     void Start() {
-        if (source == null) {
-            source = GetComponentInChildren<AudioSource>();
-            if (source == null) {
-                Debug.Log("Ambience manager has no audio source");
-                return;
-            }
+        if (source1 == null || source2 == null) {
+            Debug.Log("Ambience manager has at least one not assigned audio source!");
         }
     }
 
@@ -34,26 +32,21 @@ public class AmbienceManage : MonoBehaviour {
             return false;
         }
 
-        if (fadeCoroutine != null) {
-            StopCoroutine(fadeCoroutine);
-        }
-        fadeCoroutine = StartCoroutine(fade(sound, fadeDuration));
+        if (fadeInCoroutine != null) StopCoroutine(fadeInCoroutine);
+        if (fadeOutCoroutine != null) StopCoroutine(fadeOutCoroutine);
+
+        AudioSource newSource = usedSource ? source1 : source2;
+        AudioSource currentSource = usedSource ? source2 : source1;
+
+        fadeInCoroutine = StartCoroutine(fadeIn(sound, fadeDuration, newSource));
+        fadeOutCoroutine = StartCoroutine(fadeOut(sound, fadeDuration, currentSource));
+
+        usedSource = !usedSource;
 
         return true;
     }
 
-    public IEnumerator fade(SoundAsset sound, float fadeDuration) {
-        float startValue = source.volume;
-        float elapsed = 0f;
-  
-        // Fade out
-        while (elapsed < fadeDuration) {
-            elapsed += Time.deltaTime;
-            source.volume = Mathf.Lerp(startValue, 0f, elapsed / fadeDuration);
-            yield return null;
-        }
-        source.volume = 0;
-
+    public IEnumerator fadeIn(SoundAsset sound, float fadeDuration, AudioSource source) {
         // New ambience
         AudioClip clip = sound.GetRandomClip();
         source.clip = clip;
@@ -63,13 +56,35 @@ public class AmbienceManage : MonoBehaviour {
         source.Play();
 
         // Fade in
-        elapsed = 0f;
+        Debug.Log("NUGGER");
+        float elapsed = 0f;
         while (elapsed < fadeDuration) {
             elapsed += Time.deltaTime;
             source.volume = Mathf.Lerp(0f, sound.volume, elapsed / fadeDuration);
+            Debug.Log($"elapsed in: {elapsed}");
             yield return null;
         }
         source.volume = sound.volume;
-        fadeCoroutine = null;
+        fadeInCoroutine = null;
+    }
+
+    public IEnumerator fadeOut(SoundAsset sound, float fadeDuration, AudioSource source) {
+        float startValue = source.volume;
+        float elapsed = 0f;
+  
+        Debug.Log("NIGGER");
+        // Fade out
+        while (elapsed < fadeDuration) {
+            elapsed += Time.deltaTime;
+            source.volume = Mathf.Lerp(startValue, 0f, elapsed / fadeDuration);
+            Debug.Log($"elapsed out: {elapsed}");
+            yield return null;
+        }
+        source.volume = 0;
+
+        source.volume = sound.volume;
+        source.Stop();
+
+        fadeOutCoroutine = null;
     }
 }
