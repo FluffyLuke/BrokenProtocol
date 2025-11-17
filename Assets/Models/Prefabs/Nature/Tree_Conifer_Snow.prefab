@@ -282,6 +282,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -5052490846740139329, guid: a4e4b4c10c68522348849d8cbb0f8c91, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0277db5e586a77f52a35bb6561846d4e, type: 2}
     - target: {fileID: 919132149155446097, guid: a4e4b4c10c68522348849d8cbb0f8c91, type: 3}
       propertyPath: m_Name
       value: Tree_Conifer_Snow
