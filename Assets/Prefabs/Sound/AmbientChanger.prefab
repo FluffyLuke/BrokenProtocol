@@ -76,8 +76,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3676342483026295064}
-        m_TargetAssemblyTypeName: ChanceAmbience, Assembly-CSharp
-        m_MethodName: PlayAmbience2
+        m_TargetAssemblyTypeName: ChanceAmbient, Assembly-CSharp
+        m_MethodName: PlayAmbient2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -138,8 +138,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collider1: {fileID: 517242441659852114}
   collider2: {fileID: 7838082106734453870}
-  Ambience1: 0
-  Ambience2: 0
+  Ambient1: 0
+  Ambient2: 0
   FadeDuration: 1
 --- !u!1 &7476405629460897048
 GameObject:
@@ -217,8 +217,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3676342483026295064}
-        m_TargetAssemblyTypeName: ChanceAmbience, Assembly-CSharp
-        m_MethodName: PlayAmbience1
+        m_TargetAssemblyTypeName: ChanceAmbient, Assembly-CSharp
+        m_MethodName: PlayAmbient1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

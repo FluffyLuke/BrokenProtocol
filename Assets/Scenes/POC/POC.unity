@@ -39116,6 +39116,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3676342483026295064, guid: 9c010fb0814981e5791f70ccdfcfc5b0, type: 3}
+      propertyPath: Ambient1
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3676342483026295064, guid: 9c010fb0814981e5791f70ccdfcfc5b0, type: 3}
+      propertyPath: Ambient2
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3676342483026295064, guid: 9c010fb0814981e5791f70ccdfcfc5b0, type: 3}
       propertyPath: Ambience1
       value: 6
       objectReference: {fileID: 0}

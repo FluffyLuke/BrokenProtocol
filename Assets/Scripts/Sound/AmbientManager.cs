@@ -32,6 +32,8 @@ public class AmbientManager : MonoBehaviour {
             return false;
         }
 
+        Debug.Log($"Changing ambient to: {id}");
+
         if (fadeInCoroutine != null) StopCoroutine(fadeInCoroutine);
         if (fadeOutCoroutine != null) StopCoroutine(fadeOutCoroutine);
 
