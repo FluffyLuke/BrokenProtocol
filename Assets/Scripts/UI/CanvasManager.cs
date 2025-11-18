@@ -14,7 +14,7 @@ public class CanvasManager : MonoBehaviour
     void Start() {
         if(Instance != null) {
             Debug.LogWarning("Two canvas managers detected");
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
 
         Instance = this;
