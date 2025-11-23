@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using UnityEngine;
 public class LocalizationManager : MonoBehaviour 
 {
-    [SerializeField] private string fileName;
+    [SerializeField] private string folderName = null;
     [SerializeField] private GlobalSettings globalSettings;
     private Localization localization;
     [HideInInspector] public static LocalizationManager instance = null;
@@ -21,14 +21,33 @@ public class LocalizationManager : MonoBehaviour
 
     public void LoadLocals(GameLanguage language) {
         string pathToResource = globalSettings.GetPathToLocals(language);
-        pathToResource = $"{pathToResource}/{fileName}";
-        TextAsset json = Resources.Load<TextAsset>(pathToResource);
-        if (json == null) {
-            Debug.LogError($"Cannot load file with localization: \"{pathToResource}\"");
+        if (folderName != null) {
+            pathToResource = $"{pathToResource}/{folderName}";
+        }
+
+        TextAsset[] jsons = Resources.LoadAll<TextAsset>(pathToResource);
+    
+        if (jsons == null) {
+            Debug.LogError($"Cannot load file(s) with localization: \"{pathToResource}\"");
             return;
         }
 
-        localization = JsonConvert.DeserializeObject<Localization>(json.text);
+        if (jsons.Length == 0) {
+            Debug.LogError($"Cannot load file(s) with localization: \"{pathToResource}\"");
+            return;
+        }
+
+        localization = JsonConvert.DeserializeObject<Localization>(jsons[0].text);
+        Debug.Log($"Loaded new file with locales of id: {localization.fileID}");
+
+        for (int i = 1; i < jsons.Length; i++) {
+            TextAsset json = jsons[i];
+
+            Localization lPart = JsonConvert.DeserializeObject<Localization>(json.text);
+            Debug.Log($"Loaded new file with locales of id: {lPart.fileID}");
+            localization.Connect(ref lPart);
+            
+        }
     }
 
     public void LoadLocals() {

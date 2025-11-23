@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class WelcomeScreen : MonoBehaviour
 {
+    [SerializeField] private CanvasManager canvas;
     public string NextScreen = "MainScreen";
     private InputSystem_Actions input;
     void Awake()
@@ -13,7 +14,7 @@ public class WelcomeScreen : MonoBehaviour
     }
 
     void OnGameStart(InputAction.CallbackContext context) {
-        CanvasManager.Instance.ChangeCurrentCanvas(NextScreen);
+        canvas.ChangeCurrentCanvas(NextScreen);
     }
 
     private void OnEnable() {

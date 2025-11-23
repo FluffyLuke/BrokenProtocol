@@ -58,12 +58,10 @@ public class AmbientManager : MonoBehaviour {
         source.Play();
 
         // Fade in
-        Debug.Log("NUGGER");
         float elapsed = 0f;
         while (elapsed < fadeDuration) {
             elapsed += Time.deltaTime;
             source.volume = Mathf.Lerp(0f, sound.volume, elapsed / fadeDuration);
-            Debug.Log($"elapsed in: {elapsed}");
             yield return null;
         }
         source.volume = sound.volume;
@@ -74,12 +72,10 @@ public class AmbientManager : MonoBehaviour {
         float startValue = source.volume;
         float elapsed = 0f;
   
-        Debug.Log("NIGGER");
         // Fade out
         while (elapsed < fadeDuration) {
             elapsed += Time.deltaTime;
             source.volume = Mathf.Lerp(startValue, 0f, elapsed / fadeDuration);
-            Debug.Log($"elapsed out: {elapsed}");
             yield return null;
         }
         source.volume = 0;

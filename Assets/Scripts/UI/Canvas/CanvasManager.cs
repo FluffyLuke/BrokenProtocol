@@ -5,20 +5,12 @@ using System.Linq;
 using UnityEngine.Events;
 public class CanvasManager : MonoBehaviour
 {
-    public static CanvasManager Instance;
     public UnityEvent TopLevelReturn;
     public Canvas[] Canvases;
     private List<Canvas> quene = new();
     private Canvas topCanvas;
     private Canvas currentCanvas;
     void Start() {
-        if(Instance != null) {
-            Debug.LogWarning("Two canvas managers detected");
-            Destroy(gameObject);
-        }
-
-        Instance = this;
-
         topCanvas = Canvases[0];
         currentCanvas = topCanvas;
 
@@ -27,21 +19,26 @@ public class CanvasManager : MonoBehaviour
         }
 
         topCanvas.gameObject.SetActive(true);
-    }
-
-    // Update is called once per frame
-    void Update() {
         
+        if (topCanvas.TryGetComponent<IManagedCanvas>(out var managedCanvas)) {
+            managedCanvas.OnCanvasEnable();
+        }
     }
 
     public void ChangeCurrentCanvas(string canvasName) {
         foreach(Canvas c in Canvases) {
             if(c.name == canvasName) {
                 Debug.Log($"Changing to canvas of name: \"{canvasName}\"");
+                if (currentCanvas.TryGetComponent<IManagedCanvas>(out var managedCanvas)) {
+                    managedCanvas.OnCanvasDisable();
+                }
                 currentCanvas.gameObject.SetActive(false);
                 quene.Add(currentCanvas);
                 currentCanvas = c;
                 currentCanvas.gameObject.SetActive(true);
+                if (currentCanvas.TryGetComponent<IManagedCanvas>(out managedCanvas)) {
+                    managedCanvas.OnCanvasEnable();
+                }
                 return;
             }
         }
@@ -59,11 +56,5 @@ public class CanvasManager : MonoBehaviour
         currentCanvas = quene.Last();
         quene.Remove(currentCanvas);
         currentCanvas.gameObject.SetActive(true);
-    }
-
-    private void OnDestroy() {
-        if(Instance == this) {
-            Instance = null;
-        }    
     }
 }

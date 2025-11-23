@@ -1,0 +1,52 @@
+{
+    "file_id": "POC_UI",
+    "file_lang": "en",
+    "dialogues": [],
+    "ui": [
+        {
+            "id": "test_text",
+            "text": "This is a <color=red>test</color> ui text...",
+            "speed": 10
+        },
+        {
+            "id": "intro_label_name",
+            "text": "Name: ",
+            "speed": 10
+        },
+        {
+            "id": "intro_name",
+            "text": "Janusz Kowalski",
+            "speed": 10
+        },
+        {
+            "id": "intro_label_formation",
+            "text": "Formation: ",
+            "speed": 10
+        },
+        {
+            "id": "intro_formation",
+            "text": "First-contact reacon unit",
+            "speed": 10
+        },
+        {
+            "id": "intro_label_location_and_time",
+            "text": "Location and time: ",
+            "speed": 10
+        },
+        {
+            "id": "intro_location_and_time",
+            "text": "Switzerland, Alps; 3:24",
+            "speed": 10
+        },
+        {
+            "id": "intro_label_target",
+            "text": "Target: ",
+            "speed": 10
+        },
+        {
+            "id": "intro_target",
+            "text": "Find and recover data on the research, that is taking place in the mountains.",
+            "speed": 10
+        }
+    ]
+}

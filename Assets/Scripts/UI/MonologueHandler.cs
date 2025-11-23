@@ -10,6 +10,6 @@ public class MonologueHandler : MonoBehaviour {
     }
 
     private void showMonologue(CharacterDialogue dialogue) {
-        text.SetText(dialogue, 3);
+        text.ShowText(dialogue, 3);
     }
 }

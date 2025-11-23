@@ -9,6 +9,7 @@ public class UseLocale : MonoBehaviour
     };
     public string id;
     [SerializeField] private Type type;
+    [SerializeField] private bool showOnStart = true;
     private TMPWrapper textGUI;
     void Start() {
         textGUI = GetComponent<TMPWrapper>();
@@ -29,7 +30,7 @@ public class UseLocale : MonoBehaviour
                     Debug.LogError($"Cannot find dialogue of id: \"{id}\"");
                     return;
                 }
-                textGUI.SetText((CharacterDialogue)dialogue);
+                textGUI.SetText((CharacterDialogue)dialogue, !showOnStart);
                 break;
             }
             case Type.UIText: {
@@ -39,7 +40,7 @@ public class UseLocale : MonoBehaviour
                     Debug.LogError($"Cannot find ui text of id: \"{id}\"");
                     return;
                 }
-                textGUI.SetText((UIText)uiText);
+                textGUI.SetText((UIText)uiText, !showOnStart);
                 break;
             }
         }

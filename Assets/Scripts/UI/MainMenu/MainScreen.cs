@@ -1,24 +1,24 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainScreen : MonoBehaviour
+public class MainScreen : MonoBehaviour, IManagedCanvas
 {
+    [SerializeField] private CanvasManager canvas;
     private InputSystem_Actions input;
     void Awake()
     {
         input = new InputSystem_Actions();
         input.UI.Cancel.performed += ctx => {
-            CanvasManager.Instance.ChangeCurrentCanvas("WelcomeScreen");
+            canvas.ChangeCurrentCanvas("WelcomeScreen");
         };
         input.UI.Enable();
     }
 
-    private void OnEnable() {
+    public void OnCanvasEnable() {
         input.UI.Enable();
     }
 
-    private void OnDisable() {
+    public void OnCanvasDisable() {
         input.UI.Disable();
     }
-
 }
