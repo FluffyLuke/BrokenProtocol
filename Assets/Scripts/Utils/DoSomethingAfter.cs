@@ -20,12 +20,14 @@ public class DoSomethingAfter : MonoBehaviour {
 
         if (delay <= 0) {
             coroutine = StartCoroutine(display(defaultDelay));
+            return;
         }
         coroutine = StartCoroutine(display(delay));
     }
 
     private IEnumerator display(float delay) {
         yield return new WaitForSeconds(delay);
+        Debug.Log($"ABC: {name}");
         timeOut.Invoke();
     }
 }

@@ -824,7 +824,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &48775613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15650,7 +15650,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1002303006
 RectTransform:
   m_ObjectHideFlags: 0
@@ -25055,7 +25055,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace4cf0a1d9bd8eb6a58ef7831b25a7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultDelay: 27.5
+  defaultDelay: 28
   runOnStart: 1
   timeOut:
     m_PersistentCalls:
