@@ -27,7 +27,6 @@ public class DoSomethingAfter : MonoBehaviour {
 
     private IEnumerator display(float delay) {
         yield return new WaitForSeconds(delay);
-        Debug.Log($"ABC: {name}");
         timeOut.Invoke();
     }
 }
