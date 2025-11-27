@@ -23281,7 +23281,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1968565722268398043, guid: 2c71613d04055c44b9bae18d21fa1124, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1968565722268398043, guid: 2c71613d04055c44b9bae18d21fa1124, type: 3}
       propertyPath: TiltAxis.Value
