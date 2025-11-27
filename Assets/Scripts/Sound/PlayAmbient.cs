@@ -4,11 +4,18 @@ using System.Linq;
 using DG.Tweening;
 using UnityEngine;
 
-public class PlayAmbientOnStart : MonoBehaviour {
+public class PlayAmbient : MonoBehaviour {
     [SerializeField] private SoundAssetID id;
-    [SerializeField] private float delay = 5f;
+    [SerializeField] private float delay = 0f;
     [SerializeField] private float fadeDuration = 3f;
+    [SerializeField] private bool playOnStart = false;
+
     void Start() {
+        if (playOnStart) {
+            StartCoroutine(playAmbient());
+        }
+    }
+    public void Play() {
         StartCoroutine(playAmbient());
     }
 

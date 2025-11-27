@@ -54,7 +54,6 @@ public class PlayerWalkingState : IPlayerState
     void Update() {
         movePlayer();
         rotatePlayer();
-        setCursor();
         headBob();
         handleSound();
 
@@ -144,10 +143,5 @@ public class PlayerWalkingState : IPlayerState
         float x = value.x * Time.deltaTime * RotationSpeed;
 
         transform.Rotate(Vector3.up * x);
-    }
-
-    private void setCursor() {
-        UnityEngine.Cursor.visible = false;
-        UnityEngine.Cursor.lockState = UnityEngine.CursorLockMode.Locked;
     }
 }

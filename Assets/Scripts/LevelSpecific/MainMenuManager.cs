@@ -2,20 +2,25 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(ResizeScreen))]
 public class MainMenuManager : MonoBehaviour {
-    private ResizeScreen screenResizer; 
+    [SerializeField] private ResizeScreen screenResizer;
+    [SerializeField] private CanvasManager manager;
+    public static UnityEvent StartGame = new();
+    public static UnityEvent QuitGame = new();
     void Start() {
-        screenResizer = GetComponent<ResizeScreen>();
-        screenResizer.Open();
+        StartGame.AddListener(startGame);
+        QuitGame.AddListener(quitGame);
     }
-    public void StartGame() {
+    private void startGame() {
         screenResizer.Close(() => {
             SceneManager.LoadScene(Scenes.MainLevel);
-        });
+        }, delay: 0.1f);
     }
-    public void Quit() {
+    public void quitGame() {
+        manager.ChangeCurrentCanvas("ExitScreen");
         screenResizer.Close(() => {
             #if UNITY_EDITOR
                 UnityEditor.EditorApplication.isPlaying = false;

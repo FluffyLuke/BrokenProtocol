@@ -187,6 +187,7 @@ GameObject:
   - component: {fileID: 7411989437531006029}
   - component: {fileID: 509186148542320320}
   - component: {fileID: 3989618655865858669}
+  - component: {fileID: 8794858034713804879}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -253,6 +254,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8794858034713804879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4352939389001740545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding: {x: 0, y: 0, z: 0, w: 0}
+  m_Softness: {x: 0, y: 0}
 --- !u!1 &6800723378508870596
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,6 +281,8 @@ GameObject:
   - component: {fileID: 5329143693737102183}
   - component: {fileID: 6742766476879613750}
   - component: {fileID: 4582330929985907861}
+  - component: {fileID: 6322752950569131587}
+  - component: {fileID: 5299951600168192178}
   m_Layer: 5
   m_Name: Screen
   m_TagString: Untagged
@@ -374,6 +391,33 @@ MonoBehaviour:
       m_Calls: []
   Canvases:
   - {fileID: 4910148767208506476}
+--- !u!114 &6322752950569131587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6800723378508870596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60ace9eac85e78cf9b7a6a2815af2233, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Screen: {fileID: 7411989437531006029}
+  Manager: {fileID: 4582330929985907861}
+--- !u!114 &5299951600168192178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6800723378508870596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93e6bed3db721b3208243c87fe77f99b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  screen: {fileID: 0}
 --- !u!1001 &5558256287931096023
 PrefabInstance:
   m_ObjectHideFlags: 0

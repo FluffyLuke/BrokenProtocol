@@ -32,5 +32,6 @@ public enum SoundAssetID {
 
     // Ambient
     Ambient_Snowstorm,
-    Ambient_RavineSnowStorm
+    Ambient_RavineSnowStorm,
+    Ambient_Electric_Hum,
 }

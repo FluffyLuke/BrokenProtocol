@@ -14,6 +14,16 @@ public class MainScreen : MonoBehaviour, IManagedCanvas
         input.UI.Enable();
     }
 
+    public void StartGame() {
+        input.UI.Disable();
+        MainMenuManager.StartGame.Invoke();
+    }
+
+    public void QuitGame() {
+        input.UI.Disable();
+        MainMenuManager.QuitGame.Invoke();
+    }
+
     public void OnCanvasEnable() {
         input.UI.Enable();
     }
