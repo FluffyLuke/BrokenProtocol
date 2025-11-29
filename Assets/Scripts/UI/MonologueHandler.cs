@@ -10,6 +10,11 @@ public class MonologueHandler : MonoBehaviour {
     }
 
     private void showMonologue(CharacterDialogue monologue, float fade) {
+        if (PlayerEventBus.DialogueIsTakingPlace) {
+            Debug.Log("Cannot show monologue - dialogue is taking place.");
+            return;
+        }
+
         text.ShowText(monologue, fade);
     }
 }

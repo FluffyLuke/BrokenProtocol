@@ -9,5 +9,6 @@ public class PlayerEventBus : MonoBehaviour
     public static UnityEvent SwitchToCutsceneState = new();
     public static UnityEvent<Transform, Minecart> PushMinecart = new();
     public static UnityEvent<CharacterDialogue, float> showMonologue = new();
-    public static UnityEvent<CharacterDialogue, float> showDialogue = new();
+    public static bool DialogueIsTakingPlace = false;
+    public static UnityEvent<CharacterDialoguePart[]> showDialogue = new();
 }

@@ -51,6 +51,12 @@ public class TMPWrapper : MonoBehaviour
         showTextCoroutine = StartCoroutine(showText(speed, clearAfter));
     }
 
+    public void ShowText(string text, float speed = 10, float clearAfter = -1) {
+        defaultSpeed = speed;
+        SetText(text);
+        ShowText(speed, clearAfter);
+    }
+
     public void ShowText(CharacterDialogue dialogue, float clearAfter = -1) {
         defaultSpeed = dialogue.speed;
         SetText(dialogue.text);
@@ -66,6 +72,11 @@ public class TMPWrapper : MonoBehaviour
     private IEnumerator showText(float speed, float clearAfter) {
         if (speed <= 0) {
             textGUI.maxVisibleCharacters = int.MaxValue;
+            if (clearAfter <= 0) {
+                yield break;
+            }
+            yield return new WaitForSeconds(clearAfter);
+            textGUI.text = "";
             yield break;
         }
 
