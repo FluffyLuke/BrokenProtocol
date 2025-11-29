@@ -38,6 +38,7 @@ public class PlayerWalkingState : IPlayerState
     public override void EnterState() {
         base.EnterState();
         input.Player.Enable();
+        CinemachineInput(true);
         GetComponent<PlayerInteract>().enabled = true;
     }
     public override void ExitState() {

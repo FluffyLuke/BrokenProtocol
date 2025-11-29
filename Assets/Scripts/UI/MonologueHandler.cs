@@ -9,7 +9,7 @@ public class MonologueHandler : MonoBehaviour {
         PlayerEventBus.showMonologue.AddListener(showMonologue);
     }
 
-    private void showMonologue(CharacterDialogue dialogue) {
-        text.ShowText(dialogue, 3);
+    private void showMonologue(CharacterDialogue monologue, float fade) {
+        text.ShowText(monologue, fade);
     }
 }

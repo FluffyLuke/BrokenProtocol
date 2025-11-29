@@ -37,7 +37,7 @@ public class TMPWrapper : MonoBehaviour
         showTextCoroutine = StartCoroutine(showText(defaultSpeed, -1));
     }
 
-    public void ShowText(float speed, int clearAfter = -1) {
+    public void ShowText(float speed, float clearAfter = -1) {
         if(showTextCoroutine != null) {
             Debug.Log("Skipped text showing...");
             StopCoroutine(showTextCoroutine);
@@ -51,19 +51,19 @@ public class TMPWrapper : MonoBehaviour
         showTextCoroutine = StartCoroutine(showText(speed, clearAfter));
     }
 
-    public void ShowText(CharacterDialogue dialogue, int clearAfter = -1) {
+    public void ShowText(CharacterDialogue dialogue, float clearAfter = -1) {
         defaultSpeed = dialogue.speed;
         SetText(dialogue.text);
         ShowText(dialogue.speed, clearAfter);
     }
 
-    public void ShowText(UIText uiText, int clearAfter = -1) {
+    public void ShowText(UIText uiText, float clearAfter = -1) {
         defaultSpeed = uiText.speed;
         SetText(uiText.text);
         ShowText(uiText.speed, clearAfter);
     }
 
-    private IEnumerator showText(float speed, int clearAfter) {
+    private IEnumerator showText(float speed, float clearAfter) {
         if (speed <= 0) {
             textGUI.maxVisibleCharacters = int.MaxValue;
             yield break;

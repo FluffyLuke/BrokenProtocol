@@ -1,7 +1,5 @@
-using System;
-using Unity.Mathematics;
+using Unity.Cinemachine;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 [RequireComponent(typeof(PlayerStateManager))]
 public abstract class IPlayerState : MonoBehaviour {
@@ -14,5 +12,9 @@ public abstract class IPlayerState : MonoBehaviour {
     }
     public virtual void ExitState() {
         enabled = false;
+    }
+
+    protected void CinemachineInput(bool enable) {
+        PlayerCinemachineInputWrapper.Controller.enabled = enable;
     }
 }

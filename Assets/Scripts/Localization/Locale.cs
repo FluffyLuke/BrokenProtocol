@@ -12,6 +12,9 @@ public struct CharacterDialogue {
     public string text;
     [JsonProperty("Speed")] 
     public float speed;
+    public float ShowingTime() {
+        return text.Count() / speed;
+    }
 }
 
 [System.Serializable]
@@ -22,6 +25,10 @@ public struct UIText {
     public string text;
     [JsonProperty("Speed")]
     public float speed;
+
+    public float ShowingTime() {
+        return text.Count() / speed;
+    }
 }
 
 [System.Serializable]

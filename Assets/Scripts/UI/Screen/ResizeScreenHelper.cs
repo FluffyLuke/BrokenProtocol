@@ -12,7 +12,6 @@ public class ResizeScreenHelper : MonoBehaviour
     }
 
     public void Open() {
-        Debug.Log("ABC");
         screen.Open();
     }
 

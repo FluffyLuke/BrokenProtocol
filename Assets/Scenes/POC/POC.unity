@@ -997,10 +997,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 60272795}
-  - component: {fileID: 60272796}
   - component: {fileID: 60272797}
+  - component: {fileID: 60272796}
   m_Layer: 0
-  m_Name: Phase1
+  m_Name: FirstScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14414,6 +14414,7 @@ Transform:
   - {fileID: 60272795}
   - {fileID: 1180315823}
   - {fileID: 1145330174}
+  - {fileID: 1262229097}
   m_Father: {fileID: 465063713}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &909396944
@@ -14711,6 +14712,7 @@ MonoBehaviour:
       m_Calls: []
   playerRequirements: 
   monologueID: monologue_blocked_elevator
+  fade: 3
 --- !u!1 &934061746
 GameObject:
   m_ObjectHideFlags: 0
@@ -18096,8 +18098,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1145330174}
   - component: {fileID: 1145330175}
+  - component: {fileID: 1145330176}
   m_Layer: 0
-  m_Name: Phase3
+  m_Name: PlayingScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18159,6 +18162,42 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1262229098}
+        m_TargetAssemblyTypeName: DoSomethingAfter, Assembly-CSharp
+        m_MethodName: StartCounting
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: -1
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1145330176}
+        m_TargetAssemblyTypeName: ChangePlayerStateWrapper, Assembly-CSharp
+        m_MethodName: SwitchToWalkState
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: -1
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1145330176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145330173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da48031ca3a20a4fac4ce54857dc97b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1146884995
 GameObject:
   m_ObjectHideFlags: 0
@@ -18774,7 +18813,7 @@ GameObject:
   - component: {fileID: 1180315823}
   - component: {fileID: 1180315824}
   m_Layer: 0
-  m_Name: Phase2
+  m_Name: LoadingScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20664,6 +20703,102 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8554521859386106054, guid: 9d3af480c783ca8bd99f7ec41a1bb37d, type: 3}
   m_PrefabInstance: {fileID: 1262005702}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1262229096
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1262229097}
+  - component: {fileID: 1262229098}
+  - component: {fileID: 1262229099}
+  m_Layer: 0
+  m_Name: StartDialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1262229097
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262229096}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 907145878}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1262229098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262229096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ace4cf0a1d9bd8eb6a58ef7831b25a7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultDelay: 2
+  runOnStart: 0
+  timeOut:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1262229099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262229096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccab0cde4a0e1296a935dad3abb3d60a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogues:
+  - dialogueID: intro_hq_d1
+    fade: 1
+    dialogue:
+      id: 
+      speakerName: 
+      text: 
+      speed: 0
+  - dialogueID: intro_you_d2
+    fade: 1
+    dialogue:
+      id: 
+      speakerName: 
+      text: 
+      speed: 0
+  - dialogueID: intro_hq_d3
+    fade: 1
+    dialogue:
+      id: 
+      speakerName: 
+      text: 
+      speed: 0
 --- !u!1001 &1262965198
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22108,6 +22243,7 @@ MonoBehaviour:
       m_Calls: []
   playerRequirements: 
   monologueID: monologue_sign
+  fade: 3
 --- !u!65 &1350210360
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23275,6 +23411,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1184342330367663535, guid: 2c71613d04055c44b9bae18d21fa1124, type: 3}
+      propertyPath: cameraTilt
+      value: 
+      objectReference: {fileID: 1767662130}
     - target: {fileID: 1510742353217950368, guid: 2c71613d04055c44b9bae18d21fa1124, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -23429,6 +23569,9 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4701769500907289076, guid: 2c71613d04055c44b9bae18d21fa1124, type: 3}
       insertIndex: 5
+      addedObject: {fileID: 1604559563}
+    - targetCorrespondingSourceObject: {fileID: 4701769500907289076, guid: 2c71613d04055c44b9bae18d21fa1124, type: 3}
+      insertIndex: 6
       addedObject: {fileID: 1604559552}
     - targetCorrespondingSourceObject: {fileID: 1510742353217950368, guid: 2c71613d04055c44b9bae18d21fa1124, type: 3}
       insertIndex: -1
@@ -26278,6 +26421,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 5
+--- !u!114 &1604559563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604559542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeb4d59f8055362709854c32d9953d54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _controller: {fileID: 1767662129}
 --- !u!1001 &1605106056
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28612,6 +28768,28 @@ Transform:
   - {fileID: 1840823324}
   m_Father: {fileID: 1534976324}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1767662129 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7941190269132411765, guid: 2c71613d04055c44b9bae18d21fa1124, type: 3}
+  m_PrefabInstance: {fileID: 1445097145}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89875cdc57c54474a8a74efd9b2a3b5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1767662130 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1968565722268398043, guid: 2c71613d04055c44b9bae18d21fa1124, type: 3}
+  m_PrefabInstance: {fileID: 1445097145}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62d54399b04b4fa48a73e121d4937dd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1770852381
 GameObject:
   m_ObjectHideFlags: 0
@@ -43216,6 +43394,7 @@ MonoBehaviour:
       m_Calls: []
   playerRequirements: 
   monologueID: monologue_blocked_turnout
+  fade: 3
 --- !u!4 &2099693316
 Transform:
   m_ObjectHideFlags: 0
