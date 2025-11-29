@@ -30,6 +30,9 @@ public enum SoundAssetID {
     Pistol_Fire,
     Pistol_Reload,
 
+    // Misc.
+    Typing,
+
     // Ambient
     Ambient_Snowstorm,
     Ambient_RavineSnowStorm,

@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(TextMeshProUGUI))]
 public class TMPWrapper : MonoBehaviour 
@@ -8,6 +9,7 @@ public class TMPWrapper : MonoBehaviour
     private TextMeshProUGUI textGUI;
     private Coroutine showTextCoroutine;
     private float defaultSpeed = 0; 
+    public UnityEvent CharacterInserted = new();
 
     void Awake() {
         textGUI = GetComponent<TextMeshProUGUI>();
@@ -86,6 +88,7 @@ public class TMPWrapper : MonoBehaviour
 
         foreach(char l in textGUI.text) {
             textGUI.maxVisibleCharacters += 1;
+            CharacterInserted.Invoke();
             
             if (l != ' ') {
                 yield return new WaitForSeconds(cps);
