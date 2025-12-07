@@ -1424,7 +1424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ecd0f4556a71ce6f88c866b5c2d4ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 5
+  id: Typing
   delay: 0
 --- !u!1 &79429596
 GameObject:
@@ -11840,7 +11840,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 410c853a7e21856bc92e52d9f5ebd0fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 6
+  id: Ambient_SnowStorm
   delay: 2
   fadeDuration: 5
   playOnStart: 0
@@ -20214,6 +20214,7 @@ Transform:
   - {fileID: 1146884998}
   - {fileID: 201638799}
   - {fileID: 465063713}
+  - {fileID: 2133265650}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1238321679
@@ -28463,7 +28464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 410c853a7e21856bc92e52d9f5ebd0fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 8
+  id: Ambient_ElectricHum
   delay: 0
   fadeDuration: 2
   playOnStart: 1
@@ -44707,6 +44708,55 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &2133265649
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2133265650}
+  - component: {fileID: 2133265651}
+  m_Layer: 0
+  m_Name: DevTools
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2133265650
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133265649}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1235656962}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2133265651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133265649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aed863ff8cce92ccdb12b8d7f46a52ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whatToSkip:
+  - {fileID: 60272796}
+  - {fileID: 1180315824}
+  - {fileID: 1145330175}
+  - {fileID: 1262229098}
 --- !u!1 &2134949045
 GameObject:
   m_ObjectHideFlags: 0

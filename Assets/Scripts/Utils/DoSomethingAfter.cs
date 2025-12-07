@@ -25,8 +25,16 @@ public class DoSomethingAfter : MonoBehaviour {
         coroutine = StartCoroutine(display(delay));
     }
 
+    public void Skip() {
+        if (coroutine != null) {
+            StopCoroutine(coroutine);
+        }
+        timeOut.Invoke();
+    }
+
     private IEnumerator display(float delay) {
         yield return new WaitForSeconds(delay);
         timeOut.Invoke();
     }
+
 }

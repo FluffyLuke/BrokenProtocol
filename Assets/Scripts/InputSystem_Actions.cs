@@ -1200,6 +1200,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SkipCutscene"",
+                    ""type"": ""Button"",
+                    ""id"": ""f39d7423-e659-42f1-9af7-44f923f918e0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1211,6 +1220,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""AddCursor"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e5400f9a-75b4-40e8-a711-71b88c6accfb"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SkipCutscene"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1311,6 +1331,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         // Debug
         m_Debug = asset.FindActionMap("Debug", throwIfNotFound: true);
         m_Debug_AddCursor = m_Debug.FindAction("AddCursor", throwIfNotFound: true);
+        m_Debug_SkipCutscene = m_Debug.FindAction("SkipCutscene", throwIfNotFound: true);
     }
 
     ~@InputSystem_Actions()
@@ -1828,6 +1849,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Debug;
     private List<IDebugActions> m_DebugActionsCallbackInterfaces = new List<IDebugActions>();
     private readonly InputAction m_Debug_AddCursor;
+    private readonly InputAction m_Debug_SkipCutscene;
     /// <summary>
     /// Provides access to input actions defined in input action map "Debug".
     /// </summary>
@@ -1843,6 +1865,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Debug/AddCursor".
         /// </summary>
         public InputAction @AddCursor => m_Wrapper.m_Debug_AddCursor;
+        /// <summary>
+        /// Provides access to the underlying input action "Debug/SkipCutscene".
+        /// </summary>
+        public InputAction @SkipCutscene => m_Wrapper.m_Debug_SkipCutscene;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1872,6 +1898,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @AddCursor.started += instance.OnAddCursor;
             @AddCursor.performed += instance.OnAddCursor;
             @AddCursor.canceled += instance.OnAddCursor;
+            @SkipCutscene.started += instance.OnSkipCutscene;
+            @SkipCutscene.performed += instance.OnSkipCutscene;
+            @SkipCutscene.canceled += instance.OnSkipCutscene;
         }
 
         /// <summary>
@@ -1886,6 +1915,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @AddCursor.started -= instance.OnAddCursor;
             @AddCursor.performed -= instance.OnAddCursor;
             @AddCursor.canceled -= instance.OnAddCursor;
+            @SkipCutscene.started -= instance.OnSkipCutscene;
+            @SkipCutscene.performed -= instance.OnSkipCutscene;
+            @SkipCutscene.canceled -= instance.OnSkipCutscene;
         }
 
         /// <summary>
@@ -2182,5 +2214,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnAddCursor(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SkipCutscene" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSkipCutscene(InputAction.CallbackContext context);
     }
 }

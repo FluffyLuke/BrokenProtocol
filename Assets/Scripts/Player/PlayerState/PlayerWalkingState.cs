@@ -30,6 +30,8 @@ public class PlayerWalkingState : IPlayerState
     public ColliderWraper GroundedCollider;
     public ColliderWraper FallingCollider;
     [Header("Sounds")]
+    public string WalkingSound_ID;
+    public string RunningSound_ID;
     SoundHandle currentWalkSound = null;
 
     // Other components
@@ -72,14 +74,14 @@ public class PlayerWalkingState : IPlayerState
         }
         
         if (currentMovementState == MovementState.Running) {
-            if (SoundManager.instance.PlayAndLoop(SoundAssetID.PlayerRun_Snow, transform.position, out SoundHandle handle)) {
+            if (SoundManager.instance.PlayAndLoop(RunningSound_ID, transform.position, out SoundHandle handle)) {
                 Debug.Log("Run");
                 currentWalkSound = handle;
             }
         }
 
         if (currentMovementState == MovementState.Walking) {
-            if (SoundManager.instance.PlayAndLoop(SoundAssetID.PlayerWalk_Snow, transform.position, out SoundHandle handle)) {
+            if (SoundManager.instance.PlayAndLoop(WalkingSound_ID, transform.position, out SoundHandle handle)) {
                 Debug.Log("Walk");
                 currentWalkSound = handle;
             }

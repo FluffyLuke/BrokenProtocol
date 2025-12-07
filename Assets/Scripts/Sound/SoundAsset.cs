@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Audio/SoundAsset")]
 public class SoundAsset : ScriptableObject
 {
-    public SoundAssetID id = SoundAssetID.NotDefined;
+    public string id = "";
     public AudioBusID busID = AudioBusID.NotDefined;
     public AudioClip[] clips;
     public Vector2 pitchRange = new Vector2(0.95f, 1.05f);
@@ -18,23 +18,4 @@ public enum AudioBusID {
     NotDefined,
     SFX,
     Ambient,
-}
-
-public enum SoundAssetID {
-    NotDefined,
-    // Player
-    PlayerWalk_Snow,
-    PlayerRun_Snow,
-
-    // Weapons
-    Pistol_Fire,
-    Pistol_Reload,
-
-    // Misc.
-    Typing,
-
-    // Ambient
-    Ambient_Snowstorm,
-    Ambient_RavineSnowStorm,
-    Ambient_Electric_Hum,
 }

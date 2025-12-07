@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 public class PlaySound : MonoBehaviour {
-    [SerializeField] private SoundAssetID id;
+    [SerializeField] private string id;
     [SerializeField] private float delay = 0f;
     public void Play() {
         StartCoroutine(playAmbient());

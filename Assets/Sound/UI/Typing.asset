@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 605ff8ab0e79ef0549938ac72c61088f, type: 3}
   m_Name: Typing
   m_EditorClassIdentifier: 
-  id: 5
+  id: Typing
   busID: 1
   clips:
   - {fileID: 8300000, guid: 5a655a4ea4c7d23ff8223aab12499000, type: 3}

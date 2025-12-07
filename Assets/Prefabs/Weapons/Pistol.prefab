@@ -100,8 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e4a45143506028b79bc1c0641cb86cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireID: 3
-  reloadID: 4
+  fireID: Pistol_Fire
+  reloadID: Pistol_Reload
 --- !u!1 &7800228180027185619
 GameObject:
   m_ObjectHideFlags: 0

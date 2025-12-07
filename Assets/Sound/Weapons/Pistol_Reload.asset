@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 605ff8ab0e79ef0549938ac72c61088f, type: 3}
   m_Name: Pistol_Reload
   m_EditorClassIdentifier: 
-  id: 4
+  id: Pistol_Reload
   busID: 1
   clips:
   - {fileID: 8300000, guid: be04a0ed47dfbb175ab00534e82341bf, type: 3}

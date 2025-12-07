@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 605ff8ab0e79ef0549938ac72c61088f, type: 3}
   m_Name: Ambient_Electric_Hum
   m_EditorClassIdentifier: 
-  id: 8
+  id: Ambient_ElectricHum
   busID: 2
   clips:
   - {fileID: 8300000, guid: 0698cd0966f1fd6fcafae4d9dd53f315, type: 3}

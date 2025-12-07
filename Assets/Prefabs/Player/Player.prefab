@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14fc0b45e63ddbe968d165a189e23911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 4368331077331289053}
+  targetCamera: {fileID: 0}
 --- !u!1 &1420815412498142880
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,6 +476,8 @@ GameObject:
   - component: {fileID: 3915127409200214527}
   - component: {fileID: 6762912820203956944}
   - component: {fileID: 2658897301287875749}
+  - component: {fileID: 8680058289403284902}
+  - component: {fileID: 1184342330367663535}
   m_Layer: 2
   m_Name: Player
   m_TagString: Player
@@ -588,11 +590,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2532ef63361ff129b9ce105d4dc4d9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StateOptions:
-  - StateEnum: 0
-    State: {fileID: 6762912820203956944}
-  - StateEnum: 1
-    State: {fileID: 2658897301287875749}
 --- !u!114 &6762912820203956944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -608,7 +605,14 @@ MonoBehaviour:
   RotationSpeed: 10
   MaxWalkingSpeed: 500
   MaxRunningSpeed: 1250
-  MaxSnappingDistance: 0
+  bobPivot: {fileID: 0}
+  headBobRotationForce: 0.5
+  headBobMaxX: 0.5
+  headBobMaxY: 0.5
+  GroundedCollider: {fileID: 0}
+  FallingCollider: {fileID: 0}
+  WalkingSound_ID: PlayerWalking_Snow
+  RunningSound_ID: PlayerRunning_Snow
 --- !u!114 &2658897301287875749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -621,6 +625,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5f53f83c875617b18a6d1ca4e43ea67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8680058289403284902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4701769500907289076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a72f3ee3268550edc93ba6a88ea8bad2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveToPositionTime: 1
+--- !u!114 &1184342330367663535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4701769500907289076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbcff73c15f03b7aa9ee82034d3f8592, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraTilt: {fileID: 0}
 --- !u!1 &4947127376290829210
 GameObject:
   m_ObjectHideFlags: 0

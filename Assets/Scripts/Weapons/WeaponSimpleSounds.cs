@@ -2,8 +2,8 @@ using UnityEngine;
 [RequireComponent(typeof(WeaponEventBus))]
 public class WeaponSounds : MonoBehaviour
 {
-    public SoundAssetID fireID;
-    public SoundAssetID reloadID;
+    public string fireID;
+    public string reloadID;
     private WeaponEventBus _events;
     void Start() {
         _events = GetComponent<WeaponEventBus>();

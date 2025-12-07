@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class AmbientManager : MonoBehaviour {
     [SerializeField] private SoundAsset[] Ambient;
-    private Dictionary<SoundAssetID, SoundAsset> lookup;
+    private Dictionary<string, SoundAsset> lookup;
     [SerializeField] private AudioSource source1, source2;
     private bool usedSource; // false = source1, true = source2
     private Coroutine fadeInCoroutine = null;
@@ -25,7 +25,7 @@ public class AmbientManager : MonoBehaviour {
         }
     }
 
-    public bool PlayAmbient(SoundAssetID id, float fadeDuration) {
+    public bool PlayAmbient(string id, float fadeDuration) {
         if (!lookup.TryGetValue(id, out SoundAsset sound))
         {
             Debug.LogError($"Cannot found asset of id: \"{id}\"");

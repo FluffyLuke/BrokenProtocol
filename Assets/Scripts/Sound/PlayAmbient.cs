@@ -5,7 +5,7 @@ using DG.Tweening;
 using UnityEngine;
 
 public class PlayAmbient : MonoBehaviour {
-    [SerializeField] private SoundAssetID id;
+    [SerializeField] private string id;
     [SerializeField] private float delay = 0f;
     [SerializeField] private float fadeDuration = 3f;
     [SerializeField] private bool playOnStart = false;

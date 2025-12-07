@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 605ff8ab0e79ef0549938ac72c61088f, type: 3}
   m_Name: Pistol_Fire
   m_EditorClassIdentifier: 
-  id: 3
+  id: Pistol_Fire
   busID: 1
   clips:
   - {fileID: 8300000, guid: dea7c64509f5deda1ba8fba6a49c7d79, type: 3}

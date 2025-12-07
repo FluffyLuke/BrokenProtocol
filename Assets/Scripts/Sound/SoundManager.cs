@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 public class SoundManager : MonoBehaviour {
     [SerializeField] private SoundAsset[] sounds;
-    private Dictionary<SoundAssetID, SoundAsset> lookup;
+    private Dictionary<string, SoundAsset> lookup;
     [SerializeField] private AudioMixerGroup masterAudioGroup;
     [SerializeField] private AudioMixerGroup sfxAudioGroup;
     [SerializeField] private AudioMixerGroup ambientAudioGroup;
@@ -30,7 +30,7 @@ public class SoundManager : MonoBehaviour {
             Debug.LogError("Ambient group is not assigned!");
     }
 
-    public bool PlayAndLoop(SoundAssetID id, Vector3 position, out SoundHandle handle) {
+    public bool PlayAndLoop(string id, Vector3 position, out SoundHandle handle) {
         handle = default;
         if (!lookup.TryGetValue(id, out SoundAsset sound))
         {
@@ -71,7 +71,7 @@ public class SoundManager : MonoBehaviour {
         return true;
     }
 
-    public bool PlayOneShot(SoundAssetID id, Vector3 position) {
+    public bool PlayOneShot(string id, Vector3 position) {
         if (!lookup.TryGetValue(id, out SoundAsset sound))
         {
             Debug.LogError($"Cannot found asset of id: \"{id}\"");

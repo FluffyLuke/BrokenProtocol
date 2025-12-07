@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ChanceAmbient : MonoBehaviour {
     public Collider collider1, collider2;
-    public SoundAssetID Ambient1, Ambient2;
+    public string Ambient1_ID, Ambient2_ID;
     public float FadeDuration = 1f;
     void Start() {
         if (collider1.enabled == false && collider2.enabled == false) {
@@ -21,16 +21,16 @@ public class ChanceAmbient : MonoBehaviour {
         Debug.Log("A");
         collider1.enabled = false;
         collider2.enabled = true;
-        playAmbient(Ambient1);
+        playAmbient(Ambient1_ID);
     }
     public void PlayAmbient2() {
         Debug.Log("B");
         collider1.enabled = true;
         collider2.enabled = false;
-        playAmbient(Ambient2);
+        playAmbient(Ambient2_ID);
     }
 
-    private void playAmbient(SoundAssetID id) {
+    private void playAmbient(string id) {
         AmbientManager.instance.PlayAmbient(id, FadeDuration);
     }
 }
