@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using Unity.VisualScripting;
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -13,8 +15,9 @@ public class ButtonSlider: MonoBehaviour
     public int barOnCount = 0;
 
     [Header("References")]
-    public GameObject barOnPrefab;
-    public GameObject barOffPrefab;
+    public GameObject barPrefab;
+    public Sprite barOnSprite;
+    public Sprite barOffSprite;
     public Transform barContainer;
     private UnityEvent valueUpdate = new();
 
@@ -26,66 +29,85 @@ public class ButtonSlider: MonoBehaviour
 
         isUpdating = true;
         barOnCount = Mathf.Min(barCount, barOnCount);
-        UpdateBars();
+        UpdateBarLength();
         isUpdating = false;
     }
 
-    private void UpdateBars() {
-        if (barOnPrefab == null || barOffPrefab == null || barContainer == null) {
+    private void UpdateBarLength() {
+        if (barPrefab == null || barContainer == null) {
             Debug.LogError("There are no needed references.");
             return;
         }
 
-        foreach (Transform child in barContainer.transform)
-        {
-            #if UNITY_EDITOR
-            UnityEditor.EditorApplication.delayCall += () => {DestroyImmediate(child.gameObject);};
-            #else
-            Destroy(child.gameObject);
-            #endif
+        #if UNITY_EDITOR
+        GameObject[] childrenToDestroy = new GameObject[barContainer.childCount];
+        for (int i = 0; i < barContainer.childCount; i++) {
+            childrenToDestroy[i] = barContainer.GetChild(i).gameObject;
         }
 
-        // ON bars
-        for (int i = 0; i < barOnCount; i++) {
-            #if UNITY_EDITOR
-            EditorApplication.delayCall += () => {
-                PrefabUtility.InstantiatePrefab(barOnPrefab, barContainer);
-            };
-            #else
-            Instantiate(barOnPrefab, barContainer);
-            #endif
-        }
+        EditorApplication.delayCall += () => {
+            foreach (GameObject child in childrenToDestroy) DestroyImmediate(child.gameObject);
+        };
+        //foreach (Transform child in barContainer.transform) DestroyImmediate(child.gameObject);
+        #else
+        foreach (Transform child in barContainer.transform) Destroy(child.gameObject);
+        #endif
 
-        // OFF bars
-        for (int i = 0; i < barCount - barOnCount; i++) {
-            #if UNITY_EDITOR
-            EditorApplication.delayCall += () => {
-                PrefabUtility.InstantiatePrefab(barOffPrefab, barContainer);
-            };
-            #else
-            Instantiate(barOffPrefab, barContainer);
-            #endif
+        GameObject[] newBars = new GameObject[barCount];
+
+        // FIX: Fix the warning message about sending message in OnValidate
+        #if UNITY_EDITOR
+        for (int i = 0; i < barCount; i++) {
+            Object b = PrefabUtility.InstantiatePrefab(barPrefab, barContainer);
+            newBars[i] = b.GetComponent<Transform>().gameObject;
+        }
+        #else
+        for (int i = 0; i < barCount; i++) {
+            var b = Instantiate(barPrefab, barContainer);
+            newBars[i] = b;
+        }
+        #endif
+        UpdateBarIcons(newBars);
+    }
+
+    private void UpdateBarIcons() {
+        GameObject[] bars = new GameObject[barContainer.childCount];
+        for (int i = 0; i < barContainer.childCount; i++) {
+            bars[i] = barContainer.GetChild(i).gameObject;
+        }
+        UpdateBarIcons(bars);
+    }
+
+    private void UpdateBarIcons(GameObject[] bars) {
+        for(int i = 0; i < barCount; i++) {
+            GameObject bar = bars[i];
+            if (!bar.TryGetComponent(out Image image)) {
+                Debug.LogWarning($"Found object {bar.name} in bar's contents?");
+            }
+            
+            if (barOnCount > i) image.sprite = barOnSprite;
+            else image.sprite = barOffSprite;
         }
     }
     public void AddBar() {
         barCount++;
-        UpdateBars();
+        UpdateBarLength();
     }
 
     public void RemoveBar() {
         barCount = Mathf.Max(0, barCount - 1);
-        UpdateBars();
+        UpdateBarLength();
     }
 
     public void IncreaseValue() {
         barOnCount = Mathf.Min(barCount, barOnCount + 1);
-        UpdateBars();
+        UpdateBarIcons();
         valueUpdate.Invoke();
     }
 
     public void DecreaseValue() {
         barOnCount = Mathf.Max(0, barOnCount - 1);
-        UpdateBars();
+        UpdateBarIcons();
         valueUpdate.Invoke();
     }
 }
