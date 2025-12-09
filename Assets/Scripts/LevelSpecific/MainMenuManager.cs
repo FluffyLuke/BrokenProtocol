@@ -29,6 +29,6 @@ public class MainMenuManager : MonoBehaviour {
             #else
                 Application.Quit();
             #endif
-        });
+        }, delay: 1.5f);
     }
 }

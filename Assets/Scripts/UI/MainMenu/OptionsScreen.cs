@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainScreen : MonoBehaviour, IManagedCanvas
+public class OptionsScreen : MonoBehaviour, IManagedCanvas
 {
     [SerializeField] private CanvasManager canvas;
     private InputSystem_Actions input;
