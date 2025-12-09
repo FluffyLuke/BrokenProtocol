@@ -3,12 +3,20 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Audio;
 public class SoundManager : MonoBehaviour {
-    [SerializeField] private SoundAsset[] sounds;
-    private Dictionary<string, SoundAsset> lookup;
-    [SerializeField] private AudioMixerGroup masterAudioGroup;
-    [SerializeField] private AudioMixerGroup sfxAudioGroup;
-    [SerializeField] private AudioMixerGroup ambientAudioGroup;
+    [SerializeField] public GlobalSettings settings;
+    [Header("Buses")]
+    [SerializeField] private AudioMixer mixer;
+    [SerializeField] private AudioMixerGroup bus_main;
+    [SerializeField] private AudioMixerGroup bus_sfx;
+    [SerializeField] private AudioMixerGroup bus_ambient;
+    [Header("Volume")]
+    [Range(-80, 20)]
+    [SerializeField] private float maxVolume_dB;
+    [Range(-80, 20)]
+    [SerializeField] private float minVolume_dB;
     public static SoundManager instance;
+    private Dictionary<string, SoundAsset> lookup;
+    [SerializeField] private SoundAsset[] sounds;
 
     void Awake() {
         if (instance != null) {
@@ -20,14 +28,17 @@ public class SoundManager : MonoBehaviour {
     }
 
     void Start() {
-        if (masterAudioGroup == null)
-            Debug.LogError("Master audio group is not assigned!");
+        if (bus_main == null)
+            Debug.LogError("Main audio bus is not assigned!");
 
-        if (sfxAudioGroup == null)
-            Debug.LogError("SFX group is not assigned!");
+        if (bus_sfx == null)
+            Debug.LogError("SFX bus is not assigned!");
 
-        if (ambientAudioGroup == null)
-            Debug.LogError("Ambient group is not assigned!");
+        if (bus_ambient == null)
+            Debug.LogError("Ambient bus is not assigned!");
+
+        UpdateValues();
+        settings.SettingsUpdated.AddListener(UpdateValues);
     }
 
     public bool PlayAndLoop(string id, Vector3 position, out SoundHandle handle) {
@@ -51,13 +62,13 @@ public class SoundManager : MonoBehaviour {
         
         switch (sound.busID) {
             case AudioBusID.NotDefined:
-                source.outputAudioMixerGroup = masterAudioGroup;
+                source.outputAudioMixerGroup = bus_main;
                 break;
             case AudioBusID.Ambient:
-                source.outputAudioMixerGroup = ambientAudioGroup;
+                source.outputAudioMixerGroup = bus_sfx;
                 break;
             case AudioBusID.SFX:
-                source.outputAudioMixerGroup = sfxAudioGroup;
+                source.outputAudioMixerGroup = bus_ambient;
                 break;
             default:
                 Debug.LogError("wtf?");
@@ -90,5 +101,21 @@ public class SoundManager : MonoBehaviour {
         
         Destroy(gameObject, clip.length);
         return true;
+    }
+
+    private void UpdateValues() {
+        float volumeDelta = Mathf.Abs(maxVolume_dB - minVolume_dB);
+
+        float masterVolume = minVolume_dB + volumeDelta * settings.Volume_Main;
+        float sfxVolume = minVolume_dB + volumeDelta * settings.Volume_Sfx;
+        float ambientVolume = minVolume_dB + volumeDelta * settings.Volume_Ambient;
+
+        masterVolume = settings.Volume_Main == 0 ? -80 : masterVolume;
+        sfxVolume = settings.Volume_Main == 0 ? -80 : sfxVolume; 
+        ambientVolume = settings.Volume_Main == 0 ? -80 : ambientVolume;
+
+        mixer.SetFloat("MasterVolume", masterVolume);
+        mixer.SetFloat("SFXVolume", sfxVolume);
+        mixer.SetFloat("AmbientVolume", ambientVolume);
     }
 }

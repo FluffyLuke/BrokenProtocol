@@ -39,8 +39,8 @@ public class GlobalSettings : ScriptableObject
         set {
             value = Mathf.Max(0, value);
             value = Mathf.Min(1, value);
-            SettingsUpdated.Invoke();
             _volume_main = value;
+            SettingsUpdated.Invoke();
         }
     }
     [Range(0, 1)]
@@ -50,8 +50,8 @@ public class GlobalSettings : ScriptableObject
         set {
             value = Mathf.Max(0, value);
             value = Mathf.Min(1, value);
-            SettingsUpdated.Invoke();
             _volume_sfx = value;
+            SettingsUpdated.Invoke();
         }
     }
     [Range(0, 1)]
@@ -61,8 +61,8 @@ public class GlobalSettings : ScriptableObject
         set {
             value = Mathf.Max(0, value);
             value = Mathf.Min(1, value);
-            SettingsUpdated.Invoke();
             _volume_ambient = value;
+            SettingsUpdated.Invoke();
         }
     }
 }
