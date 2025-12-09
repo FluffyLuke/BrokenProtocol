@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public enum GameLanguage {
     English,
@@ -9,6 +10,7 @@ public enum GameLanguage {
 [CreateAssetMenu(menuName = "Misc/GlobalSettings")]
 public class GlobalSettings : ScriptableObject
 {
+    public UnityEvent SettingsUpdated = new();
     [Serializable]
     private struct GameLanguagePath {
         public GameLanguage lang;
@@ -27,5 +29,40 @@ public class GlobalSettings : ScriptableObject
     }
     public string GetPathToLocals() {
         return GetPathToLocals(currentLanguage);
+    }
+
+    [Header("Volume")]
+    [Range(0, 1)]
+    [SerializeField] private float _volume_main;
+    public float Volume_Main {
+        get => _volume_main;
+        set {
+            value = Mathf.Max(0, value);
+            value = Mathf.Min(1, value);
+            SettingsUpdated.Invoke();
+            _volume_main = value;
+        }
+    }
+    [Range(0, 1)]
+    [SerializeField] private float _volume_sfx;
+    public float Volume_Sfx {
+        get => _volume_sfx;
+        set {
+            value = Mathf.Max(0, value);
+            value = Mathf.Min(1, value);
+            SettingsUpdated.Invoke();
+            _volume_sfx = value;
+        }
+    }
+    [Range(0, 1)]
+    [SerializeField] private float _volume_ambient;
+    public float Volume_Ambient {
+        get => _volume_ambient;
+        set {
+            value = Mathf.Max(0, value);
+            value = Mathf.Min(1, value);
+            SettingsUpdated.Invoke();
+            _volume_ambient = value;
+        }
     }
 }

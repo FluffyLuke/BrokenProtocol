@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using Unity.VisualScripting;
+using System.Collections.Generic;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -19,7 +21,9 @@ public class ButtonSlider: MonoBehaviour
     public Sprite barOnSprite;
     public Sprite barOffSprite;
     public Transform barContainer;
-    private UnityEvent valueUpdate = new();
+    // From 0 to 1
+    public UnityEvent<float> valueUpdate = new();
+    private List<GameObject> bars = new();
 
     private bool isUpdating = false;
 
@@ -44,7 +48,6 @@ public class ButtonSlider: MonoBehaviour
         for (int i = 0; i < barContainer.childCount; i++) {
             childrenToDestroy[i] = barContainer.GetChild(i).gameObject;
         }
-
         EditorApplication.delayCall += () => {
             foreach (GameObject child in childrenToDestroy) DestroyImmediate(child.gameObject);
         };
@@ -53,39 +56,32 @@ public class ButtonSlider: MonoBehaviour
         foreach (Transform child in barContainer.transform) Destroy(child.gameObject);
         #endif
 
-        GameObject[] newBars = new GameObject[barCount];
+        bars.Clear();
 
         // FIX: Fix the warning message about sending message in OnValidate
         #if UNITY_EDITOR
         for (int i = 0; i < barCount; i++) {
             Object b = PrefabUtility.InstantiatePrefab(barPrefab, barContainer);
-            newBars[i] = b.GetComponent<Transform>().gameObject;
+            bars.Add((GameObject)b);
         }
         #else
         for (int i = 0; i < barCount; i++) {
             var b = Instantiate(barPrefab, barContainer);
-            newBars[i] = b;
+            bars.Add(b);
         }
         #endif
-        UpdateBarIcons(newBars);
+        UpdateBarIcons();
     }
-
     private void UpdateBarIcons() {
-        GameObject[] bars = new GameObject[barContainer.childCount];
-        for (int i = 0; i < barContainer.childCount; i++) {
-            bars[i] = barContainer.GetChild(i).gameObject;
-        }
-        UpdateBarIcons(bars);
-    }
-
-    private void UpdateBarIcons(GameObject[] bars) {
         for(int i = 0; i < barCount; i++) {
             GameObject bar = bars[i];
             if (!bar.TryGetComponent(out Image image)) {
                 Debug.LogWarning($"Found object {bar.name} in bar's contents?");
             }
-            
-            if (barOnCount > i) image.sprite = barOnSprite;
+            if (barOnCount > i) {
+                //Debug.Log("ON");
+                image.sprite = barOnSprite;
+            }
             else image.sprite = barOffSprite;
         }
     }
@@ -102,12 +98,21 @@ public class ButtonSlider: MonoBehaviour
     public void IncreaseValue() {
         barOnCount = Mathf.Min(barCount, barOnCount + 1);
         UpdateBarIcons();
-        valueUpdate.Invoke();
+        valueUpdate.Invoke((float)barOnCount / (float)barCount);
     }
 
     public void DecreaseValue() {
         barOnCount = Mathf.Max(0, barOnCount - 1);
         UpdateBarIcons();
-        valueUpdate.Invoke();
+        valueUpdate.Invoke((float)barOnCount / (float)barCount);
+    }
+
+    // From 0 to 1
+    public void SetValue(float percent) {
+        percent = Mathf.Max(0, percent);
+        percent = Mathf.Min(1, percent);
+
+        barOnCount = (int)(barCount * percent);
+        UpdateBarIcons();
     }
 }
