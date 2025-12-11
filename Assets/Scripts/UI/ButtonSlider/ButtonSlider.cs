@@ -27,9 +27,22 @@ public class ButtonSlider: MonoBehaviour
 
     private bool isUpdating = false;
 
+    void Awake() {
+        foreach(Transform b in barContainer) {
+            bars.Add(b.gameObject);
+        }
+    }
+
     private void OnValidate() {
         
         if (isUpdating) return;
+
+        float count = 0;
+        foreach(var _ in barContainer) count++;
+        if (count == barCount) {
+            UpdateBarIcons();
+            return;
+        }
 
         isUpdating = true;
         barOnCount = Mathf.Min(barCount, barOnCount);
@@ -73,6 +86,13 @@ public class ButtonSlider: MonoBehaviour
         UpdateBarIcons();
     }
     private void UpdateBarIcons() {
+
+        if (bars.Count == 0) {
+            foreach(Transform b in barContainer) {
+                bars.Add(b.gameObject);
+            }
+        }
+
         for(int i = 0; i < barCount; i++) {
             GameObject bar = bars[i];
             if (!bar.TryGetComponent(out Image image)) {

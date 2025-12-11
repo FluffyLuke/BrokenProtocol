@@ -20,6 +20,6 @@ MonoBehaviour:
     path: Localization/en
   currentLanguage: 0
   defaultLanguage: 0
-  _volume_main: 0.5
-  _volume_sfx: 0.5
-  _volume_ambient: 0.5
+  _volume_main: 0.9166667
+  _volume_sfx: 0.188
+  _volume_ambient: 0.41666666
