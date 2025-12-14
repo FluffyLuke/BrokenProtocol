@@ -307,16 +307,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 8f9997e61da73e311aadb2110530c8aa, type: 2}
+  soundDatabase: {fileID: 11400000, guid: bb095bca8b164139abee76dc9b0cf925, type: 2}
   mixer: {fileID: 24100000, guid: e2ca3cb31f3a5b99383833aa5403b92d, type: 2}
   bus_main: {fileID: 24300002, guid: e2ca3cb31f3a5b99383833aa5403b92d, type: 2}
   bus_sfx: {fileID: -4169741160281975777, guid: e2ca3cb31f3a5b99383833aa5403b92d, type: 2}
   bus_ambient: {fileID: -5058836371866856468, guid: e2ca3cb31f3a5b99383833aa5403b92d, type: 2}
-  sounds:
-  - {fileID: 11400000, guid: b2b70112f6a5cd06d804048519bee4c5, type: 2}
-  - {fileID: 11400000, guid: b478d8deab5c095ad94135150a31c709, type: 2}
-  - {fileID: 11400000, guid: aaf4ccf4b0c1a592498563f4c9c8c58e, type: 2}
-  - {fileID: 11400000, guid: 12d8c8718d3b972a0abff5e3d9fc8dc6, type: 2}
-  - {fileID: 11400000, guid: 1f2e85e61c7c6b04087a84e89149be0f, type: 2}
+  maxVolume_dB: 0
+  minVolume_dB: 0
 --- !u!114 &6426027462710420721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,11 +326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b68a82aa01759ea8a9b3c2e70b958d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Ambient:
-  - {fileID: 11400000, guid: 182c41e5f39798b5197aa5212edcbf11, type: 2}
-  - {fileID: 11400000, guid: 6b32524cde676662382d8ca216ad130e, type: 2}
-  - {fileID: 11400000, guid: 36385ae8f7a2e7bd4a53dfb3f9057202, type: 2}
-  - {fileID: 11400000, guid: 56f93e904aa03b8fe930e5d7ab81d18e, type: 2}
+  soundDatabase: {fileID: 11400000, guid: bb095bca8b164139abee76dc9b0cf925, type: 2}
   source1: {fileID: 3416485675962609272}
   source2: {fileID: 2055560095413075432}
 --- !u!1 &6491493898580318012
