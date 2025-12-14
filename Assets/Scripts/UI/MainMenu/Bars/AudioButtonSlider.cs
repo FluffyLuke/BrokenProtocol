@@ -31,12 +31,10 @@ public class AudioButtonSlider : MonoBehaviour {
                 Debug.LogError("wtf?");
                 return;
         }
-        Debug.Log($"Get {value}");
         slider.SetValue(value);
     }
 
     private void UpdateSettings(float percent) {
-        Debug.Log($"Update {percent}");
         switch (bus) {
             case AudioBusID.NotDefined:
                 settings.Volume_Main = percent;

@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 
 public class AmbientManager : MonoBehaviour {
-    [SerializeField] private SoundAsset[] Ambient;
+    [SerializeField] private SoundDatabase soundDatabase;
     private Dictionary<string, SoundAsset> lookup;
     [SerializeField] private AudioSource source1, source2;
     private bool usedSource; // false = source1, true = source2
@@ -17,7 +17,7 @@ public class AmbientManager : MonoBehaviour {
         }
         instance = this;
 
-        lookup = Ambient.ToDictionary(s => s.id);
+        lookup = soundDatabase.ambients.ToDictionary(s => s.id);
     }
     void Start() {
         if (source1 == null || source2 == null) {

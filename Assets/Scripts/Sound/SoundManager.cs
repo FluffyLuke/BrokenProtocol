@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.Audio;
 public class SoundManager : MonoBehaviour {
     [SerializeField] public GlobalSettings settings;
+    [SerializeField] private SoundDatabase soundDatabase;
+    private Dictionary<string, SoundAsset> lookup;
     [Header("Buses")]
     [SerializeField] private AudioMixer mixer;
     [SerializeField] private AudioMixerGroup bus_main;
@@ -15,8 +17,6 @@ public class SoundManager : MonoBehaviour {
     [Range(-80, 20)]
     [SerializeField] private float minVolume_dB;
     public static SoundManager instance;
-    private Dictionary<string, SoundAsset> lookup;
-    [SerializeField] private SoundAsset[] sounds;
 
     void Awake() {
         if (instance != null) {
@@ -24,7 +24,7 @@ public class SoundManager : MonoBehaviour {
         }
         instance = this;
 
-        lookup = sounds.ToDictionary(s => s.id);
+        lookup = soundDatabase.sounds.ToDictionary(s => s.id);
     }
 
     void Start() {
@@ -65,27 +65,27 @@ public class SoundManager : MonoBehaviour {
                 source.outputAudioMixerGroup = bus_main;
                 break;
             case AudioBusID.Ambient:
-                source.outputAudioMixerGroup = bus_sfx;
+                source.outputAudioMixerGroup = bus_ambient;
                 break;
             case AudioBusID.SFX:
-                source.outputAudioMixerGroup = bus_ambient;
+                source.outputAudioMixerGroup = bus_sfx;
                 break;
             default:
                 Debug.LogError("wtf?");
                 break;
         }
 
-        source.Play();
-
+        source.PlayOneShot(clip);
         handle = new SoundHandle(source);
 
         return true;
     }
 
-    public bool PlayOneShot(string id, Vector3 position) {
+    public bool PlayOneShot(string id, Vector3 position, out SoundHandle handle) {
         if (!lookup.TryGetValue(id, out SoundAsset sound))
         {
             Debug.LogError($"Cannot found asset of id: \"{id}\"");
+            handle = new SoundHandle(default);
             return false;
         }
 
@@ -95,12 +95,39 @@ public class SoundManager : MonoBehaviour {
 
         AudioSource source = gameObject.AddComponent<AudioSource>();
         AudioClip clip = sound.GetRandomClip();
+        source.resource = clip;
         source.pitch = Random.Range(sound.pitchRange.x, sound.pitchRange.y);
         source.volume = sound.volume;
+        source.loop = false;
+
+        switch (sound.busID) {
+            case AudioBusID.NotDefined:
+                source.outputAudioMixerGroup = bus_main;
+                break;
+            case AudioBusID.Ambient:
+                source.outputAudioMixerGroup = bus_ambient;
+                break;
+            case AudioBusID.SFX:
+                source.outputAudioMixerGroup = bus_sfx;
+                break;
+            default:
+                Debug.LogError("wtf?");
+                break;
+        }
+
         source.PlayOneShot(clip);
-        
+        handle = new SoundHandle(source);
+
         Destroy(gameObject, clip.length);
         return true;
+    }
+
+    public bool PlayOneShot(string id, Vector3 position) {
+        bool ifSuccess = PlayOneShot(id, position, out SoundHandle handle);
+        if (ifSuccess) {
+            Destroy(handle.source.gameObject, handle.source.clip.length);
+        }
+        return ifSuccess;
     }
 
     private void UpdateValues() {

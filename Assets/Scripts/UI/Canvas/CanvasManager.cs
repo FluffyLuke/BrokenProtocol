@@ -5,7 +5,8 @@ using System.Linq;
 using UnityEngine.Events;
 public class CanvasManager : MonoBehaviour
 {
-    public UnityEvent TopLevelReturn;
+    public UnityEvent TopLevelReturn = new();
+    public UnityEvent canvasChange = new();
     public Canvas[] Canvases;
     private List<Canvas> quene = new();
     private Canvas topCanvas;
@@ -39,6 +40,8 @@ public class CanvasManager : MonoBehaviour
                 if (currentCanvas.TryGetComponent<IManagedCanvas>(out managedCanvas)) {
                     managedCanvas.OnCanvasEnable();
                 }
+
+                canvasChange.Invoke();
                 return;
             }
         }
@@ -51,10 +54,20 @@ public class CanvasManager : MonoBehaviour
             TopLevelReturn.Invoke();
             return;
         }
+        
+        if (currentCanvas.TryGetComponent<IManagedCanvas>(out var managedCanvas)) {
+            managedCanvas.OnCanvasDisable();
+        }
 
         currentCanvas.gameObject.SetActive(false);
         currentCanvas = quene.Last();
         quene.Remove(currentCanvas);
         currentCanvas.gameObject.SetActive(true);
+
+        if (currentCanvas.TryGetComponent<IManagedCanvas>(out managedCanvas)) {
+            managedCanvas.OnCanvasEnable();
+        }
+
+        canvasChange.Invoke();
     }
 }
