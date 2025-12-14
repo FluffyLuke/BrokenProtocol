@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class HideIntro : MonoBehaviour, IManagedCanvas
+public class HideIntro : IManagedCanvas
 {
-    public void OnCanvasDisable() {}
+    public override void OnCanvasDisable() {}
 
-    public void OnCanvasEnable() {
+    public override void OnCanvasEnable() {
         
     }
 }

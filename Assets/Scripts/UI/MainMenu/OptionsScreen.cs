@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OptionsScreen : MonoBehaviour, IManagedCanvas
+public class OptionsScreen : IManagedCanvas
 {
     [SerializeField] private CanvasManager canvas;
     private InputSystem_Actions input;
@@ -24,11 +24,11 @@ public class OptionsScreen : MonoBehaviour, IManagedCanvas
         MainMenuManager.QuitGame.Invoke();
     }
 
-    public void OnCanvasEnable() {
+    public override void OnCanvasEnable() {
         input.UI.Enable();
     }
 
-    public void OnCanvasDisable() {
+    public override void OnCanvasDisable() {
         input.UI.Disable();
     }
 }

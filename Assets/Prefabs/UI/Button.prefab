@@ -151,6 +151,7 @@ GameObject:
   - component: {fileID: 171603890597867495}
   - component: {fileID: 8987124020903848824}
   - component: {fileID: 6562882775502678136}
+  - component: {fileID: 426380786482198983}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -274,5 +275,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetText: {fileID: 5163674439898804819}
   normalColor: {r: 0, g: 0, b: 0, a: 1}
-  highlightedColor: {r: 1, g: 0.7058824, b: 0, a: 1}
   selectedColor: {r: 1, g: 0.7058824, b: 0, a: 1}
+  isSelected: 0
+--- !u!114 &426380786482198983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8078254322638119984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f88703e3e322cabd5b49e5c718fe4f40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
+  events: {fileID: 0}

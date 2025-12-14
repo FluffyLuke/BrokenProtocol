@@ -32,6 +32,7 @@ public class CanvasManager : MonoBehaviour
                 Debug.Log($"Changing to canvas of name: \"{canvasName}\"");
                 if (currentCanvas.TryGetComponent<IManagedCanvas>(out var managedCanvas)) {
                     managedCanvas.OnCanvasDisable();
+                    managedCanvas.disabledCanvas.Invoke();
                 }
                 currentCanvas.gameObject.SetActive(false);
                 quene.Add(currentCanvas);
@@ -39,6 +40,7 @@ public class CanvasManager : MonoBehaviour
                 currentCanvas.gameObject.SetActive(true);
                 if (currentCanvas.TryGetComponent<IManagedCanvas>(out managedCanvas)) {
                     managedCanvas.OnCanvasEnable();
+                    managedCanvas.enabledCanvas.Invoke();
                 }
 
                 canvasChange.Invoke();
@@ -54,18 +56,20 @@ public class CanvasManager : MonoBehaviour
             TopLevelReturn.Invoke();
             return;
         }
-        
+
         if (currentCanvas.TryGetComponent<IManagedCanvas>(out var managedCanvas)) {
             managedCanvas.OnCanvasDisable();
+            managedCanvas.disabledCanvas.Invoke();
         }
-
         currentCanvas.gameObject.SetActive(false);
+
         currentCanvas = quene.Last();
         quene.Remove(currentCanvas);
-        currentCanvas.gameObject.SetActive(true);
 
-        if (currentCanvas.TryGetComponent<IManagedCanvas>(out managedCanvas)) {
+        currentCanvas.gameObject.SetActive(true);
+        if (currentCanvas.TryGetComponent(out managedCanvas)) {
             managedCanvas.OnCanvasEnable();
+            managedCanvas.enabledCanvas.Invoke();
         }
 
         canvasChange.Invoke();
