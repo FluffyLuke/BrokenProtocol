@@ -121,6 +121,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "OpenPause",
+                    "type": "Button",
+                    "id": "f62fafec-d7b3-4aef-b665-8dcb65364966",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -561,6 +570,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "QuickItemAccessApprove",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bb548fba-8f62-47dc-9bd4-74a70cf2b4b3",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenPause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

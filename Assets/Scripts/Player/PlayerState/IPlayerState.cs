@@ -4,6 +4,8 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerStateManager))]
 public abstract class IPlayerState : MonoBehaviour {
     protected InputSystem_Actions input = null;
+    [Header("Required Features")]
+    public PlayerFeature[] requiredFeatures;
     void Awake() {
         input = new InputSystem_Actions();
     }

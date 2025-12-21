@@ -3,7 +3,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerInteract : MonoBehaviour {
+public class PlayerInteract : IPlayerFeature {
     public float range = 3.0f;
     private InputSystem_Actions input;
     void Awake() {
@@ -47,5 +47,15 @@ public class PlayerInteract : MonoBehaviour {
     }
     private void requirementHolsterWeapon() {
         PlayerEventBus.HideItem.Invoke();
+    }
+
+    public override void Disable()
+    {
+        enabled = false;
+    }
+
+    public override void Enable()
+    {
+        enabled = true;
     }
 }

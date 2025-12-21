@@ -9,10 +9,14 @@ public class PlayerStateManager : MonoBehaviour {
     private PlayerPushingState useState;
     private PlayerCutsceneState cutsceneState;
     private IPlayerState currentState;
+    private IPlayerFeature[] features;
     void Awake() {
         PlayerEventBus.PushMinecart.AddListener(switchToPushingState);
         PlayerEventBus.SwitchToWalkState.AddListener(switchToWalkState);
         PlayerEventBus.SwitchToCutsceneState.AddListener(switchToCutsceneState);
+
+        features = GetComponents<IPlayerFeature>();
+        turnOffFeatures();
 
         walkingState = GetComponent<PlayerWalkingState>();
         useState = GetComponent<PlayerPushingState>();
@@ -52,24 +56,52 @@ public class PlayerStateManager : MonoBehaviour {
         UnityEngine.Cursor.visible = false;
         UnityEngine.Cursor.lockState = UnityEngine.CursorLockMode.Locked;
     }
+
+    private void turnOffFeatures() {
+        foreach (var f in features) {
+            f.Disable();
+        }
+    }
+
+    private void manageFeatures(IPlayerState state) {
+        foreach (var rf in state.requiredFeatures) {
+            foreach (var f in features) {
+                if (rf == f.featureName) f.Enable();
+                else f.Disable();
+            }
+        }
+    }
+
     private void switchToPushingState(Transform target, Minecart targetMinecart) {
         Debug.Log("Player is switching to \"Cart pushing\" state");
+
+        turnOffFeatures();
+
         currentState.ExitState();
         currentState = useState;
         useState.SetData(target, targetMinecart);
+        manageFeatures(currentState);
         currentState.EnterState();
     }
     private void switchToWalkState() {
         Debug.Log("Player is switching to \"Walk\" state");
+
+        turnOffFeatures();
+
         currentState.ExitState();
         currentState = walkingState;
+        manageFeatures(currentState);
         currentState.EnterState();
     }
 
     private void switchToCutsceneState() {
         Debug.Log("Player is switching to \"Cutscene\" state");
+        
+        turnOffFeatures();
+
         currentState.ExitState();
         currentState = cutsceneState;
+        manageFeatures(currentState);
         currentState.EnterState();
     }
 }

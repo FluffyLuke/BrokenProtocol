@@ -46,7 +46,7 @@ public class PlayerWalkingState : IPlayerState
     public override void ExitState() {
         base.ExitState();
         input.Player.Disable();
-        GetComponent<PlayerInteract>().enabled = false;
+        // GetComponent<PlayerInteract>().enabled = false;
     }
     void Start() {
         body = GetComponent<CharacterController>();

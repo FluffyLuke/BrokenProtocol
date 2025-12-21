@@ -207,6 +207,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenPause"",
+                    ""type"": ""Button"",
+                    ""id"": ""f62fafec-d7b3-4aef-b665-8dcb65364966"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -647,6 +656,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""QuickItemAccessApprove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bb548fba-8f62-47dc-9bd4-74a70cf2b4b3"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenPause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1315,6 +1335,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_QuickItemAccess = m_Player.FindAction("QuickItemAccess", throwIfNotFound: true);
         m_Player_QuickItemAccessApprove = m_Player.FindAction("QuickItemAccessApprove", throwIfNotFound: true);
         m_Player_HideHeldItem = m_Player.FindAction("HideHeldItem", throwIfNotFound: true);
+        m_Player_OpenPause = m_Player.FindAction("OpenPause", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1427,6 +1448,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_QuickItemAccess;
     private readonly InputAction m_Player_QuickItemAccessApprove;
     private readonly InputAction m_Player_HideHeldItem;
+    private readonly InputAction m_Player_OpenPause;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1490,6 +1512,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/HideHeldItem".
         /// </summary>
         public InputAction @HideHeldItem => m_Wrapper.m_Player_HideHeldItem;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/OpenPause".
+        /// </summary>
+        public InputAction @OpenPause => m_Wrapper.m_Player_OpenPause;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1555,6 +1581,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @HideHeldItem.started += instance.OnHideHeldItem;
             @HideHeldItem.performed += instance.OnHideHeldItem;
             @HideHeldItem.canceled += instance.OnHideHeldItem;
+            @OpenPause.started += instance.OnOpenPause;
+            @OpenPause.performed += instance.OnOpenPause;
+            @OpenPause.canceled += instance.OnOpenPause;
         }
 
         /// <summary>
@@ -1605,6 +1634,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @HideHeldItem.started -= instance.OnHideHeldItem;
             @HideHeldItem.performed -= instance.OnHideHeldItem;
             @HideHeldItem.canceled -= instance.OnHideHeldItem;
+            @OpenPause.started -= instance.OnOpenPause;
+            @OpenPause.performed -= instance.OnOpenPause;
+            @OpenPause.canceled -= instance.OnOpenPause;
         }
 
         /// <summary>
@@ -2114,6 +2146,13 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnHideHeldItem(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "OpenPause" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnOpenPause(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.
