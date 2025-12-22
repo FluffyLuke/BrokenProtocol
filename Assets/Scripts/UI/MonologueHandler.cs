@@ -6,7 +6,7 @@ public class MonologueHandler : MonoBehaviour {
     void Start() {
         text = GetComponent<TMPWrapper>();
 
-        PlayerEventBus.showMonologue.AddListener(showMonologue);
+        PlayerEventBus.ShowMonologue.AddListener(showMonologue);
     }
 
     private void showMonologue(CharacterDialogue monologue, float fade) {

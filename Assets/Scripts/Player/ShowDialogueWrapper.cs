@@ -13,6 +13,6 @@ public class ShowDialogueWrapper : MonoBehaviour {
     }
 
     public void ShowDialogue() {
-        PlayerEventBus.showDialogue.Invoke(dialogue);
+        PlayerEventBus.ShowDialogue.Invoke(dialogue);
     }
 }

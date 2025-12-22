@@ -312,8 +312,8 @@ MonoBehaviour:
   bus_main: {fileID: 24300002, guid: e2ca3cb31f3a5b99383833aa5403b92d, type: 2}
   bus_sfx: {fileID: -4169741160281975777, guid: e2ca3cb31f3a5b99383833aa5403b92d, type: 2}
   bus_ambient: {fileID: -5058836371866856468, guid: e2ca3cb31f3a5b99383833aa5403b92d, type: 2}
-  maxVolume_dB: 0
-  minVolume_dB: 0
+  maxVolume_dB: 5
+  minVolume_dB: -20
 --- !u!114 &6426027462710420721
 MonoBehaviour:
   m_ObjectHideFlags: 0

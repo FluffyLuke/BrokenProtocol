@@ -1482,30 +1482,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4344049342388775320, guid: 0a3f3970149c9fe368c8adc32d746d6b, type: 3}
-      propertyPath: settings
-      value: 
-      objectReference: {fileID: 11400000, guid: 8f9997e61da73e311aadb2110530c8aa, type: 2}
-    - target: {fileID: 4344049342388775320, guid: 0a3f3970149c9fe368c8adc32d746d6b, type: 3}
-      propertyPath: maxVolume_dB
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4344049342388775320, guid: 0a3f3970149c9fe368c8adc32d746d6b, type: 3}
-      propertyPath: minVolume_dB
-      value: -20
-      objectReference: {fileID: 0}
-    - target: {fileID: 4344049342388775320, guid: 0a3f3970149c9fe368c8adc32d746d6b, type: 3}
-      propertyPath: soundDatabase
-      value: 
-      objectReference: {fileID: 11400000, guid: bb095bca8b164139abee76dc9b0cf925, type: 2}
     - target: {fileID: 5257833838310095750, guid: 0a3f3970149c9fe368c8adc32d746d6b, type: 3}
       propertyPath: m_Name
       value: SoundManager
       objectReference: {fileID: 0}
-    - target: {fileID: 6426027462710420721, guid: 0a3f3970149c9fe368c8adc32d746d6b, type: 3}
-      propertyPath: soundDatabase
-      value: 
-      objectReference: {fileID: 11400000, guid: bb095bca8b164139abee76dc9b0cf925, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

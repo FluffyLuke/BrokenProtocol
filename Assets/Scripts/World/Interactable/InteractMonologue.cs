@@ -9,6 +9,6 @@ public class InteractMonologue : IInteractable
         monologueText = (CharacterDialogue)LocalizationManager.instance.GetDialogue(monologueID);
     }
     public override void Interact() {
-        PlayerEventBus.showMonologue.Invoke(monologueText, fade);
+        PlayerEventBus.ShowMonologue.Invoke(monologueText, fade);
     }
 }

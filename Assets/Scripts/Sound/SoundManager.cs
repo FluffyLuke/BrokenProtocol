@@ -133,13 +133,17 @@ public class SoundManager : MonoBehaviour {
     private void UpdateValues() {
         float volumeDelta = Mathf.Abs(maxVolume_dB - minVolume_dB);
 
+        if (volumeDelta == 0) {
+            Debug.LogError("Volume delta = 0. Changes in volume will not be applied");
+        }
+
         float masterVolume = minVolume_dB + volumeDelta * settings.Volume_Main;
         float sfxVolume = minVolume_dB + volumeDelta * settings.Volume_Sfx;
         float ambientVolume = minVolume_dB + volumeDelta * settings.Volume_Ambient;
 
         masterVolume = settings.Volume_Main == 0 ? -80 : masterVolume;
-        sfxVolume = settings.Volume_Main == 0 ? -80 : sfxVolume; 
-        ambientVolume = settings.Volume_Main == 0 ? -80 : ambientVolume;
+        sfxVolume = settings.Volume_Sfx == 0 ? -80 : sfxVolume; 
+        ambientVolume = settings.Volume_Ambient == 0 ? -80 : ambientVolume;
 
         mixer.SetFloat("MasterVolume", masterVolume);
         mixer.SetFloat("SFXVolume", sfxVolume);

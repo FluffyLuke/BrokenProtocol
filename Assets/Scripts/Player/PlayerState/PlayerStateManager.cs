@@ -49,12 +49,6 @@ public class PlayerStateManager : MonoBehaviour {
     }
     void Start() {
         currentState.EnterState();
-        setCursor();
-    }
-
-    private void setCursor() {
-        UnityEngine.Cursor.visible = false;
-        UnityEngine.Cursor.lockState = UnityEngine.CursorLockMode.Locked;
     }
 
     private void turnOffFeatures() {

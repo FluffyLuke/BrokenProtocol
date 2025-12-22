@@ -27,6 +27,7 @@ public class ScreenVolumeManager : MonoBehaviour {
     }
 
     public void EnableVolume(float t = 0) {
+        Debug.Log("enabling volume 2");
         manageVolume(t, true);
     }
 

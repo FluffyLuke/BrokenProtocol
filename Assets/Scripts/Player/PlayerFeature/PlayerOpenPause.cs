@@ -11,8 +11,7 @@ public class PlayerOpenPause : IPlayerFeature {
     }
 
     private void openPause(InputAction.CallbackContext context) {
-        Time.timeScale = 0;
-        PlayerEventBus.openPause.Invoke();
+        PlayerEventBus.OpenPause.Invoke(!PlayerEventBus.isPauseOpened);
     }
     void OnEnable() {
         input.Player.Enable();
@@ -20,12 +19,10 @@ public class PlayerOpenPause : IPlayerFeature {
     void OnDisable(){
         input.Player.Disable();
     }
-    public override void Disable()
-    {
+    public override void Disable() {
         enabled = false;
     }
-    public override void Enable()
-    {
+    public override void Enable() {
         enabled = true;
     }
 }

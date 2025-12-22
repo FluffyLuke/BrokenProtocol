@@ -7,7 +7,7 @@ public class DialogueHandler : MonoBehaviour {
     [SerializeField] private TMPWrapper speakerText;
     private Coroutine currentDialogueCoroutine = null;
     void Start() {
-        PlayerEventBus.showDialogue.AddListener(showDialogue);
+        PlayerEventBus.ShowDialogue.AddListener(showDialogue);
     }
 
     private void showDialogue(CharacterDialoguePart[] dialogue) {
