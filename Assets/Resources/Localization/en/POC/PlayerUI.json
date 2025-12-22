@@ -1,0 +1,47 @@
+{
+    "file_id": "UI",
+    "file_lang": "en",
+    "dialogues": [],
+    "ui": [
+        {
+            "id": "status_label",
+            "text": "Status:",
+            "speed": 0
+        },
+        {
+            "id": "status_healthy",
+            "text": "Healthy",
+            "speed": 0
+        },
+        {
+            "id": "status_injured",
+            "text": "Injured",
+            "speed": 0
+        },
+        {
+            "id": "status_wounded",
+            "text": "Wounded",
+            "speed": 0
+        },
+        {
+            "id": "status_critical",
+            "text": "Critical!",
+            "speed": 0
+        },
+        {
+            "id": "instructions",
+            "text": "<- Q || E ->",
+            "speed": 0
+        },
+        {
+            "id": "objective_label",
+            "text": "Current objective",
+            "speed": 0
+        },
+        {
+            "id": "objective",
+            "text": "Objective place holder",
+            "speed": 0
+        }
+    ]
+}

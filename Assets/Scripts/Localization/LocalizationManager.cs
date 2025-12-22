@@ -41,9 +41,11 @@ public class LocalizationManager : MonoBehaviour
         Debug.Log($"Loaded new file with locales of id: {localization.fileID}");
 
         for (int i = 1; i < jsons.Length; i++) {
+
             TextAsset json = jsons[i];
 
             Localization lPart = JsonConvert.DeserializeObject<Localization>(json.text);
+
             Debug.Log($"Loaded new file with locales of id: {lPart.fileID}");
             localization.Connect(ref lPart);
             

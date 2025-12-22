@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class OpenPauseWindow : MonoBehaviour
 {
-    [SerializeField] private CanvasManager manager;
+    [SerializeField] private PauseCanvas pause;
     [SerializeField] private ScreenVolumeManager volume;
     //[SerializeField] private string nameOfPauseCanvas;
     void Awake() {
@@ -13,12 +13,14 @@ public class OpenPauseWindow : MonoBehaviour
     public void openWindow(bool shouldOpen) {
         if (shouldOpen) {
             PlayerEventBus.isPauseOpened = true;
-            manager.gameObject.SetActive(true);
+            pause.gameObject.SetActive(true);
+            pause.EnablePauseCanvas();
             volume.gameObject.SetActive(true);
             Time.timeScale = 0;
         } else {
             PlayerEventBus.isPauseOpened = false;
-            manager.gameObject.SetActive(false);
+            pause.gameObject.SetActive(false);
+            pause.DisablePauseCanvas();
             volume.gameObject.SetActive(false);
             Time.timeScale = 1;
         }

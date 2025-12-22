@@ -778,9 +778,27 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""NextPauseWindow"",
+                    ""type"": ""Button"",
+                    ""id"": ""cee1ad50-3542-4c0b-8b9f-fe92b8a38ef3"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PreviousPauseWindow"",
+                    ""type"": ""Button"",
+                    ""id"": ""7bce4561-eb9f-45ec-a5ab-c4fa1899ffd0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""StartGame"",
                     ""type"": ""Button"",
-                    ""id"": ""4378c2c5-ea72-46f2-94e8-cb9d048c8864"",
+                    ""id"": ""24c6c77f-0790-4a94-8a55-56a6aa50c132"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1208,8 +1226,30 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""f4577eef-a71b-4857-ac3f-c64353ceaead"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""id"": ""614ead6b-adea-4b14-931e-59f79371b2eb"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextPauseWindow"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""eb996838-61bb-48eb-853d-347ed13ae44c"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PreviousPauseWindow"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6ab31e8e-abe5-4a62-bab7-a5934fa2e366"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -1359,6 +1399,8 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_UI_ScrollWheel = m_UI.FindAction("ScrollWheel", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+        m_UI_NextPauseWindow = m_UI.FindAction("NextPauseWindow", throwIfNotFound: true);
+        m_UI_PreviousPauseWindow = m_UI.FindAction("PreviousPauseWindow", throwIfNotFound: true);
         m_UI_StartGame = m_UI.FindAction("StartGame", throwIfNotFound: true);
         // Debug
         m_Debug = asset.FindActionMap("Debug", throwIfNotFound: true);
@@ -1695,6 +1737,8 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_ScrollWheel;
     private readonly InputAction m_UI_TrackedDevicePosition;
     private readonly InputAction m_UI_TrackedDeviceOrientation;
+    private readonly InputAction m_UI_NextPauseWindow;
+    private readonly InputAction m_UI_PreviousPauseWindow;
     private readonly InputAction m_UI_StartGame;
     /// <summary>
     /// Provides access to input actions defined in input action map "UI".
@@ -1747,6 +1791,14 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "UI/TrackedDeviceOrientation".
         /// </summary>
         public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
+        /// <summary>
+        /// Provides access to the underlying input action "UI/NextPauseWindow".
+        /// </summary>
+        public InputAction @NextPauseWindow => m_Wrapper.m_UI_NextPauseWindow;
+        /// <summary>
+        /// Provides access to the underlying input action "UI/PreviousPauseWindow".
+        /// </summary>
+        public InputAction @PreviousPauseWindow => m_Wrapper.m_UI_PreviousPauseWindow;
         /// <summary>
         /// Provides access to the underlying input action "UI/StartGame".
         /// </summary>
@@ -1807,6 +1859,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @TrackedDeviceOrientation.started += instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.performed += instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.canceled += instance.OnTrackedDeviceOrientation;
+            @NextPauseWindow.started += instance.OnNextPauseWindow;
+            @NextPauseWindow.performed += instance.OnNextPauseWindow;
+            @NextPauseWindow.canceled += instance.OnNextPauseWindow;
+            @PreviousPauseWindow.started += instance.OnPreviousPauseWindow;
+            @PreviousPauseWindow.performed += instance.OnPreviousPauseWindow;
+            @PreviousPauseWindow.canceled += instance.OnPreviousPauseWindow;
             @StartGame.started += instance.OnStartGame;
             @StartGame.performed += instance.OnStartGame;
             @StartGame.canceled += instance.OnStartGame;
@@ -1851,6 +1909,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @TrackedDeviceOrientation.started -= instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.performed -= instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.canceled -= instance.OnTrackedDeviceOrientation;
+            @NextPauseWindow.started -= instance.OnNextPauseWindow;
+            @NextPauseWindow.performed -= instance.OnNextPauseWindow;
+            @NextPauseWindow.canceled -= instance.OnNextPauseWindow;
+            @PreviousPauseWindow.started -= instance.OnPreviousPauseWindow;
+            @PreviousPauseWindow.performed -= instance.OnPreviousPauseWindow;
+            @PreviousPauseWindow.canceled -= instance.OnPreviousPauseWindow;
             @StartGame.started -= instance.OnStartGame;
             @StartGame.performed -= instance.OnStartGame;
             @StartGame.canceled -= instance.OnStartGame;
@@ -2242,6 +2306,20 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "NextPauseWindow" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnNextPauseWindow(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "PreviousPauseWindow" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPreviousPauseWindow(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "StartGame" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
