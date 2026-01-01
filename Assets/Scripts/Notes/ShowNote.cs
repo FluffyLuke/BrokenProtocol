@@ -45,7 +45,6 @@ public class ShowNote : MonoBehaviour {
     }
 
     private void hideNote() {
-        PlayerEventBus.EnableCursor.Invoke(true);
         PlayerEventBus.PauseGame.Invoke(false);
         PlayerEventBus.SwitchToWalkState.Invoke();
 
