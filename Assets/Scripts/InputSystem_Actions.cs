@@ -803,6 +803,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NextNotePart"",
+                    ""type"": ""Button"",
+                    ""id"": ""1b0ffd6a-57d2-4a7e-9e47-06eba0b0c53e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1256,6 +1265,28 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""action"": ""StartGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""387d4df7-ad05-43f7-bdd2-1ad7b82c208b"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextNotePart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7d9a6639-cab8-4b64-936d-96dcfb8f517f"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextNotePart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1402,6 +1433,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_UI_NextPauseWindow = m_UI.FindAction("NextPauseWindow", throwIfNotFound: true);
         m_UI_PreviousPauseWindow = m_UI.FindAction("PreviousPauseWindow", throwIfNotFound: true);
         m_UI_StartGame = m_UI.FindAction("StartGame", throwIfNotFound: true);
+        m_UI_NextNotePart = m_UI.FindAction("NextNotePart", throwIfNotFound: true);
         // Debug
         m_Debug = asset.FindActionMap("Debug", throwIfNotFound: true);
         m_Debug_AddCursor = m_Debug.FindAction("AddCursor", throwIfNotFound: true);
@@ -1740,6 +1772,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_NextPauseWindow;
     private readonly InputAction m_UI_PreviousPauseWindow;
     private readonly InputAction m_UI_StartGame;
+    private readonly InputAction m_UI_NextNotePart;
     /// <summary>
     /// Provides access to input actions defined in input action map "UI".
     /// </summary>
@@ -1803,6 +1836,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "UI/StartGame".
         /// </summary>
         public InputAction @StartGame => m_Wrapper.m_UI_StartGame;
+        /// <summary>
+        /// Provides access to the underlying input action "UI/NextNotePart".
+        /// </summary>
+        public InputAction @NextNotePart => m_Wrapper.m_UI_NextNotePart;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1868,6 +1905,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @StartGame.started += instance.OnStartGame;
             @StartGame.performed += instance.OnStartGame;
             @StartGame.canceled += instance.OnStartGame;
+            @NextNotePart.started += instance.OnNextNotePart;
+            @NextNotePart.performed += instance.OnNextNotePart;
+            @NextNotePart.canceled += instance.OnNextNotePart;
         }
 
         /// <summary>
@@ -1918,6 +1958,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @StartGame.started -= instance.OnStartGame;
             @StartGame.performed -= instance.OnStartGame;
             @StartGame.canceled -= instance.OnStartGame;
+            @NextNotePart.started -= instance.OnNextNotePart;
+            @NextNotePart.performed -= instance.OnNextNotePart;
+            @NextNotePart.canceled -= instance.OnNextNotePart;
         }
 
         /// <summary>
@@ -2327,6 +2370,13 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnStartGame(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "NextNotePart" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnNextNotePart(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Debug" which allows adding and removing callbacks.

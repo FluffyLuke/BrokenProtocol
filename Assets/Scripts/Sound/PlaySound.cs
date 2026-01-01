@@ -10,7 +10,7 @@ public class PlaySound : MonoBehaviour {
 
     private IEnumerator playAmbient() {
         yield return new WaitForSeconds(delay);
-        Debug.Log($"Playing sound \"{id}\"");
+        //Debug.Log($"Playing sound \"{id}\"");
         SoundManager.instance.PlayOneShot(id, Vector3.zero);
     }
 }

@@ -67,7 +67,7 @@ public class PlayerStateManager : MonoBehaviour {
     }
 
     private void switchToPushingState(Transform target, Minecart targetMinecart) {
-        Debug.Log("Player is switching to \"Cart pushing\" state");
+        //Debug.Log("Player is switching to \"Cart pushing\" state");
 
         turnOffFeatures();
 
@@ -78,7 +78,7 @@ public class PlayerStateManager : MonoBehaviour {
         currentState.EnterState();
     }
     private void switchToWalkState() {
-        Debug.Log("Player is switching to \"Walk\" state");
+        //Debug.Log("Player is switching to \"Walk\" state");
 
         turnOffFeatures();
 
@@ -89,7 +89,7 @@ public class PlayerStateManager : MonoBehaviour {
     }
 
     private void switchToCutsceneState() {
-        Debug.Log("Player is switching to \"Cutscene\" state");
+        //Debug.Log("Player is switching to \"Cutscene\" state");
         
         turnOffFeatures();
 

@@ -11,7 +11,7 @@ public class PlayerOpenPause : IPlayerFeature {
     }
 
     private void openPause(InputAction.CallbackContext context) {
-        PlayerEventBus.OpenPause.Invoke(!PlayerEventBus.isPauseOpened);
+        PlayerEventBus.OpenPause.Invoke();
     }
     void OnEnable() {
         input.Player.Enable();

@@ -11,6 +11,9 @@ public class PlayerEventBus : MonoBehaviour
     public static UnityEvent<CharacterDialogue, float> ShowMonologue = new();
     public static bool DialogueIsTakingPlace = false;
     public static UnityEvent<CharacterDialoguePart[]> ShowDialogue = new();
-    public static UnityEvent<bool> OpenPause = new();
-    public static bool isPauseOpened = false;
+    public static UnityEvent OpenPause = new();
+    public static UnityEvent<bool> EnableCursor = new();
+    public static UnityEvent<bool> PauseGame = new();
+    public static bool isPaused = false;
+    public static UnityEvent<NoteData> ShowNote = new();
 }

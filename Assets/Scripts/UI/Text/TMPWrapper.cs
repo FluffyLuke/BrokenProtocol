@@ -71,13 +71,21 @@ public class TMPWrapper : MonoBehaviour
         ShowText(uiText.speed, clearAfter);
     }
 
+    // TODO: Clean this function, since it is a mess
     private IEnumerator showText(float speed, float clearAfter) {
+        float timer = 0f;
+
         if (speed <= 0) {
             textGUI.maxVisibleCharacters = int.MaxValue;
             if (clearAfter <= 0) {
                 yield break;
             }
-            yield return new WaitForSeconds(clearAfter);
+
+            // We don't want this to be affected by game pause
+            while (timer < clearAfter) {
+                timer += Time.unscaledDeltaTime;
+                yield return null;
+            }
             textGUI.text = "";
             yield break;
         }
@@ -86,20 +94,32 @@ public class TMPWrapper : MonoBehaviour
 
         textGUI.maxVisibleCharacters = 0;
 
+        // FIX: This is binded to the frame rate
+        // Lower framerate may make text appear slower than it should
+        float clearTimer = 0;
         foreach(char l in textGUI.text) {
             textGUI.maxVisibleCharacters += 1;
             CharacterInserted.Invoke();
             
-            if (l != ' ') {
-                yield return new WaitForSeconds(cps);
+            // if (l == ' ') {
+            //     continue;
+            // }
+            while (clearTimer < cps) {
+                clearTimer += Time.unscaledDeltaTime;
+                yield return null;
             }
+
+            clearTimer = 0;
         }
 
         if (clearAfter <= 0) {
             yield break;
         }
-        
-        yield return new WaitForSeconds(clearAfter);
+
+        while (timer < clearAfter) {
+            timer += Time.unscaledDeltaTime;
+            yield return null;
+        }
         textGUI.text = "";
     }
 }

@@ -1,0 +1,22 @@
+{
+    "file_id": "Note_Barricade",
+    "file_lang": "en",
+    "dialogues": [],
+    "ui": [
+        {
+            "id": "note_barricade1",
+            "text": "A crude note hangs before you.",
+            "speed": 25
+        },
+        {
+            "id": "note_barricade2",
+            "text": "<color=red>\"For everyone trying to reach Wolfbrum - TURN BACK. No living soul is left. Only death awaits beyond this gate\"</color>",
+            "speed": 25
+        },
+        {
+            "id": "note_barricade3",
+            "text": "There is also a small addendum, written by someone else: <color=red>\"We are so sorry, Josh\"</color>",
+            "speed": 25
+        }
+    ]
+}

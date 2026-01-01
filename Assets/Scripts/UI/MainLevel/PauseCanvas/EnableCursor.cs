@@ -4,7 +4,7 @@ public class EnableCursor : MonoBehaviour {
     [SerializeField] private bool enableOnStart = false;
     void Start() {
         enableCursor(enableOnStart);
-        PlayerEventBus.OpenPause.AddListener(enableCursor);
+        PlayerEventBus.EnableCursor.AddListener(enableCursor);
     }
 
     private void enableCursor(bool enable) {

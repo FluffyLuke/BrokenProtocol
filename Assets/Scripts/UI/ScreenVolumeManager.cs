@@ -39,6 +39,7 @@ public class ScreenVolumeManager : MonoBehaviour {
                 elapsed += Time.deltaTime;
                 bloom.intensity.value = Mathf.Lerp(0, bloomStartIntensivity, elapsed/t);
                 lensDistortion.intensity.value = Mathf.Lerp(0, lensStartIntensivity, elapsed/t);
+                yield return null;
             }
 
             bloom.intensity.value = bloomStartIntensivity;
@@ -48,6 +49,7 @@ public class ScreenVolumeManager : MonoBehaviour {
                 elapsed += Time.deltaTime;
                 bloom.intensity.value = Mathf.Lerp(bloomStartIntensivity, 0, elapsed/t);
                 lensDistortion.intensity.value = Mathf.Lerp(lensStartIntensivity, 0, elapsed/t);
+                yield return null;
             }
 
             bloom.intensity.value = 0;

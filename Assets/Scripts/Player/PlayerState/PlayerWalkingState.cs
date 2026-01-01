@@ -65,24 +65,24 @@ public class PlayerWalkingState : IPlayerState
     
     private void handleSound() {
         if (previousMovementState == currentMovementState) return;
-        Debug.Log($"Current movement state: {currentMovementState}");
+        //Debug.Log($"Current movement state: {currentMovementState}");
 
         if (currentWalkSound != null) {
-            Debug.Log("Reset");
+            //Debug.Log("Reset");
             currentWalkSound.StopAndDestroy();
             currentWalkSound = null;
         }
         
         if (currentMovementState == MovementState.Running) {
             if (SoundManager.instance.PlayAndLoop(RunningSound_ID, transform.position, out SoundHandle handle)) {
-                Debug.Log("Run");
+                //Debug.Log("Run");
                 currentWalkSound = handle;
             }
         }
 
         if (currentMovementState == MovementState.Walking) {
             if (SoundManager.instance.PlayAndLoop(WalkingSound_ID, transform.position, out SoundHandle handle)) {
-                Debug.Log("Walk");
+                //Debug.Log("Walk");
                 currentWalkSound = handle;
             }
         }
