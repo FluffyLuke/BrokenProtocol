@@ -20,6 +20,7 @@ public class BasicButtonNavElement : INavigationElement {
         input.UI.ButtonPressed.performed += pressButton;
     }
     public override void SelectElement() {
+        Debug.Log($"DEBUG: SELECTED {name}");
         image.color = selectedColorBackground;
         text.color = selectedColorText;
         input.UI.Navigate.Enable();
