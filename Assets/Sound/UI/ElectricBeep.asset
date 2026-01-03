@@ -16,5 +16,5 @@ MonoBehaviour:
   busID: 1
   clips:
   - {fileID: 8300000, guid: 6b72f79648fa5dd8ab6e91593d1b4aa7, type: 3}
-  pitchRange: {x: 0.8, y: 1.1}
-  volume: 0.7
+  pitchRange: {x: 0.9, y: 1.05}
+  volume: 0.4
