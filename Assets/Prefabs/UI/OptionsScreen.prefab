@@ -645,6 +645,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6851773328293894024, guid: e2252dab13a958f83b563213917b045a, type: 3}
+      propertyPath: valueUpdate.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851773328293894024, guid: e2252dab13a958f83b563213917b045a, type: 3}
+      propertyPath: valueUpdate.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7011236619409263953, guid: e2252dab13a958f83b563213917b045a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

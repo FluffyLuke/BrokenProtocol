@@ -85,6 +85,7 @@ GameObject:
   - component: {fileID: 2681920783378024886}
   - component: {fileID: 1990123045330626271}
   - component: {fileID: 360559001157011158}
+  - component: {fileID: 6028692768380928652}
   m_Layer: 5
   m_Name: ButtonSlider
   m_TagString: Untagged
@@ -132,7 +133,19 @@ MonoBehaviour:
   barContainer: {fileID: 5198186483823491828}
   valueUpdate:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6028692768380928652}
+        m_TargetAssemblyTypeName: PlaySound, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &360559001157011158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,6 +160,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bus: 0
   settings: {fileID: 11400000, guid: 8f9997e61da73e311aadb2110530c8aa, type: 2}
+--- !u!114 &6028692768380928652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7060634589045438331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ecd0f4556a71ce6f88c866b5c2d4ce9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: UIButtonPress
+  delay: 0
 --- !u!1001 &400046338881541544
 PrefabInstance:
   m_ObjectHideFlags: 0

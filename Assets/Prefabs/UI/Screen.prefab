@@ -283,6 +283,7 @@ GameObject:
   - component: {fileID: 4582330929985907861}
   - component: {fileID: 6322752950569131587}
   - component: {fileID: 5299951600168192178}
+  - component: {fileID: 2403572323745884521}
   m_Layer: 5
   m_Name: Screen
   m_TagString: Untagged
@@ -389,6 +390,21 @@ MonoBehaviour:
   TopLevelReturn:
     m_PersistentCalls:
       m_Calls: []
+  canvasChange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2403572323745884521}
+        m_TargetAssemblyTypeName: PlaySound, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   Canvases:
   - {fileID: 4910148767208506476}
 --- !u!114 &6322752950569131587
@@ -418,6 +434,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screen: {fileID: 0}
+--- !u!114 &2403572323745884521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6800723378508870596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ecd0f4556a71ce6f88c866b5c2d4ce9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: ElectricBeep
+  delay: 0
 --- !u!1001 &5558256287931096023
 PrefabInstance:
   m_ObjectHideFlags: 0

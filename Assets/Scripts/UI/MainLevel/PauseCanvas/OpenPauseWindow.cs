@@ -14,7 +14,7 @@ public class OpenPauseWindow : MonoBehaviour
         opened = !opened;
 
         PlayerEventBus.PauseGame.Invoke(opened);
-        PlayerEventBus.EnableCursor.Invoke(opened);
+        //PlayerEventBus.EnableCursor.Invoke(opened);
 
         if (opened) {
             pause.gameObject.SetActive(true);

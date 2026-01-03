@@ -7,4 +7,7 @@ public abstract class INavigationElement : MonoBehaviour {
     void Awake() {
         input = new InputSystem_Actions();
     }
+    void OnDestroy() {
+        input.Dispose();
+    }
 }
