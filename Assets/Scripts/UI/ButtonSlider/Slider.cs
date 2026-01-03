@@ -10,7 +10,7 @@ using UnityEditor;
 #endif
 
 [ExecuteInEditMode]
-public class ButtonSlider: MonoBehaviour
+public class Slider: MonoBehaviour
 {
     [Header("Bars")]
     public int barCount = 5;

@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class OptionsScreen : IManagedCanvas
 {
     [SerializeField] private CanvasManager canvas;
+    [SerializeField] private Navigation[] panels;
     private InputSystem_Actions input;
     void Awake()
     {
@@ -11,24 +12,16 @@ public class OptionsScreen : IManagedCanvas
         input.UI.Cancel.performed += ctx => {
             canvas.Return();
         };
-        input.UI.Enable();
-    }
-
-    public void StartGame() {
-        input.UI.Disable();
-        MainMenuManager.StartGame.Invoke();
-    }
-
-    public void QuitGame() {
-        input.UI.Disable();
-        MainMenuManager.QuitGame.Invoke();
+        
     }
 
     public override void OnCanvasEnable() {
         input.UI.Enable();
+        panels[0].EnableNavigation();
     }
 
     public override void OnCanvasDisable() {
         input.UI.Disable();
+        panels[0].DisableNavigation();
     }
 }

@@ -611,6 +611,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "ButtonPressed",
+                    "type": "Button",
+                    "id": "70f14763-1f54-4d54-b79b-e7a4071e28f5",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Submit",
                     "type": "Button",
                     "id": "7607c7b6-cd76-4816-beef-bd0341cfe950",
@@ -1172,7 +1181,7 @@
                 {
                     "name": "",
                     "id": "6ab31e8e-abe5-4a62-bab7-a5934fa2e366",
-                    "path": "",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -1199,6 +1208,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "NextNotePart",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1f9ce6e3-e998-4246-9a47-cec92fea9fab",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ButtonPressed",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

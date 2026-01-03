@@ -1,12 +1,12 @@
 using UnityEngine;
 
-[RequireComponent(typeof(ButtonSlider))]
+[RequireComponent(typeof(Slider))]
 public class AudioButtonSlider : MonoBehaviour {
     public AudioBusID bus;
     [SerializeField] private GlobalSettings settings;
-    private ButtonSlider slider;
+    private Slider slider;
     void Awake() {
-        slider = GetComponent<ButtonSlider>();
+        slider = GetComponent<Slider>();
     }
 
     void Start() {
