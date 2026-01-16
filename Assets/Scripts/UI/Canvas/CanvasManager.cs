@@ -16,13 +16,18 @@ public class CanvasManager : MonoBehaviour
         currentCanvas = topCanvas;
 
         foreach(var c in Canvases) {
-            c.gameObject.SetActive(false);
+            if (c.TryGetComponent<IManagedCanvas>(out var managedCanvas)) {
+                managedCanvas.content.SetActive(false);
+            } else {
+                c.gameObject.SetActive(false);
+            }
         }
-
-        topCanvas.gameObject.SetActive(true);
         
-        if (topCanvas.TryGetComponent<IManagedCanvas>(out var managedCanvas)) {
-            managedCanvas.OnCanvasEnable();
+        if (topCanvas.TryGetComponent<IManagedCanvas>(out var managedCanvas2)) {
+            managedCanvas2.OnCanvasEnable();
+            managedCanvas2.content.SetActive(true);
+        } else {
+            topCanvas.gameObject.SetActive(true);
         }
     }
 
@@ -33,14 +38,18 @@ public class CanvasManager : MonoBehaviour
                 if (currentCanvas.TryGetComponent<IManagedCanvas>(out var managedCanvas)) {
                     managedCanvas.OnCanvasDisable();
                     managedCanvas.disabledCanvas.Invoke();
+                    managedCanvas.content.SetActive(false);
+                } else {
+                    currentCanvas.gameObject.SetActive(false);
                 }
-                currentCanvas.gameObject.SetActive(false);
                 quene.Add(currentCanvas);
                 currentCanvas = c;
-                currentCanvas.gameObject.SetActive(true);
                 if (currentCanvas.TryGetComponent<IManagedCanvas>(out managedCanvas)) {
                     managedCanvas.OnCanvasEnable();
                     managedCanvas.enabledCanvas.Invoke();
+                    managedCanvas.content.SetActive(true);
+                } else {
+                    currentCanvas.gameObject.SetActive(true);
                 }
 
                 canvasChange.Invoke();
@@ -60,18 +69,42 @@ public class CanvasManager : MonoBehaviour
         if (currentCanvas.TryGetComponent<IManagedCanvas>(out var managedCanvas)) {
             managedCanvas.OnCanvasDisable();
             managedCanvas.disabledCanvas.Invoke();
+            managedCanvas.content.SetActive(false);
+        } else {
+            currentCanvas.gameObject.SetActive(false);
         }
-        currentCanvas.gameObject.SetActive(false);
 
         currentCanvas = quene.Last();
         quene.Remove(currentCanvas);
 
-        currentCanvas.gameObject.SetActive(true);
         if (currentCanvas.TryGetComponent(out managedCanvas)) {
             managedCanvas.OnCanvasEnable();
             managedCanvas.enabledCanvas.Invoke();
+            managedCanvas.content.SetActive(true);
+        } else {
+            currentCanvas.gameObject.SetActive(true);
         }
 
         canvasChange.Invoke();
+    }
+
+    public void EnableCurrentCanvas(bool v) {
+        if (v) {
+            if (currentCanvas.TryGetComponent<IManagedCanvas>(out var managedCanvas)) {
+                managedCanvas.OnCanvasEnable();
+                managedCanvas.enabledCanvas.Invoke();
+                managedCanvas.content.SetActive(true);
+            } else {
+                currentCanvas.gameObject.SetActive(true);
+            }
+        } else {
+            if (currentCanvas.TryGetComponent<IManagedCanvas>(out var managedCanvas)) {
+                managedCanvas.OnCanvasDisable();
+                managedCanvas.disabledCanvas.Invoke();
+                managedCanvas.content.SetActive(false);
+            } else {
+                currentCanvas.gameObject.SetActive(false);
+            }
+        }
     }
 }

@@ -1,0 +1,28 @@
+{
+    "file_id": "Note_Start",
+    "file_lang": "en",
+    "dialogues": [],
+    "ui": [
+        {
+            "id": "noteName_barricade",
+            "text": "Warning on barricade",
+            "speed": 25
+        },
+        {
+            "id": "noteContent_barricade",
+            "text": "For everyone trying to reach Wolfbrum - TURN BACK. No living soul is left. Only death awaits beyond this gate\n\n<color=red>We are so sorry, Jakob</color>",
+            "speed": 25
+        },
+
+        {
+            "id": "noteName_evacuation",
+            "text": "Paul and Marie are tasked with overlooking the evacuation. They should write down who left and tend to the wounded. Barricade must be finished by sunset, even if there are more survivors, lest <b><color=red>they</color></b> get out. Jakob is to bring the miners back to the surface. Collapse the mine after that.",
+            "speed": 25
+        },
+        {
+            "id": "noteContent_minestart",
+            "text": "Paul and Marie are tasked with overlooking the evacuation. They should write down who left and tend to the wounded. Barricade must be finished by sunset, even if there are more survivors, lest <b><color=red>they</color></b> get out. Jakob is to bring the miners back to the surface. Collapse the mine after that.",
+            "speed": 25
+        }
+    ]
+}

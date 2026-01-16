@@ -10,8 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5791914462302bf4fb103cf0aed5f4bc, type: 3}
-  m_Name: Note_Barricade
+  m_Name: Note_CaveEntranceStart
   m_EditorClassIdentifier: 
-  noteNameID: noteName_barricade
-  noteContentID: noteContent_barricade
+  textID: note_minestart
   note: {fileID: 21300000, guid: 107ce1f0d1f38b358a8e2b47bf7cf461, type: 3}

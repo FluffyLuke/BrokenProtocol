@@ -12,14 +12,6 @@ public class PlayerInteract : IPlayerFeature {
         input.Player.Enable();
     }
 
-    void OnEnable() {
-        input.Player.Enable();
-    }
-
-    void OnDisable(){
-        input.Player.Disable();
-    }
-
     private void interact(InputAction.CallbackContext context) {
         Debug.Log("Player is trying to interact...");
 
@@ -49,13 +41,30 @@ public class PlayerInteract : IPlayerFeature {
         PlayerEventBus.HideItem.Invoke();
     }
 
-    public override void Disable()
-    {
-        enabled = false;
+    void OnEnable() {
+        input.Player.Enable();
     }
 
-    public override void Enable()
-    {
-        enabled = true;
+    void OnDisable(){
+        input.Player.Disable();
+    }
+
+    public override void Disable() {
+        Debug.LogWarning("DISABLED");
+        input.Player.Disable();
+        //enabled = false;
+        PlayerEventBus.PauseGame.RemoveListener(gamePaused);
+    }
+
+    public override void Enable() {
+        Debug.LogWarning("ENABLED");
+        input.Player.Enable();
+        //enabled = true;
+        PlayerEventBus.PauseGame.AddListener(gamePaused);
+    }
+
+    private void gamePaused(bool v) {
+        if (v) input.Player.Disable();
+        else input.Player.Enable();
     }
 }

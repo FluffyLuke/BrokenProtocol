@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CanvasManager))]
 public class PauseCanvas : MonoBehaviour {
     [SerializeField] private IManagedCanvas[] pauseWindows;
+    [SerializeField] private GameObject content;
     [SerializeField] private int currentIndex = 0;
     private CanvasManager manager;
     private InputSystem_Actions input;
@@ -14,6 +15,10 @@ public class PauseCanvas : MonoBehaviour {
         input.UI.NextPauseWindow.performed += nextWindow;
         input.UI.PreviousPauseWindow.performed += previousWindow;
         input.UI.Disable();
+    }
+
+    void Start() {
+        content.SetActive(false);
     }
 
     private void previousWindow(InputAction.CallbackContext context) {
@@ -30,11 +35,15 @@ public class PauseCanvas : MonoBehaviour {
     }
     public void EnablePauseCanvas() {
         input.UI.Enable();
-        gameObject.SetActive(true);
+        content.SetActive(true);
+
+        manager.EnableCurrentCanvas(true);
     }
 
     public void DisablePauseCanvas() {
         input.UI.Disable();
-        gameObject.SetActive(false);
+        content.SetActive(false);
+
+        manager.EnableCurrentCanvas(false);
     }
 }

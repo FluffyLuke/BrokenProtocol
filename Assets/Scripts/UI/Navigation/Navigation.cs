@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Navigation : MonoBehaviour {
-    [SerializeField] private INavigationElement[] elements;
+    public List<INavigationElement> elements = new();
     private int currentSettingIndex = 0;
     private InputSystem_Actions input;
     void Awake() {
@@ -18,6 +18,10 @@ public class Navigation : MonoBehaviour {
     public void EnableNavigation() {
         input.UI.Navigate.Enable();
 
+        if (elements.Count <= 0) {
+            return;
+        }
+
         currentSettingIndex = 0;
         elements[0].SelectElement();
     }
@@ -28,18 +32,32 @@ public class Navigation : MonoBehaviour {
         }
     }
     private void chooseElement(InputAction.CallbackContext context) {
+        if (elements.Count == 0) return;
+
         Vector2 value = context.ReadValue<Vector2>();
         if (value.y < 0) currentSettingIndex++;
         else if (value.y > 0) currentSettingIndex--;
         else return;
 
-        if (currentSettingIndex >= elements.Length) currentSettingIndex = 0;
-        else if (currentSettingIndex < 0) currentSettingIndex = elements.Length - 1;
+        if (currentSettingIndex >= elements.Count) currentSettingIndex = 0;
+        else if (currentSettingIndex < 0) currentSettingIndex = elements.Count - 1;
 
         foreach(var s in elements) {
             s.UnselectElement();
         }
 
         elements[currentSettingIndex].SelectElement();
+    }
+
+    public void ClearNavigation() {
+        elements.Clear();
+    }
+    public void AddNavigationElement(INavigationElement element) {
+        elements.Add(element);
+
+        if (elements.Count == 1) {
+            element.SelectElement();
+            currentSettingIndex = 0;
+        }
     }
 }

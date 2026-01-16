@@ -8,6 +8,9 @@ public abstract class INavigationElement : MonoBehaviour {
         input = new InputSystem_Actions();
     }
     void OnDestroy() {
-        input.Dispose();
+        if (input != null) {
+            input.Dispose();
+            input = null;
+        }
     }
 }

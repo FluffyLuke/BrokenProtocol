@@ -42,10 +42,12 @@ public class PlayerWalkingState : IPlayerState
         input.Player.Enable();
         CinemachineInput(true);
         GetComponent<PlayerInteract>().enabled = true;
+        PlayerEventBus.PauseGame.AddListener(gamePaused);
     }
     public override void ExitState() {
         base.ExitState();
         input.Player.Disable();
+        PlayerEventBus.PauseGame.RemoveListener(gamePaused);
         // GetComponent<PlayerInteract>().enabled = false;
     }
     void Start() {
@@ -146,5 +148,10 @@ public class PlayerWalkingState : IPlayerState
         float x = value.x * Time.deltaTime * RotationSpeed;
 
         transform.Rotate(Vector3.up * x);
+    }
+
+    private void gamePaused(bool v) {
+        if (v) input.Player.Disable();
+        else input.Player.Enable();
     }
 }

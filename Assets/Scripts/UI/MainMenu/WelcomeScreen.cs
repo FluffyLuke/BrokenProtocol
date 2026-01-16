@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class WelcomeScreen : MonoBehaviour
+public class WelcomeScreen : IManagedCanvas
 {
     [SerializeField] private CanvasManager canvas;
     public string NextScreen = "MainScreen";
@@ -17,12 +17,11 @@ public class WelcomeScreen : MonoBehaviour
     void OnGameStart(InputAction.CallbackContext context) {
         canvas.ChangeCurrentCanvas(NextScreen);
     }
-
-    private void OnEnable() {
+    public override void OnCanvasEnable() {
         input.UI.Enable();
     }
 
-    private void OnDisable() {
+    public override void OnCanvasDisable() {
         input.UI.Disable();
     }
 }

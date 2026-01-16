@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerWalkingState))]
@@ -9,8 +10,8 @@ public class PlayerStateManager : MonoBehaviour {
     private PlayerPushingState useState;
     private PlayerCutsceneState cutsceneState;
     private IPlayerState currentState;
-    private IPlayerFeature[] features;
-    void Awake() {
+    public IPlayerFeature[] features;
+    void Start() {
         PlayerEventBus.PushMinecart.AddListener(switchToPushingState);
         PlayerEventBus.SwitchToWalkState.AddListener(switchToWalkState);
         PlayerEventBus.SwitchToCutsceneState.AddListener(switchToCutsceneState);
@@ -46,8 +47,6 @@ public class PlayerStateManager : MonoBehaviour {
             }
             currentState = walkingState;
         }
-    }
-    void Start() {
         currentState.EnterState();
     }
 
@@ -57,11 +56,10 @@ public class PlayerStateManager : MonoBehaviour {
         }
     }
 
-    private void manageFeatures(IPlayerState state) {
+    private void turnOnRequiredFeatures(IPlayerState state) {
         foreach (var rf in state.requiredFeatures) {
             foreach (var f in features) {
                 if (rf == f.featureName) f.Enable();
-                else f.Disable();
             }
         }
     }
@@ -74,7 +72,7 @@ public class PlayerStateManager : MonoBehaviour {
         currentState.ExitState();
         currentState = useState;
         useState.SetData(target, targetMinecart);
-        manageFeatures(currentState);
+        turnOnRequiredFeatures(currentState);
         currentState.EnterState();
     }
     private void switchToWalkState() {
@@ -84,7 +82,7 @@ public class PlayerStateManager : MonoBehaviour {
 
         currentState.ExitState();
         currentState = walkingState;
-        manageFeatures(currentState);
+        turnOnRequiredFeatures(currentState);
         currentState.EnterState();
     }
 
@@ -95,7 +93,7 @@ public class PlayerStateManager : MonoBehaviour {
 
         currentState.ExitState();
         currentState = cutsceneState;
-        manageFeatures(currentState);
+        turnOnRequiredFeatures(currentState);
         currentState.EnterState();
     }
 }
