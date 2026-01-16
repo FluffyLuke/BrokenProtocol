@@ -50,14 +50,12 @@ public class PlayerInteract : IPlayerFeature {
     }
 
     public override void Disable() {
-        Debug.LogWarning("DISABLED");
         input.Player.Disable();
         //enabled = false;
         PlayerEventBus.PauseGame.RemoveListener(gamePaused);
     }
 
     public override void Enable() {
-        Debug.LogWarning("ENABLED");
         input.Player.Enable();
         //enabled = true;
         PlayerEventBus.PauseGame.AddListener(gamePaused);

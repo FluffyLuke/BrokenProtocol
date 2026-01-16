@@ -21,9 +21,9 @@ public class NoteCanvas : IManagedCanvas {
     public override void OnCanvasEnable() {
         input.UI.Enable();
         gameObject.SetActive(true);
-        nav.EnableNavigation();
 
         setNotes();
+        nav.EnableNavigation();
     }
 
     public override void OnCanvasDisable() {

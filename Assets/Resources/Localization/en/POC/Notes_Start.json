@@ -4,6 +4,17 @@
     "dialogues": [],
     "ui": [
         {
+            "id": "noteName_test",
+            "text": "Test note",
+            "speed": 25
+        },
+        {
+            "id": "noteContent_test",
+            "text": "This is a test",
+            "speed": 25
+        },
+
+        {
             "id": "noteName_barricade",
             "text": "Warning on barricade",
             "speed": 25

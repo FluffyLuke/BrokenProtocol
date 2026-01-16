@@ -13,9 +13,9 @@ public class NoteNavElement : INavigationElement {
     [SerializeField] private TextMeshProUGUI noteLabel;
     public Color normalColor;
     public Color selectedColor;
-    void Awake() {
-        background.color = normalColor;
-    }
+    // void Awake() {
+    //     background.color = normalColor;
+    // }
 
     public override void SelectElement() {
         background.color = selectedColor;

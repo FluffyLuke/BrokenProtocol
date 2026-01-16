@@ -54,7 +54,7 @@ MonoBehaviour:
   background: {fileID: 8021975437844784098}
   noteLabel: {fileID: 6165020934265958856}
   normalColor: {r: 0, g: 0, b: 0, a: 0}
-  selectedColor: {r: 1, g: 0.48748046, b: 0, a: 0}
+  selectedColor: {r: 0.7411765, g: 0.44313726, b: 0.29411766, a: 1}
 --- !u!222 &4400815080815500779
 CanvasRenderer:
   m_ObjectHideFlags: 0
