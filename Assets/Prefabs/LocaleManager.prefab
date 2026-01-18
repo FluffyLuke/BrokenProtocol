@@ -44,6 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9630d057422055697bbf8c23100e716e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localsFileName: 
+  folderName: POC
   globalSettings: {fileID: 11400000, guid: 8f9997e61da73e311aadb2110530c8aa, type: 2}
-  instance: {fileID: 0}

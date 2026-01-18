@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14fc0b45e63ddbe968d165a189e23911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetCamera: {fileID: 0}
+  targetCamera: {fileID: 4368331077331289053}
 --- !u!1 &1420815412498142880
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,7 +75,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1420815412498142880}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.13645962, y: -0, z: -0, w: 0.99064565}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -150,7 +150,7 @@ MonoBehaviour:
       Time: 2
     Restrictions: 0
   TiltAxis:
-    Value: -15.686062
+    Value: 0
     Center: 0
     Range: {x: -70, y: 70}
     Wrap: 0
@@ -210,13 +210,14 @@ GameObject:
   m_Component:
   - component: {fileID: 3082318351937383901}
   - component: {fileID: 8666129587448153604}
+  - component: {fileID: 3055124782235424980}
   m_Layer: 2
   m_Name: GroundedCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3082318351937383901
 Transform:
   m_ObjectHideFlags: 0
@@ -242,17 +243,41 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.75, y: 0.25, z: 0.75}
   m_Center: {x: 0, y: 0.3, z: 0}
+--- !u!114 &3055124782235424980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1510742353217950368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43558a706ec592a9aa2f88e3620c5790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnCollisionEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnCollisionExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTriggerEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTriggerExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2122376857689234611
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,13 +409,14 @@ GameObject:
   m_Component:
   - component: {fileID: 5957556386685771819}
   - component: {fileID: 4903886661229028123}
+  - component: {fileID: 5646262947854671839}
   m_Layer: 2
   m_Name: FallingCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5957556386685771819
 Transform:
   m_ObjectHideFlags: 0
@@ -416,17 +442,41 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.7, y: 1, z: 0.7}
   m_Center: {x: 0, y: 0.3, z: 0}
+--- !u!114 &5646262947854671839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4520739987498312678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43558a706ec592a9aa2f88e3620c5790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnCollisionEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnCollisionExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTriggerEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTriggerExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4662768091849695948
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,6 +523,9 @@ GameObject:
   - component: {fileID: 5429790306925440130}
   - component: {fileID: 9096908618414477458}
   - component: {fileID: 6516880491693015481}
+  - component: {fileID: 5617958953311400490}
+  - component: {fileID: 2200263430997409331}
+  - component: {fileID: 2455072094380869061}
   - component: {fileID: 3915127409200214527}
   - component: {fileID: 6762912820203956944}
   - component: {fileID: 2658897301287875749}
@@ -578,6 +631,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holster: {fileID: 9019839202534200898}
+--- !u!114 &5617958953311400490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4701769500907289076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeb4d59f8055362709854c32d9953d54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _controller: {fileID: 7941190269132411765}
+--- !u!114 &2200263430997409331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4701769500907289076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ad6b9d9dee56cd19a5ec0a966d537d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  featureName: 1
+--- !u!114 &2455072094380869061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4701769500907289076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b656b84b4e780ec5796cfd056e170bd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  featureName: 0
+  range: 5
 --- !u!114 &3915127409200214527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -590,6 +683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2532ef63361ff129b9ce105d4dc4d9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  features: []
 --- !u!114 &6762912820203956944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -597,20 +691,21 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4701769500907289076}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 738d6a4704ffc7537a2e11b3681b3ed6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  requiredFeatures: 0000000001000000
   RotationSpeed: 10
-  MaxWalkingSpeed: 500
-  MaxRunningSpeed: 1250
-  bobPivot: {fileID: 0}
-  headBobRotationForce: 0.5
-  headBobMaxX: 0.5
-  headBobMaxY: 0.5
-  GroundedCollider: {fileID: 0}
-  FallingCollider: {fileID: 0}
+  MaxWalkingSpeed: 5
+  MaxRunningSpeed: 7
+  bobPivot: {fileID: 4915335107292673567}
+  headBobRotationForce: 0.15
+  headBobMaxX: 0.1
+  headBobMaxY: 0.1
+  GroundedCollider: {fileID: 3055124782235424980}
+  FallingCollider: {fileID: 5646262947854671839}
   WalkingSound_ID: PlayerWalking_Snow
   RunningSound_ID: PlayerRunning_Snow
 --- !u!114 &2658897301287875749
@@ -620,11 +715,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4701769500907289076}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c5f53f83c875617b18a6d1ca4e43ea67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  requiredFeatures: 01000000
 --- !u!114 &8680058289403284902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -632,11 +728,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4701769500907289076}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a72f3ee3268550edc93ba6a88ea8bad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  requiredFeatures: 01000000
   moveToPositionTime: 1
 --- !u!114 &1184342330367663535
 MonoBehaviour:
@@ -650,7 +747,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbcff73c15f03b7aa9ee82034d3f8592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraTilt: {fileID: 0}
+  requiredFeatures: 
+  cameraTilt: {fileID: 1968565722268398043}
 --- !u!1 &4947127376290829210
 GameObject:
   m_ObjectHideFlags: 0
