@@ -42,15 +42,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5073741721693557456, guid: 0b81de001d2f6d740acfee594f9e7aaa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.12285
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5073741721693557456, guid: 0b81de001d2f6d740acfee594f9e7aaa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 53.22907
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5073741721693557456, guid: 0b81de001d2f6d740acfee594f9e7aaa, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -176.87376
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5073741721693557456, guid: 0b81de001d2f6d740acfee594f9e7aaa, type: 3}
       propertyPath: m_LocalRotation.w
@@ -82,7 +82,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5558107807497046122, guid: 0b81de001d2f6d740acfee594f9e7aaa, type: 3}
       propertyPath: m_Name
-      value: FencePole (1)
+      value: FencePole
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
