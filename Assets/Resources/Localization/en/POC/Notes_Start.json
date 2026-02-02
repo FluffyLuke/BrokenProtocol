@@ -15,6 +15,17 @@
         },
 
         {
+            "id": "noteName_start_indent",
+            "text": "Stockpile information",
+            "speed": 25
+        },
+        {
+            "id": "noteContent_start_indent",
+            "text": "Amount of ore extracted this winter is tremendous, but we have not enought storage vessels to contain it. John should buy more on his next run to the city.",
+            "speed": 25
+        },
+
+        {
             "id": "noteName_barricade",
             "text": "Warning on barricade",
             "speed": 25

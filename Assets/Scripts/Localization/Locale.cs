@@ -48,3 +48,9 @@ public struct Localization {
         ui = ui.Concat(other.ui).ToArray();
     }
 }
+
+// Used in some scripts
+public enum DialogueType {
+    Dialogue,
+    Monologue,
+}

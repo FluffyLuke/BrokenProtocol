@@ -48,7 +48,9 @@ public class LocalizationManager : MonoBehaviour
 
             Debug.Log($"Loaded new file with locales of id: {lPart.fileID}");
             localization.Connect(ref lPart);
-            
+            // foreach(CharacterDialogue a in lPart.dialogues) {
+            //     Debug.Log($"Loaded dialogue \"{a.id}\"");
+            // }
         }
     }
 

@@ -50,7 +50,27 @@
         },
 
         {
-            "id": "dialogue_wall1_d1",
+            "id": "monologue_ravineOverlook",
+            "speaker_name": "You",
+            "text": "Lanterns are still lit. This place must've been abandoned not so long ago...",
+            "speed": 20
+        },
+
+        {
+            "id": "dialogue_villageOverlook_d1",
+            "speaker_name": "You",
+            "text": "This is Alfa-3. I see the village, around 3 kilometers away from my position. Lights are still on.",
+            "speed": 30
+        },
+        {
+            "id": "dialogue_villageOverlook_d2",
+            "speaker_name": "HQ",
+            "text": "Copy that, Alfa-3. Proceed with caution.",
+            "speed": 30
+        },
+
+        {
+            "id": "dialogue_wall_d1",
             "speaker_name": "You",
             "text": "This is Alfa-3. The passage to Wolfbrum is barricaded, I cannot proceed. Is there any other way? Over.",
             "speed": 30
