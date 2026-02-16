@@ -75,7 +75,7 @@ public class SoundManager : MonoBehaviour {
                 break;
         }
 
-        source.PlayOneShot(clip);
+        source.Play();
         handle = new SoundHandle(source);
 
         return true;
