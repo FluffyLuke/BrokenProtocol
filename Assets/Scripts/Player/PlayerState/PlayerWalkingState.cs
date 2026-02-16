@@ -90,11 +90,20 @@ public class PlayerWalkingState : IPlayerState
         }
     }
     private void headBob() {
+        float previousT = headBobT;
+
         if (currentMovementState == MovementState.Standing) {
-            return;
+            if (previousT % 1 > 0.25) {
+                if (previousT + Time.deltaTime > Mathf.Ceil(previousT)) {
+                headBobT = Mathf.Ceil(previousT);
+                } else {
+                    headBobT += Time.deltaTime;
+                }
+            }
+        } else {
+            headBobT += Time.deltaTime;
         }
 
-        headBobT += Time.deltaTime;
         headBobT %= 2;
 
         Vector3 newRotation = bobPivot.rotation.eulerAngles;
