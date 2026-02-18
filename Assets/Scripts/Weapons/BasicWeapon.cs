@@ -33,6 +33,8 @@ public class Weapon : IItem
         _input.Disable();
     }
     private void fireWeaponCallback(InputAction.CallbackContext ctx) {
+        if (PlayerEventBus.isPaused) return;
+
         fireButtonHeld = true;
         FireWeapon();
     }
