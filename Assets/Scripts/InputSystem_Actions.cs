@@ -1351,6 +1351,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoreSpeed"",
+                    ""type"": ""Button"",
+                    ""id"": ""74450f7d-27f3-4f82-bf31-aa8da6737423"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1368,11 +1377,22 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e5400f9a-75b4-40e8-a711-71b88c6accfb"",
-                    ""path"": ""<Keyboard>/p"",
+                    ""path"": ""<Keyboard>/f12"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""SkipCutscene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9f5e0ddf-0407-43e2-bcd9-91d3216affb2"",
+                    ""path"": ""<Keyboard>/f11"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoreSpeed"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1480,6 +1500,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Debug = asset.FindActionMap("Debug", throwIfNotFound: true);
         m_Debug_AddCursor = m_Debug.FindAction("AddCursor", throwIfNotFound: true);
         m_Debug_SkipCutscene = m_Debug.FindAction("SkipCutscene", throwIfNotFound: true);
+        m_Debug_MoreSpeed = m_Debug.FindAction("MoreSpeed", throwIfNotFound: true);
     }
 
     ~@InputSystem_Actions()
@@ -2064,6 +2085,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private List<IDebugActions> m_DebugActionsCallbackInterfaces = new List<IDebugActions>();
     private readonly InputAction m_Debug_AddCursor;
     private readonly InputAction m_Debug_SkipCutscene;
+    private readonly InputAction m_Debug_MoreSpeed;
     /// <summary>
     /// Provides access to input actions defined in input action map "Debug".
     /// </summary>
@@ -2083,6 +2105,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Debug/SkipCutscene".
         /// </summary>
         public InputAction @SkipCutscene => m_Wrapper.m_Debug_SkipCutscene;
+        /// <summary>
+        /// Provides access to the underlying input action "Debug/MoreSpeed".
+        /// </summary>
+        public InputAction @MoreSpeed => m_Wrapper.m_Debug_MoreSpeed;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -2115,6 +2141,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @SkipCutscene.started += instance.OnSkipCutscene;
             @SkipCutscene.performed += instance.OnSkipCutscene;
             @SkipCutscene.canceled += instance.OnSkipCutscene;
+            @MoreSpeed.started += instance.OnMoreSpeed;
+            @MoreSpeed.performed += instance.OnMoreSpeed;
+            @MoreSpeed.canceled += instance.OnMoreSpeed;
         }
 
         /// <summary>
@@ -2132,6 +2161,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @SkipCutscene.started -= instance.OnSkipCutscene;
             @SkipCutscene.performed -= instance.OnSkipCutscene;
             @SkipCutscene.canceled -= instance.OnSkipCutscene;
+            @MoreSpeed.started -= instance.OnMoreSpeed;
+            @MoreSpeed.performed -= instance.OnMoreSpeed;
+            @MoreSpeed.canceled -= instance.OnMoreSpeed;
         }
 
         /// <summary>
@@ -2477,5 +2509,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSkipCutscene(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "MoreSpeed" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMoreSpeed(InputAction.CallbackContext context);
     }
 }
