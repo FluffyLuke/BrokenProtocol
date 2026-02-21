@@ -1551,12 +1551,33 @@ MonoBehaviour:
   colorMapResolution: 256
   layerSettings:
   - enabled: 1
+    layer: {fileID: 0}
+    modifierStack: []
+  - enabled: 1
     layer: {fileID: 8574412962073106934, guid: f9ac7754363e0f6c1b030f30ddcf865d, type: 2}
     modifierStack: []
   - enabled: 1
     layer: {fileID: 8574412962073106934, guid: 04cfc54952d92958b896ccb524bfa18f, type: 2}
     modifierStack:
     - {fileID: 45278155}
+  - enabled: 1
+    layer: {fileID: 8574412962073106934, guid: 9f6199e64b417de519bb612d0d487fdf, type: 2}
+    modifierStack: []
+  - enabled: 1
+    layer: {fileID: 8574412962073106934, guid: caa71a8601696410583373798f7633f3, type: 2}
+    modifierStack: []
+  - enabled: 1
+    layer: {fileID: 8574412962073106934, guid: de2b2f0fd7893724296783fb6e5ec206, type: 2}
+    modifierStack: []
+  - enabled: 1
+    layer: {fileID: 8574412962073106934, guid: 5ba217566c584351d875ceac01aa0b13, type: 2}
+    modifierStack: []
+  - enabled: 1
+    layer: {fileID: 8574412962073106934, guid: 56f91649c2f9505aeb1c1c07201d0d08, type: 2}
+    modifierStack: []
+  - enabled: 1
+    layer: {fileID: 8574412962073106934, guid: ff2b1da20cf5df303bf0ac95f28b8c7c, type: 2}
+    modifierStack: []
   autoRepaint: 1
   terrainListeners:
   - {fileID: 59220945}
@@ -38390,7 +38411,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8165114001795247185, guid: c5898126db57e33b4b121e90800a436b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.002380371
+      value: 0.0014038086
       objectReference: {fileID: 0}
     - target: {fileID: 8417947494124824010, guid: c5898126db57e33b4b121e90800a436b, type: 3}
       propertyPath: m_AnchorMax.y
