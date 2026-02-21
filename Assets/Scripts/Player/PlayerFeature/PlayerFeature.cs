@@ -9,4 +9,5 @@ public abstract class IPlayerFeature : MonoBehaviour {
 public enum PlayerFeature {
     Interact,
     OpenPauseMenu,
+    Zoom,
 }

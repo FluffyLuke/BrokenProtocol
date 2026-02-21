@@ -16,4 +16,5 @@ public class PlayerEventBus : MonoBehaviour
     public static UnityEvent<bool> PauseGame = new();
     public static bool isPaused = false;
     public static UnityEvent<NoteData> ShowNote = new();
+    public static UnityEvent<bool> Zoom = new();
 }

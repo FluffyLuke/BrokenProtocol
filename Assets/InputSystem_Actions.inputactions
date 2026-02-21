@@ -130,6 +130,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Zoom",
+                    "type": "Button",
+                    "id": "0d50c4cd-853c-49b5-9987-d595ecc8a03c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -592,6 +601,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "OpenPause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "030f804a-af29-43f6-ad42-d7f243135cc3",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Zoom",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -1245,6 +1265,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "MoreSpeed",
+                    "type": "Button",
+                    "id": "74450f7d-27f3-4f82-bf31-aa8da6737423",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1262,11 +1291,22 @@
                 {
                     "name": "",
                     "id": "e5400f9a-75b4-40e8-a711-71b88c6accfb",
-                    "path": "<Keyboard>/p",
+                    "path": "<Keyboard>/f12",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "SkipCutscene",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9f5e0ddf-0407-43e2-bcd9-91d3216affb2",
+                    "path": "<Keyboard>/f11",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoreSpeed",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
