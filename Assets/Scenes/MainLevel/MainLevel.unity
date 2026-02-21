@@ -29598,15 +29598,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5086614421566863664, guid: 0ebdb8557aefda69aa062070627e8635, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.708
+      value: -12.927
       objectReference: {fileID: 0}
     - target: {fileID: 5086614421566863664, guid: 0ebdb8557aefda69aa062070627e8635, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -45.008
+      value: -45.235
       objectReference: {fileID: 0}
     - target: {fileID: 5086614421566863664, guid: 0ebdb8557aefda69aa062070627e8635, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -32.132
+      value: -32.259
       objectReference: {fileID: 0}
     - target: {fileID: 5086614421566863664, guid: 0ebdb8557aefda69aa062070627e8635, type: 3}
       propertyPath: m_LocalRotation.w
@@ -29639,6 +29639,10 @@ PrefabInstance:
     - target: {fileID: 7484926223076146532, guid: 0ebdb8557aefda69aa062070627e8635, type: 3}
       propertyPath: m_Name
       value: Stairs_Wooden (32)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8754049625834239618, guid: 0ebdb8557aefda69aa062070627e8635, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -37223,7 +37227,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3172957365711341990, guid: c5898126db57e33b4b121e90800a436b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.001739502
+      value: 0.0025024414
       objectReference: {fileID: 0}
     - target: {fileID: 3228240096647108866, guid: c5898126db57e33b4b121e90800a436b, type: 3}
       propertyPath: m_Name
