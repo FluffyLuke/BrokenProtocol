@@ -525,6 +525,7 @@ GameObject:
   - component: {fileID: 6516880491693015481}
   - component: {fileID: 5617958953311400490}
   - component: {fileID: 2200263430997409331}
+  - component: {fileID: 3422902867706740155}
   - component: {fileID: 2455072094380869061}
   - component: {fileID: 3915127409200214527}
   - component: {fileID: 6762912820203956944}
@@ -657,6 +658,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   featureName: 1
+--- !u!114 &3422902867706740155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4701769500907289076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ee08d588f6b4b4b7948129035829e3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  featureName: 2
 --- !u!114 &2455072094380869061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -696,7 +710,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 738d6a4704ffc7537a2e11b3681b3ed6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredFeatures: 0000000001000000
+  requiredFeatures: 000000000100000002000000
   RotationSpeed: 10
   MaxWalkingSpeed: 5
   MaxRunningSpeed: 7
@@ -793,10 +807,10 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 1, g: 0.74509805, b: 0, a: 1}
-  m_Intensity: 4
-  m_Range: 7
-  m_SpotAngle: 90
-  m_InnerSpotAngle: 70
+  m_Intensity: 10
+  m_Range: 20
+  m_SpotAngle: 110
+  m_InnerSpotAngle: 90
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -920,7 +934,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5406605313019128736
 Transform:
   m_ObjectHideFlags: 0
@@ -947,8 +961,8 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 0.6313726}
-  m_Intensity: 7
-  m_Range: 16.395872
+  m_Intensity: 50
+  m_Range: 20.280306
   m_SpotAngle: 62.454556
   m_InnerSpotAngle: 43.561714
   m_CookieSize: 10
@@ -1122,11 +1136,11 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 0
-  m_Color: {r: 1, g: 0.74664915, b: 0, a: 1}
-  m_Intensity: 4
-  m_Range: 7
-  m_SpotAngle: 90
-  m_InnerSpotAngle: 70
+  m_Color: {r: 1, g: 0.74509805, b: 0, a: 1}
+  m_Intensity: 10
+  m_Range: 20
+  m_SpotAngle: 110
+  m_InnerSpotAngle: 90
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0

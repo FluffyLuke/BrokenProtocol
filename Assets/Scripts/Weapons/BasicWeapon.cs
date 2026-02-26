@@ -15,6 +15,7 @@ public class Weapon : IItem
     [SerializeField] private string fireAnimation = "Fire";
     [SerializeField] private string reloadAnimation = "Reload";
     [Header("WeaponOption")]
+    public float Spray = 0.1f;
     public float repeatFireSecs = 0;
     private Coroutine repeatFireCoroutine;
     [Header("Decals")]
@@ -50,13 +51,14 @@ public class Weapon : IItem
         if(ammo.count <= 0) return;
 
         _animator.Play(fireAnimation, -1, 0.0f);
-        Debug.Log($"{ammo.count}");
+        Debug.Log($"Ammo left: {ammo.count}");
+        Debug.Log($"{Camera.main.transform.forward}");
         ammo.count -= 1;
 
         float maxDistance = 1000f;
 
         RaycastHit hit;
-        if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, maxDistance, ~LayersToIgnore)) {
+        if(Physics.Raycast(Camera.main.transform.position, getShootingDirection(), out hit, maxDistance, ~LayersToIgnore)) {
             _events.weaponFire.Invoke(hit, true);
         }
 
@@ -88,5 +90,17 @@ public class Weapon : IItem
     public override void Hide() {
         transform.gameObject.SetActive(false);
         Destroy(gameObject);
+    }
+
+    private Vector3 getShootingDirection() {
+        Vector3 forwardVector = Camera.main.transform.forward;
+
+        // Get deviation
+        Vector2 deviation = UnityEngine.Random.insideUnitCircle * Spray;
+
+        // Translate deviation to camera rotation
+        Vector3 spread = Camera.main.transform.right * deviation.x + Camera.main.transform.up * deviation.y;
+
+        return (forwardVector + spread).normalized;
     }
 }

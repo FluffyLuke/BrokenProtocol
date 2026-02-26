@@ -53,6 +53,7 @@ MonoBehaviour:
   _animator: {fileID: 8888487198308375363}
   fireAnimation: Fire
   reloadAnimation: Reload
+  Spray: 0.04
   repeatFireSecs: 0
   LayersToIgnore:
     serializedVersion: 2
@@ -87,8 +88,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26d5ebdf2ce8662d9b243cf87e501a2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletHoleDecal: {fileID: 114898179317397759, guid: 6f923c9f7c597284081cb25cdf5b2cf4, type: 3}
-  _muzzleFlash: {fileID: 7800228180027185619}
+  bulletHoleDecal: {fileID: 114898179317397759, guid: 6f923c9f7c597284081cb25cdf5b2cf4, type: 3}
+  muzzleFlash: {fileID: 7800228180027185619}
 --- !u!114 &4833525281844318279
 MonoBehaviour:
   m_ObjectHideFlags: 0
