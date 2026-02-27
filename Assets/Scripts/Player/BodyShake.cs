@@ -4,47 +4,80 @@ using UnityEngine;
 public class BodyShake : MonoBehaviour
 {
     [Header("Intensivity")]
-    [Range(0.1f, 2f)]
-    public float WalkMultiplier = 1.0f;
-    [Range(0.1f, 2f)]
+    [Range(0.1f, 5f)]
+    public float WalkingMultiplier = 1.0f;
+    [Range(0.1f, 5f)]
     public float RunningMultiplier = 1.3f;
     [Header("Values")]
     public float Frequency = 10.0f;
-    public float Amount = 0.015f;
+    public float weaponWalkingBobMaxX = 0.015f;
+    public float weaponWalkingBobMaxY = 0.015f;
+    public float weaponRunningBobMaxX = 0.015f;
+    public float weaponRunningBobMaxY = 0.015f;
+    private float weaponBobT = 0;
+    private MovementState currentMovementState = MovementState.Standing;
     private Animator playerAnimator;
-    private Vector3 startingPos;
+    private Vector3 originalBobPivotPosition;
     void Start() {
-        startingPos = transform.localPosition;
+        originalBobPivotPosition = transform.localPosition;
         playerAnimator = GameObject.FindGameObjectWithTag(Tags.PlayerTag).GetComponent<Animator>();
     }
     void Update() {
         AnimatorStateInfo info = playerAnimator.GetCurrentAnimatorStateInfo(0);
+
+        float currentMultiplier = 1;
+        float currentMaxX = 0.015f;
+        float currentMaxY = 0.015f;
+
         if(info.IsName("Standing")) {
-            stopShake();
+            currentMovementState = MovementState.Standing;
+            currentMultiplier = 1;
+            currentMaxX = 0.015f;
+            currentMaxY = 0.015f;
         } else if(info.IsName("Walking")) {
-            shake(WalkMultiplier);
+            currentMovementState = MovementState.Walking;
+            currentMultiplier = WalkingMultiplier;
+            currentMaxX = weaponWalkingBobMaxX;
+            currentMaxY = weaponWalkingBobMaxY;
         } else if(info.IsName("Running")) {
-            shake(RunningMultiplier);
+            currentMovementState = MovementState.Running;
+            currentMultiplier = RunningMultiplier;
+            currentMaxX = weaponRunningBobMaxX;
+            currentMaxY = weaponRunningBobMaxY;
         }
+
+        shake(currentMultiplier, currentMaxX, currentMaxY);
     }
 
-    private void shake(float multiplier) {
-        float speedMultiplier = (playerAnimator.GetFloat("Speed") / 2000f) + 1;
+    private void shake(float multiplier, float maxX, float maxY) {
+        float previousT = weaponBobT;
 
+        if (currentMovementState == MovementState.Standing) {
+            // if (previousT % 1 > 0.25) {
+            //     if (previousT + Time.deltaTime > Mathf.Ceil(previousT)) {
+            //     weaponBobT = Mathf.Ceil(previousT);
+            //     } else {
+            //         weaponBobT += Time.deltaTime * multiplier;
+            //     }
+            // }
+            if (previousT + Time.deltaTime > Mathf.Ceil(previousT)) {
+                weaponBobT = Mathf.Ceil(previousT);
+            } else {
+                weaponBobT += Time.deltaTime * multiplier;
+            }
+        } else {
+            weaponBobT += Time.deltaTime * multiplier;
+        }
+        weaponBobT %= 2;
 
-        Vector3 pos = Vector3.zero;
+        float x = Mathf.Sin(weaponBobT * Mathf.PI) * maxX;
+        float y = Mathf.Cos(weaponBobT * Mathf.PI * 2) * maxY;
 
-        pos.y += Mathf.Cos(Time.time * Frequency * multiplier) * Amount;
-        pos.x += Mathf.Sin(Time.time * Frequency * multiplier/ 2) * Amount * 2;
-
-        // pos.y += Mathf.Lerp(transform.localPosition.x, Mathf.Sin(Time.time * Frequency * multiplier) * Amount, Time.deltaTime * Frequency);
-        // pos.x += Mathf.Lerp(transform.localPosition.x, Mathf.Sin(Time.time * Frequency * multiplier / 2) * Amount * 2, Time.deltaTime * Frequency);
-
-        transform.localPosition = pos;
+        transform.localPosition = new Vector3 (x, y, 0) + originalBobPivotPosition;
     }
 
-    private void stopShake() {
-        if(transform.localPosition == startingPos) return;
-        transform.localPosition = Vector3.Lerp(transform.localPosition, startingPos, Time.deltaTime * Frequency);
-    }
+    // private void stopShake() {
+    //     if(transform.localPosition == startingPos) return;
+    //     transform.localPosition = Vector3.Lerp(transform.localPosition, startingPos, Time.deltaTime * Frequency);
+    // }
 }

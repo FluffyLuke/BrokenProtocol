@@ -1546,6 +1546,14 @@ PrefabInstance:
       propertyPath: Amount
       value: 0.015
       objectReference: {fileID: 0}
+    - target: {fileID: 7891319314904096179, guid: 17401591b76b30f748ee2326803c5deb, type: 3}
+      propertyPath: RunningMultiplier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7891319314904096179, guid: 17401591b76b30f748ee2326803c5deb, type: 3}
+      propertyPath: weaponRunningBobMaxX
+      value: 0.045
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
