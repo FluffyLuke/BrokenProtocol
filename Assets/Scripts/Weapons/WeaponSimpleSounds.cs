@@ -8,7 +8,7 @@ public class WeaponSounds : MonoBehaviour
     void Start() {
         _events = GetComponent<WeaponEventBus>();
         _events.weaponFire.AddListener(onFire);
-        _events.weaponReload.AddListener(onReload);
+        _events.weaponReloading.AddListener(onReload);
     }
 
     void onFire(RaycastHit hit, bool ifHit) {

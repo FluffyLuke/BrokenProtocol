@@ -63,6 +63,7 @@ public class Weapon : IItem
         }
 
         _events.weaponFire.Invoke(hit, false);
+        _events.weaponFireWithoutData.Invoke();
 
         if(repeatFireSecs != 0) {
             StartCoroutine(fireAgain());
@@ -79,12 +80,11 @@ public class Weapon : IItem
         Ammo ammo = _data.GetProperty<Ammo>();
         ammo.count = ammo.maxAmmo;
         _animator.Play(reloadAnimation);
-        _events.weaponReload.Invoke();
+        _events.weaponReloading.Invoke();
     }
     public override void Grab(ItemData itemData) {
         _data = itemData;
         Ammo ammo = _data.GetProperty<Ammo>();
-        Debug.Log(ammo.count);
         transform.gameObject.SetActive(true);
     }
     public override void Hide() {
