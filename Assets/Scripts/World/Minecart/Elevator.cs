@@ -13,6 +13,7 @@ public enum ElevatorState {
 	Moving,
 	Up,
 }
+// [RequireComponent(typeof(Rigidbody))]
 public class Elevator : MonoBehaviour {
 	[SerializeField] private SimpleSpline elevatorSpline;
 	[SerializeField] private SimpleSpline pathDown;
@@ -22,22 +23,26 @@ public class Elevator : MonoBehaviour {
 	[SerializeField] private float moveSpeed;
 	public List<Minecart> carts = new();
 	[HideInInspector] public RailConnection railConnection;
+	private Rigidbody rb;
 	[SerializeField] public ElevatorState elevatorState {
 		get;
 		private set;
     } = ElevatorState.Down;
 	void Start() {
 		railConnection = GetComponent<RailConnection>();
+		rb = GetComponent<Rigidbody>();
+		
 		railConnection.connectionAnchors = new RailConnectionField[1];
 		resetConnectionAnchors();
 	}
-	public void SetState(bool state) {
+	public void SetState(bool _) {
 		if (elevatorState == ElevatorState.Moving) {
             Debug.LogError("Tried to move elevator, but it is already moving!");
 			return;
         }
 
-		ElevatorState nextElevatorState = state ? ElevatorState.Up : ElevatorState.Down;
+		ElevatorState currentState = elevatorState;
+		ElevatorState nextElevatorState = currentState == ElevatorState.Down ? ElevatorState.Up : ElevatorState.Down;
 		elevatorState = ElevatorState.Moving;
 
 		resetConnectionAnchors();
@@ -51,12 +56,16 @@ public class Elevator : MonoBehaviour {
             }
         }
 
-		Vector3 currentPosition = transform.position;
-		Vector3 moveTo = state ? elevatorUp.transform.position : elevatorDown.transform.position;
-		float distance = Vector3.Distance(currentPosition, moveTo);
 
-		transform
-			.DOMoveY(moveTo.y, moveSpeed)
+		Vector3 moveTo = currentState == ElevatorState.Down ? elevatorUp.transform.position : elevatorDown.transform.position;
+		float distance = Vector3.Distance(elevatorDown.position, elevatorUp.position);
+		
+		Debug.Log($"Time: {distance / moveSpeed}");
+		Debug.Log($"Next pos {moveTo}");
+		
+		rb
+			.DOMoveY(moveTo.y, distance / moveSpeed)
+			.SetEase(Ease.Linear)
 			.OnComplete(() => {
 				elevatorState = nextElevatorState;
 				resetConnectionAnchors();
@@ -65,8 +74,12 @@ public class Elevator : MonoBehaviour {
     }
 
 	public void OnTriggerEnter(Collider other) {
-		Debug.Log(other.gameObject.name);
 		Minecart minecart = other.GetComponent<Minecart>();
+
+		if (other.CompareTag(Tags.PlayerTag)) {
+			
+			return;
+		}
 
 		if (minecart == null) {
             minecart = other.GetComponentInParent<Minecart>();

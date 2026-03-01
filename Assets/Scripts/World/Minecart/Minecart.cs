@@ -8,11 +8,11 @@ public class Minecart : MonoBehaviour {
     public float reverseSpeed = 2f;
     public SplinePositionData posData;
     [SerializeField] private SimpleSpline startingRail;
-    public SimpleSpline rail;
-    public bool playerFromTheBack;
+    [HideInInspector] public  SimpleSpline rail;
+    [HideInInspector] public bool playerFromTheBack;
 
-    public bool pushingForwardBlocked = false;
-    public bool pushingBackwardsBlocked = false;
+    [HideInInspector] public bool pushingForwardBlocked = false;
+    [HideInInspector] public bool pushingBackwardsBlocked = false;
 
     void Start() {
         rail = GetComponent<SimpleSpline>();
@@ -47,7 +47,7 @@ public class Minecart : MonoBehaviour {
         }
     }
 	public void PushCart(float speed, bool direction) {
-        Debug.Log(direction);
+        // Debug.Log(direction);
         if (!direction && pushingForwardBlocked) {
             return;
         }
