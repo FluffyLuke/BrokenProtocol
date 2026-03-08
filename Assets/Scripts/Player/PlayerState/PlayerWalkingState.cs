@@ -58,7 +58,7 @@ public class PlayerWalkingState : IPlayerState
 
         originalBobPivotPosition = bobPivot.localPosition;
     }
-    void Update() {
+    void FixedUpdate() {
         movePlayer();
         rotatePlayer();
         headBob();

@@ -1,74 +1,93 @@
+using System;
 using System.Collections.Generic;
+using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
+using UnityEngine.Splines;
 
-[RequireComponent(typeof(SimpleSpline))]
-public class Minecart : MonoBehaviour {
-    public float speed = 3f;
+[RequireComponent(typeof(SplineContainer))]
+public class Minecart : IPushable {
+    public float forwardspeed = 3f;
     public float reverseSpeed = 2f;
-    public SplinePositionData posData;
-    [SerializeField] private SimpleSpline startingRail;
-    [HideInInspector] public  SimpleSpline rail;
+    [Range(0f, 1f)]
+    public float positionT = 0f;
+    
+    public bool pushingForwardsBlocked = false;
+    public bool pushingBackwardsBlocked = false;
+    
+    [SerializeField] private SplineContainer rail;
     [HideInInspector] public bool playerFromTheBack;
 
-    [HideInInspector] public bool pushingForwardBlocked = false;
-    [HideInInspector] public bool pushingBackwardsBlocked = false;
-
+    private PlayerPushingState player = null;
+    
     void Start() {
-        rail = GetComponent<SimpleSpline>();
-
-        rail.anchors = new List<SplineAnchor>(startingRail.anchors);
-
-		(Vector3 position, Quaternion rotation) = rail.GetCurrentPosition(ref posData);
-		transform.position = position;
-		transform.rotation = rotation;	
+        player = GameObject.FindWithTag(Tags.PlayerTag).GetComponent<PlayerPushingState>();
+        ResetPosition();
 	}
 
-	void LateUpdate() {
-		(Vector3 position, Quaternion rotation) = rail.GetCurrentPosition(ref posData);
-		transform.position = position;
-		transform.rotation = rotation;
-	}
-
-	// This code is a mess, but a working mess (I hope)
-	public void PushForward() {
-        if (playerFromTheBack) {
-            PushCart(speed, true);
-        } else {
-            PushCart(speed, false);
-        }
+    void LateUpdate() {
+        CheckMovement();
     }
 
-    public void PushBackward() {
-        if (playerFromTheBack) {
-            PushCart(reverseSpeed, false);
-        } else {
-            PushCart(reverseSpeed, true);
-        }
+    private void CheckMovement() {
+        if (!input.Player.enabled) return;
+        
+        Vector2 move = input.Player.Move.ReadValue<Vector2>();
+
+        if (move.y == 0) return;
+        
+        bool forward = move.y > 0;
+        
+        // Reverse if player is set backwards
+        forward = side == 0 ? forward : !forward;
+        float currentSpeed = move.y > 0 ? forwardspeed : reverseSpeed;
+        
+        Debug.Log($"Currentspeed: {currentSpeed}, forward: {forward}, move.y: {move.y}, side: {side}");
+        
+        PushCart(currentSpeed, forward);
     }
-	public void PushCart(float speed, bool direction) {
+	public void PushCart(float speed, bool forwards) {
         // Debug.Log(direction);
-        if (!direction && pushingForwardBlocked) {
+        if (!forwards && pushingForwardsBlocked) {
             return;
         }
 
-        if (direction && pushingBackwardsBlocked) {
+        if (forwards && pushingBackwardsBlocked) {
             return;
         }
 
-        (Vector3 position, Quaternion rotation) = rail.GetNextPosition(ref posData, speed, direction);
-		transform.position = position;
-		transform.rotation = rotation;
+        float moveBy = (speed * Time.deltaTime) / rail[0].GetLength();
+        positionT += forwards ? moveBy : -moveBy;
+        
+        positionT = Mathf.Max(positionT, 0);
+        positionT = Mathf.Min(positionT, 1);
+
+        ResetPosition();
+        SetPlayerPosition();
     }
     public void ResetPosition() {
-        (Vector3 position, Quaternion rotation) = rail.GetNextPosition(ref posData, 0, true);
-		transform.position = position;
-		transform.rotation = rotation;
+        // https://stackoverflow.com/questions/78315618/change-the-direction-of-rotation-of-the-object
+        float3 currentPosition = rail[0].EvaluatePosition(Mathf.Min(positionT, 0.999f));
+        float3 nextPosition = rail[0].EvaluatePosition(Mathf.Min(positionT + 0.05f, 1f));
+        transform.position = (Vector3)currentPosition + rail.transform.position;
+        
+        Vector3 direction = nextPosition - currentPosition;
+        direction.Normalize();
+        transform.rotation = Quaternion.LookRotation(direction, transform.up);
     }
 
-    public void RebuildRail(List<SplineAnchor> anchors, int newIndex) {
-        rail.anchors = anchors;
-        posData.currentAnchorIndex = newIndex;
-        ResetPosition();
+    public void SetPlayerPosition() {
+        player.transform.position = player.Follow.transform.position;
+        player.transform.rotation = player.Follow.transform.rotation;
+    }
+
+    public override void EnablePushable() {
+        input.Player.Enable();
+    }
+
+    public override void DisablePushable() {
+        input.Player.Disable();
     }
 }

@@ -17,7 +17,7 @@ public class MinecartBlock : MonoBehaviour
         if (condition1 || condition2) return;
 
         if (isThisABackSide) {
-            minecart.pushingForwardBlocked = true;
+            minecart.pushingForwardsBlocked = true;
         } else {
             minecart.pushingBackwardsBlocked = true;
         }
@@ -30,7 +30,7 @@ public class MinecartBlock : MonoBehaviour
         if (condition1 || condition2) return;
 
         if (isThisABackSide) {
-            minecart.pushingForwardBlocked = false;
+            minecart.pushingForwardsBlocked = false;
         } else {
             minecart.pushingBackwardsBlocked = false;
         }
