@@ -17,15 +17,23 @@ public class Minecart : IPushable {
     public bool pushingForwardsBlocked = false;
     public bool pushingBackwardsBlocked = false;
     
-    [SerializeField] private SplineContainer rail;
+    public SplineContainer rail;
     [HideInInspector] public bool playerFromTheBack;
 
     private PlayerPushingState player = null;
-    
+    private PushObject[] pushHandles;
+
+    private void OnValidate() {
+        if (rail != null)
+            ResetPosition();
+    }
+
     void Start() {
         player = GameObject.FindWithTag(Tags.PlayerTag).GetComponent<PlayerPushingState>();
         ResetPosition();
-	}
+
+        pushHandles = GetComponentsInChildren<PushObject>();
+    }
 
     void LateUpdate() {
         CheckMovement();
@@ -43,8 +51,6 @@ public class Minecart : IPushable {
         // Reverse if player is set backwards
         forward = side == 0 ? forward : !forward;
         float currentSpeed = move.y > 0 ? forwardspeed : reverseSpeed;
-        
-        Debug.Log($"Currentspeed: {currentSpeed}, forward: {forward}, move.y: {move.y}, side: {side}");
         
         PushCart(currentSpeed, forward);
     }
@@ -68,6 +74,7 @@ public class Minecart : IPushable {
         SetPlayerPosition();
     }
     public void ResetPosition() {
+        Debug.Log("Reset position");
         // https://stackoverflow.com/questions/78315618/change-the-direction-of-rotation-of-the-object
         float3 currentPosition = rail[0].EvaluatePosition(Mathf.Min(positionT, 0.999f));
         float3 nextPosition = rail[0].EvaluatePosition(Mathf.Min(positionT + 0.05f, 1f));
@@ -77,17 +84,41 @@ public class Minecart : IPushable {
         direction.Normalize();
         transform.rotation = Quaternion.LookRotation(direction, transform.up);
     }
+    
+    // Spline can be rebuild. Reset T in this case
+    public void MoveToNewSpline() {
+        Debug.Log("Moving to the new spline");
+        // https://stackoverflow.com/questions/78315618/change-the-direction-of-rotation-of-the-object
+        
+        // Debug.Log($"Position: {transform.position}");
+        // foreach (BezierKnot k in rail[0]) {
+        //     Debug.Log($"BK Position: {k.Position}");
+        // }
+        SplineUtility.GetNearestPoint(rail[0], 
+            transform.localPosition, 
+            out float3 currentPosition, 
+            out float newT);
+        // Debug.Log($"New T: {newT}");
+        positionT = newT;
+        ResetPosition();
+    }
 
     public void SetPlayerPosition() {
         player.transform.position = player.Follow.transform.position;
         player.transform.rotation = player.Follow.transform.rotation;
     }
 
-    public override void EnablePushable() {
+    public override void EnterPushingState() {
         input.Player.Enable();
     }
 
-    public override void DisablePushable() {
+    public override void ExitPushingState() {
         input.Player.Disable();
+    }
+
+    public override void EnablePushable(bool enable) {
+        foreach (var handle in pushHandles) {
+            handle.gameObject.GetComponent<Collider>().enabled = enable;
+        }
     }
 }

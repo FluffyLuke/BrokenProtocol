@@ -25,12 +25,16 @@ public class PlayerPushingState : IPlayerState {
 			.OnComplete(() => {
                 input.Player.Enable();
                 pushable.side = side;
-                pushable.EnablePushable();
+                pushable.EnterPushingState();
             });
     }
 
 	public override void ExitState() {
-		pushable.DisablePushable();
+		Vector3 currentRotation = transform.localRotation.eulerAngles;
+		currentRotation.x = 0;
+		currentRotation.z = 0;
+		transform.eulerAngles = currentRotation;
+		pushable.ExitPushingState();
 		base.ExitState();
 		input.Player.Disable();
 	}
