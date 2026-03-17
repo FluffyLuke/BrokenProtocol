@@ -1,39 +1,50 @@
 using UnityEngine;
 using DG.Tweening;
 using System.Collections;
+
 [RequireComponent(typeof(WeaponEventBus))]
-public class SimpleShot : MonoBehaviour
-{
-    [SerializeField] private GameObject _bulletHoleDecal;
-    [SerializeField] private GameObject _muzzleFlash;
-    private WeaponEventBus _events;
-    private Coroutine _flash;
+public class SimpleShot : MonoBehaviour {
+    [SerializeField] private GameObject bulletHoleDecal;
+    [SerializeField] private GameObject muzzleFlash;
+    private GameObject decalsHolder = null;
+    private WeaponEventBus events;
+    private Coroutine flash;
     void Start() {
-        _events = GetComponent<WeaponEventBus>();
-        _events.weaponFire.AddListener(onFire);
+        events = GetComponent<WeaponEventBus>();
+        events.weaponFire.AddListener(onFire);
+        decalsHolder = GameObject.FindWithTag(Tags.DecalsHolderTag);
     }
 
     void onFire(RaycastHit hit, bool ifHit) {
-        if(_flash != null) {
-            StopCoroutine(_flash);
+        if(flash != null) {
+            StopCoroutine(flash);
         }
 
-        _flash = StartCoroutine(flash());
+        flash = StartCoroutine(spawnFlash());
 
         spawnBulletHole(hit, ifHit);
     }
 
-    private IEnumerator flash() {
-        _muzzleFlash.gameObject.SetActive(true);
+    private IEnumerator spawnFlash() {
+        muzzleFlash.gameObject.SetActive(true);
         yield return new WaitForSeconds(0.1f);
-        _muzzleFlash.SetActive(false);
+        muzzleFlash.SetActive(false);
     }
 
     private void spawnBulletHole(RaycastHit hit, bool ifHit) {
         if(ifHit) {
             Vector3 offsetPosition = hit.point + hit.normal * 0.01f;
             Quaternion rotation = Quaternion.LookRotation(hit.normal);
-            Instantiate(_bulletHoleDecal, offsetPosition, rotation);
+            GameObject instance = Instantiate(bulletHoleDecal, offsetPosition, rotation);
+
+            if (decalsHolder != null) {
+                instance.transform.parent = decalsHolder.transform;
+            }
+
+            HitDetector detector = hit.transform.GetComponent<HitDetector>();
+            if (detector != null) {
+                detector.OnHit();
+            }
         }
     }
 }

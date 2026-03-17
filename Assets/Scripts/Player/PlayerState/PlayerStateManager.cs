@@ -12,7 +12,7 @@ public class PlayerStateManager : MonoBehaviour {
     private IPlayerState currentState;
     public IPlayerFeature[] features;
     void Start() {
-        PlayerEventBus.PushMinecart.AddListener(switchToPushingState);
+        PlayerEventBus.SwitchToPushObjectState.AddListener(switchToPushingState);
         PlayerEventBus.SwitchToWalkState.AddListener(switchToWalkState);
         PlayerEventBus.SwitchToCutsceneState.AddListener(switchToCutsceneState);
 
@@ -64,14 +64,14 @@ public class PlayerStateManager : MonoBehaviour {
         }
     }
 
-    private void switchToPushingState(Transform target, Minecart targetMinecart) {
+    private void switchToPushingState(Transform target, IPushable pushable, int side) {
         //Debug.Log("Player is switching to \"Cart pushing\" state");
 
         turnOffFeatures();
 
         currentState.ExitState();
         currentState = useState;
-        useState.SetData(target, targetMinecart);
+        useState.SetData(target, pushable, side);
         turnOnRequiredFeatures(currentState);
         currentState.EnterState();
     }

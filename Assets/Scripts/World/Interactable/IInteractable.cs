@@ -11,7 +11,6 @@ public abstract class IInteractable : MonoBehaviour {
         requirements = GetComponents<InteractableRequirement>();
 	}
 	public bool canInteract = true;
-    public float fireInteractDelay = 0.0f;
     public abstract void Interact();
     public UnityEvent interactedWith;
     // This is ugly

@@ -1,5 +1,51 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &207568098593327923
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7230662330696220709}
+  - component: {fileID: 3561471952304852034}
+  m_Layer: 2
+  m_Name: SoundFire
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7230662330696220709
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207568098593327923}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4310522698527658238}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3561471952304852034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207568098593327923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ecd0f4556a71ce6f88c866b5c2d4ce9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Pistol_Fire
+  delay: 0
 --- !u!1 &2589862898478383057
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,7 +58,7 @@ GameObject:
   - component: {fileID: 1949518569051430974}
   - component: {fileID: 4788700465432017961}
   - component: {fileID: 3725492952678794790}
-  - component: {fileID: 4833525281844318279}
+  - component: {fileID: 2697069963589015777}
   m_Layer: 2
   m_Name: Pistol
   m_TagString: Untagged
@@ -36,6 +82,8 @@ Transform:
   - {fileID: 2315037856871694537}
   - {fileID: 3809378995964851303}
   - {fileID: 5370576416928969103}
+  - {fileID: 1401540174003593722}
+  - {fileID: 7230662330696220709}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1949518569051430974
@@ -53,6 +101,7 @@ MonoBehaviour:
   _animator: {fileID: 8888487198308375363}
   fireAnimation: Fire
   reloadAnimation: Reload
+  Spray: 0.04
   repeatFireSecs: 0
   LayersToIgnore:
     serializedVersion: 2
@@ -72,7 +121,37 @@ MonoBehaviour:
   weaponFire:
     m_PersistentCalls:
       m_Calls: []
-  weaponReload:
+  weaponFireWithoutData:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3561471952304852034}
+        m_TargetAssemblyTypeName: PlaySound, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  weaponReloading:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4668250605917900490}
+        m_TargetAssemblyTypeName: PlaySound, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  weaponReloaded:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &3725492952678794790
@@ -87,9 +166,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26d5ebdf2ce8662d9b243cf87e501a2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletHoleDecal: {fileID: 114898179317397759, guid: 6f923c9f7c597284081cb25cdf5b2cf4, type: 3}
-  _muzzleFlash: {fileID: 7800228180027185619}
---- !u!114 &4833525281844318279
+  bulletHoleDecal: {fileID: 114898179317397759, guid: 6f923c9f7c597284081cb25cdf5b2cf4, type: 3}
+  muzzleFlash: {fileID: 7800228180027185619}
+--- !u!114 &2697069963589015777
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -98,11 +177,55 @@ MonoBehaviour:
   m_GameObject: {fileID: 2589862898478383057}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e4a45143506028b79bc1c0641cb86cc, type: 3}
+  m_Script: {fileID: 11500000, guid: 37617871c5991738c9ec3a9ef90a8c0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireID: Pistol_Fire
-  reloadID: Pistol_Reload
+--- !u!1 &3971375405127139321
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1401540174003593722}
+  - component: {fileID: 4668250605917900490}
+  m_Layer: 2
+  m_Name: SoundReload
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1401540174003593722
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3971375405127139321}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4310522698527658238}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4668250605917900490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3971375405127139321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ecd0f4556a71ce6f88c866b5c2d4ce9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Pistol_Reload
+  delay: 0
 --- !u!1 &7800228180027185619
 GameObject:
   m_ObjectHideFlags: 0

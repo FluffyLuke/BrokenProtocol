@@ -7,7 +7,7 @@ public class PlayerEventBus : MonoBehaviour
     public static UnityEvent HideItem = new();
     public static UnityEvent SwitchToWalkState = new();
     public static UnityEvent SwitchToCutsceneState = new();
-    public static UnityEvent<Transform, Minecart> PushMinecart = new();
+    public static UnityEvent<Transform, IPushable, int> SwitchToPushObjectState = new();
     public static UnityEvent<CharacterDialogue, float> ShowMonologue = new();
     public static bool DialogueIsTakingPlace = false;
     public static UnityEvent<CharacterDialoguePart[]> ShowDialogue = new();
@@ -16,5 +16,6 @@ public class PlayerEventBus : MonoBehaviour
     public static UnityEvent<bool> PauseGame = new();
     public static bool isPaused = false;
     public static UnityEvent<NoteData> ShowNote = new();
+    public static UnityEvent<bool> ShowAim = new();
     public static UnityEvent<bool> Zoom = new();
 }

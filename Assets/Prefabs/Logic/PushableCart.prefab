@@ -84,7 +84,7 @@ MonoBehaviour:
       m_Calls: []
   playerRequirements: 
   playerPushingPosition: {fileID: 978735977051625089}
-  isThisABackSide: 0
+  side: 1
 --- !u!65 &8302012939290190011
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -292,7 +292,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5284754930173747906}
   - component: {fileID: 2223388187302300443}
-  - component: {fileID: 4134889196271942687}
+  - component: {fileID: 7011756708743955385}
   m_Layer: 6
   m_Name: PushableCart
   m_TagString: Untagged
@@ -333,17 +333,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95128b504b55029a69691f36e42dda74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 200
+  forwardspeed: 3
   reverseSpeed: 2
-  posData:
-    t: 0
-    currentAnchorIndex: 0
-  startingRail: {fileID: 0}
+  positionT: 0.1
+  pushingForwardsBlocked: 0
+  pushingBackwardsBlocked: 0
   rail: {fileID: 0}
   playerFromTheBack: 0
-  pushingForwardBlocked: 0
-  pushingBackwardsBlocked: 0
---- !u!114 &4134889196271942687
+--- !u!114 &7011756708743955385
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -352,10 +349,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 1762319257146318280}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64173541d71e28f0da1fc00702c4fe12, type: 3}
+  m_Script: {fileID: 11500000, guid: dab5c7d4c32e743048dfca98e2d5914f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anchors: []
+  m_Spline:
+    m_EditModeType: 1
+    m_Knots: []
+    m_MetaData: []
+    m_Closed: 0
+    m_IntData:
+      m_Data: []
+    m_FloatData:
+      m_Data: []
+    m_Float4Data:
+      m_Data: []
+    m_ObjectData:
+      m_Data: []
+  m_Splines:
+  - m_EditModeType: 1
+    m_Knots: []
+    m_MetaData: []
+    m_Closed: 0
+    m_IntData:
+      m_Data: []
+    m_FloatData:
+      m_Data: []
+    m_Float4Data:
+      m_Data: []
+    m_ObjectData:
+      m_Data: []
+  m_Knots:
+    m_KnotsLink: []
 --- !u!1 &7058450212864188820
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,7 +591,7 @@ MonoBehaviour:
       m_Calls: []
   playerRequirements: 
   playerPushingPosition: {fileID: 3875209618610122734}
-  isThisABackSide: 1
+  side: 0
 --- !u!65 &5886251180429751187
 BoxCollider:
   m_ObjectHideFlags: 0

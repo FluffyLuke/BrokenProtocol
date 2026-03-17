@@ -3,6 +3,10 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+public enum MovementState {
+    Standing, Walking, Running
+}
+
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(Animator))]
 public class PlayerWalkingState : IPlayerState
@@ -11,9 +15,7 @@ public class PlayerWalkingState : IPlayerState
     public float RotationSpeed;
     public float MaxWalkingSpeed;
     public float MaxRunningSpeed;
-    private enum MovementState {
-        Standing, Walking, Running
-    }
+    public float Gravity = 2;
     private MovementState currentMovementState;
     private MovementState previousMovementState;
     [Header("Head bob")]
@@ -56,7 +58,7 @@ public class PlayerWalkingState : IPlayerState
 
         originalBobPivotPosition = bobPivot.localPosition;
     }
-    void Update() {
+    void FixedUpdate() {
         movePlayer();
         rotatePlayer();
         headBob();
@@ -140,7 +142,7 @@ public class PlayerWalkingState : IPlayerState
 
         animator.SetFloat("Speed", move.magnitude);
         
-        body.Move(move * Time.deltaTime + Vector3.down * 2f * Time.deltaTime);
+        body.Move(move * Time.deltaTime + Vector3.down * (Gravity * Time.deltaTime));
     }
 
     // Fuck the slopes
