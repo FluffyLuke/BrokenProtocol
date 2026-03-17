@@ -1,69 +1,9 @@
 fileFormatVersion: 2
-guid: 624cf472366065507b546fe5bc955d6f
+guid: e3400233ef18d92b49c19f6b59152289
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Arm
-    second: {fileID: 2100000, guid: a56466f63e62d1fdea161664ab165b0d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Hand
-    second: {fileID: 2100000, guid: 31efc152a44a883709205c2b83be1a27, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Head
-    second: {fileID: 2100000, guid: 7e6f383732a44447ea7529cb89f27a87, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Leg
-    second: {fileID: 2100000, guid: 6c4d10d2647bf4357a48a9785018c624, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Shoe
-    second: {fileID: 2100000, guid: a0ea0e8d3bf5b7107a8aeb662f927f59, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Torso
-    second: {fileID: 2100000, guid: ddb14a0afd0b9ec2a90dc686eb98a1af, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: ArmTexture
-    second: {fileID: 2800000, guid: 276c3ea6dfe696c9a9540b8265897397, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: HandTexture
-    second: {fileID: 2800000, guid: 451139d0d988a5ad99a9c607aa94c55b, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: HeadTexture
-    second: {fileID: 2800000, guid: 4e7f0d0230d80ce20906e6a3eaf682d6, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: LegTexture
-    second: {fileID: 2800000, guid: 83ad0eac2fef260ee8e6749a7d13c378, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: ShoeTexture
-    second: {fileID: 2800000, guid: 21a01cb46f8f3acb2b4c40e2caaf0d84, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: TorsoTexture
-    second: {fileID: 2800000, guid: e38f20b00e5d5c8ae91b8e0a5ba322f6, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
